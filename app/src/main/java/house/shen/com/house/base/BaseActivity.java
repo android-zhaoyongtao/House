@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Looper;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -42,13 +44,14 @@ public abstract class BaseActivity extends AppCompatActivity implements StatusHa
         //        PushAgent.getInstance(this).onAppStart();
     }
 
-    public View getContentView(int layout) {
-        return View.inflate(this, layout, null);
+    public @NonNull
+    View getContentView(int layout) {
+        return LayoutInflater.from(this).inflate(layout, null);
     }
 
     public ContentViewWrap injectStatus(View view) {
         ContentViewWrap viewWrap = new ContentViewWrap(this);
-        viewWrap.setShadow(getResources().getDimensionPixelOffset(R.dimen.height_50dp));
+        viewWrap.setShadow(getResources().getDimensionPixelOffset(R.dimen.title_hight));
         return viewWrap;
     }
 
@@ -69,7 +72,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StatusHa
 
     public abstract int getcontentView();
 
-    public abstract void afterInjectView(View view);
+    public abstract void afterInjectView(@NonNull View view);
 
     /**
      * 显示 dialog 如果0可以取消,点击

@@ -61,7 +61,7 @@ public abstract class BaseFragment extends Fragment implements StatusHandle, Vie
 
     public ContentViewWrap injectStatus(View view) {//只有复写了getContentView 才知道返回的是个什么 view
         ContentViewWrap viewWrap = new ContentViewWrap((FrameLayout) view);
-        viewWrap.setShadow(getResources().getDimensionPixelOffset(R.dimen.height_50dp));
+        viewWrap.setShadow(getResources().getDimensionPixelOffset(R.dimen.title_hight));
         return viewWrap;
     }
 
