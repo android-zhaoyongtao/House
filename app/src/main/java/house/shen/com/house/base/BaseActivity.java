@@ -1,5 +1,6 @@
 package house.shen.com.house.base;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,31 +10,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.xin.ContentViewWrap;
-import com.xin.StartActivity;
-import com.xin.StatisPageVar;
-import com.xin.StatusHandle;
-import com.xin.baserent.utils.SlideBackHelper;
-import com.xin.dbm.utils.InputTools;
-import com.xin.dbm.utils.LogUtils;
+import house.shen.com.house.R;
+import house.shen.com.house.utiles.InputTools;
+import house.shen.com.house.utiles.SlideBackHelper;
 
-import butterknife.ButterKnife;
 
-public abstract class BaseActivity extends AppCompatActivity implements StatusHandle, StartActivity, View.OnClickListener, StatisPageVar {
+public abstract class BaseActivity extends AppCompatActivity implements StatusHandle, View.OnClickListener {
 
     protected ContentViewWrap mStatusHandler;
     private SlideBackHelper mSlideBackHelper = new SlideBackHelper();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {//final 新版本听云要去掉
-        int flag = getIntent().getIntExtra(Key.IntentKey.WINDOW_FLAG, -1);
-        int mask = getIntent().getIntExtra(Key.IntentKey.WINDOW_MASK, -1);
-        if (flag != -1 && mask != -1) {
-            this.getWindow().setFlags(flag, mask);//去掉信息栏
-        }
+//        int flag = getIntent().getIntExtra(Key.IntentKey.WINDOW_FLAG, -1);
+//        int mask = getIntent().getIntExtra(Key.IntentKey.WINDOW_MASK, -1);
+//        if (flag != -1 && mask != -1) {
+//            this.getWindow().setFlags(flag, mask);//去掉信息栏
+//        }
         beforeSuper(savedInstanceState);
         super.onCreate(savedInstanceState);
-        LogUtils.i("Activity", getClass().getName() + "  " + flag + "  " + mask);
+//        LogUtils.i("Activity", getClass().getName() + "  " + flag + "  " + mask);
         View view = getContentView(getcontentView());
         if (view.getBackground() == null) {
             view.setBackgroundColor(Color.WHITE);
@@ -57,7 +53,6 @@ public abstract class BaseActivity extends AppCompatActivity implements StatusHa
     }
 
     public void injectView(View contentView) {
-        ButterKnife.bind(this);
     }
 
     public void beforeSuper(Bundle savedInstanceState) {
@@ -130,10 +125,6 @@ public abstract class BaseActivity extends AppCompatActivity implements StatusHa
         }
     }
 
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-    }
 
     public final void onNoData() {
         if (mStatusHandler != null) {
@@ -188,7 +179,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StatusHa
             return;
         }
         if (Looper.myLooper() == Looper.getMainLooper()) {
-            InputTools.toggleKeyBoard(this, false, getWindow().getDecorView());
+            InputTools.toggleKeyBoard(false, getWindow().getDecorView());
             try {//IllegalStateException: Can not perform this action after onSaveInstanceState,  FragmentManagerImpl中checkStateLoss 判断了如果 mStateSaved 是true 就抛出异常，当 stop 的时候就是 true
                 super.onBackPressed();
             } catch (Exception e) {
@@ -213,12 +204,13 @@ public abstract class BaseActivity extends AppCompatActivity implements StatusHa
     @Override
     public void finish() {
         super.finish();
-        InputTools.toggleKeyBoard(BaseActivity.this, false, getWindow().getDecorView());
+        InputTools.toggleKeyBoard(false, getWindow().getDecorView());
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     public void startActivityForResult(Intent intent, int requestCode, Bundle options) {
-        InputTools.toggleKeyBoard(this, false, getWindow().getDecorView());
+        InputTools.toggleKeyBoard(false, getWindow().getDecorView());
         super.startActivityForResult(intent, requestCode, options);
         overridePendingTransition(R.anim.right_in, R.anim.left_out);
     }
@@ -235,7 +227,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StatusHa
             if (!superDis) {//如果子 view 没有处理事件，在判断是否需要滑动
                 final View currentFocus = getCurrentFocus();
                 if (currentFocus != null) {
-                    InputTools.toggleKeyBoard(getThis(), false, currentFocus);
+                    InputTools.toggleKeyBoard(false, currentFocus);
                 }
             }
             return slide | superDis;

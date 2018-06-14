@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--修改个人信息dialog的布局,包含有一个edittext,两个按钮-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/ll_bg"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/bg_dialog"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="25dp"
+        android:textColor="@color/color_1b1b1b"
+        android:textSize="17sp"
+        tools:text="太塔头太塔头太塔头太塔头太塔头太太塔头太塔头太塔头太塔头太塔头太"/>
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center"
+        android:lineSpacingExtra="4dp"
+        android:textColor="@color/color_848484"
+        android:textSize="14sp"
+        android:visibility="gone"
+        tools:text="太塔头太塔头太塔头太塔头太塔头太塔头太塔头太塔头太塔头太塔头太塔头太塔头"
+        tools:visibility="visible"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:id="@+id/btn_nega"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/dialog_leftbtn_selector"
+            android:gravity="center"
+            android:textColor="@color/color_848484"
+            android:textSize="16sp"
+            tools:text="取消"
+            />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/line"/>
+
+        <Button
+            android:id="@+id/btn_posi"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/dialog_rightbtn_selector"
+            android:gravity="center"
+            android:textColor="@color/color_ff5e41"
+            android:textSize="16sp"
+            tools:text="确认"
+            />
+
+    </LinearLayout>
+</LinearLayout>
