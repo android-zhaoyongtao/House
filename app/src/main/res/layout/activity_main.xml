@@ -2,23 +2,13 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/title_home"
-        />
 
     <FrameLayout
-        android:id="@+id/frmLayTabContent"
+        android:id="@+id/flContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/bottom_hight"
@@ -29,7 +19,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_hight"
         android:layout_alignParentBottom="true"
-
         android:orientation="horizontal"
         android:weightSum="5">
 
@@ -37,8 +26,8 @@
             android:id="@+id/rb1"
             android:layout_width="0dp"
             android:layout_height="@dimen/bottom_hight"
-            android:background="@color/white_ffffff"
             android:layout_weight="1"
+            android:background="@color/white_ffffff"
             android:button="@null"
             android:drawableTop="@drawable/selector_tab1"
             android:gravity="center"
@@ -53,8 +42,8 @@
             android:id="@+id/rb2"
             android:layout_width="0dp"
             android:layout_height="@dimen/bottom_hight"
-            android:background="@color/white_ffffff"
             android:layout_weight="1"
+            android:background="@color/white_ffffff"
             android:button="@null"
             android:drawableTop="@drawable/selector_tab2"
             android:gravity="center"
@@ -72,10 +61,10 @@
 
         <RadioButton
             android:id="@+id/rb3"
-            android:background="@color/white_ffffff"
             android:layout_width="0dp"
             android:layout_height="@dimen/bottom_hight"
             android:layout_weight="1"
+            android:background="@color/white_ffffff"
             android:button="@null"
             android:drawableTop="@drawable/selector_tab3"
             android:gravity="center"
@@ -104,9 +93,17 @@
     </RadioGroup>
 
     <View
-        android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="4dp"
         android:layout_above="@id/radioGroup"
         android:background="@drawable/shadow_foot"/>
+
+    <ImageView
+        android:id="@+id/ivPost"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/main_tab_post"/>
 </RelativeLayout>

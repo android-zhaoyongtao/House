@@ -17,4 +17,11 @@ public class StringUtils {
         }
     }
 
+    public static <T> int arraySize(T[] array) {
+        if (array != null) {
+            return array.length;
+        } else {
+            return -1;
+        }
+    }
 }

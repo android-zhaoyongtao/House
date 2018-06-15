@@ -173,7 +173,7 @@ public abstract class BaseActivity extends AppCompatActivity implements StatusHa
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(@NonNull View v) {
     }
 
     @Override
