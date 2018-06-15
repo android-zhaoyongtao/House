@@ -242,4 +242,10 @@ public abstract class BaseActivity extends AppCompatActivity implements StatusHa
     public void setEnableSwipeBack(int size) {
         mSlideBackHelper.setEdgeEffect(size);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        OkGo.getInstance().cancelTag(this);
+    }
 }
