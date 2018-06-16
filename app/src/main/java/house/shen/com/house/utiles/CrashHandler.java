@@ -37,6 +37,7 @@ import java.util.Date;
 
 import house.shen.com.house.BuildConfig;
 import house.shen.com.house.ContextHouse;
+import house.shen.com.house.http.HttpRequest;
 
 
 public class CrashHandler extends Instrumentation {
@@ -104,10 +105,10 @@ public class CrashHandler extends Instrumentation {
                                 Intent intent = new Intent();
                                 intent.setAction(Intent.ACTION_SEND);
                                 intent.setType("text/plain"); //纯文本
-                                intent.putExtra(Intent.EXTRA_TEXT, new JSONObject().put("title", activity == null ? "无页面展示" : activity.getClass().getSimpleName())
-                                        .put("version", ApkUtils.getVersionName(base).replaceAll("\\D", ""))
-                                        .put("pic", file.getAbsolutePath())
-                                        .put("desc", ActivityLifecycle.mLogList + "\n" + HttpRequest.request + HttpRequest.response + "\n\n\n" + getDeviceInfo()).toString());
+                                intent.putExtra(Intent.EXTRA_TEXT, new JSONObject().put("title", activity == null ? "崩溃无页面展示" : "崩溃页面:"+activity.getClass().getSimpleName())
+                                        .put("version:", ApkUtils.getVersionName(base).replaceAll("\\D", ""))
+                                        .put("pic:", file.getAbsolutePath())
+                                        .put("desc:", ActivityLifecycle.mLogList + "\n" + HttpRequest.request + HttpRequest.response + "\n\n\n" + getDeviceInfo()).toString());
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 base.startActivity(intent);
                             } catch (Exception e) {
