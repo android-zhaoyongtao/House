@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="title_hight">50dp</dimen>
+    <dimen name="bottom_hight">50dp</dimen>
+    <dimen name="divider_0_5dp">0.5dp</dimen>
+</resources>

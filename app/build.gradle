@@ -1,13 +1,12 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "house.shen.com.house"
+        applicationId "com.shen.house"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
@@ -23,22 +22,23 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':baselibrary')
     //测试
 //    testImplementation 'junit:junit:4.12'
 //    androidTestImplementation 'com.android.support.test:runner:1.0.2'
     //kotlin
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+//    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    //suport
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    //http
-    implementation 'com.lzy.net:okgo:3.0.4'
-    implementation 'com.google.code.gson:gson:2.8.0'
-    //okdemo用到的
-//    compile 'com.jakewharton:butterknife:7.0.1'
-    //读取网络请求各个参数的
-    implementation 'com.readystatesoftware.chuck:library:1.0.4'
+//    //suport
+//    implementation 'com.android.support:appcompat-v7:27.1.1'
+//    implementation 'com.android.support:design:27.1.1'
+//    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+//    //http
+//    implementation 'com.lzy.net:okgo:3.0.4'
+//    implementation 'com.google.code.gson:gson:2.8.0'
+//    //okdemo用到的
+////    compile 'com.jakewharton:butterknife:7.0.1'
+//    //读取网络请求各个参数的
+//    implementation 'com.readystatesoftware.chuck:library:1.0.4'
 }

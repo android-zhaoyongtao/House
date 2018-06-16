@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">House</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
 
     <string name="dialog_confirm">确定</string>
     <string name="dialog_cancel">取消</string>
