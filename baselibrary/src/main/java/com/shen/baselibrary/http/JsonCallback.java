@@ -17,9 +17,9 @@ package com.shen.baselibrary.http;
 
 import android.text.TextUtils;
 
-import com.lzy.okgo.BuildConfig;
 import com.lzy.okgo.callback.AbsCallback;
 import com.lzy.okgo.request.base.Request;
+import com.shen.baselibrary.ContextHouse;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -62,7 +62,7 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
         request.headers("header1", "HeaderValue1")//
                 .params("params1", "ParamsValue1")//
                 .params("token", "3215sdf13ad1f65asd4f3ads1f");
-        if (BuildConfig.DEBUG) {
+        if (ContextHouse.DEBUG) {
             HttpRequest.request = TextUtils.concat("url:",request.getBaseUrl(),"params:",request.getParams().toString()).toString();
         }
     }
@@ -74,7 +74,7 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
      */
     @Override
     public T convertResponse(Response response) throws Throwable {
-        if (BuildConfig.DEBUG) {
+        if (ContextHouse.DEBUG) {
             HttpRequest.response = response.toString();
         }
         // 重要的事情说三遍，不同的业务，这里的代码逻辑都不一样，如果你不修改，那么基本不可用
@@ -99,7 +99,7 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
 
     @Override
     public void onError(com.lzy.okgo.model.Response<T> response) {
-        if (BuildConfig.DEBUG) {
+        if (ContextHouse.DEBUG) {
             HttpRequest.response = response.getException().getStackTrace().toString();
         }
         super.onError(response);
