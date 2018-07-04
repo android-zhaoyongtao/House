@@ -14,7 +14,7 @@ import com.shen.baselibrary.R;
  * https://juejin.im/post/5a4611786fb9a0451a76b565
  * 使用示例：
  * //callback方式
- * callback.setOnClickListener {
+ * btn.setOnClickListener {
  * AvoidOnResult(this).startForResult(FetchDataActivity::class.java, REQUEST_CODE_CALLBACK, object : AvoidOnResult.Callback {
  * override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) =
  * if (resultCode == Activity.RESULT_OK) {
