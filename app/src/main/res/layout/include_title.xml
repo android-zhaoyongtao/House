@@ -3,6 +3,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/base_title_rl"
                 android:layout_width="match_parent"
+                tools:background="@color/color_ff5e41"
                 android:layout_height="@dimen/title_hight"
     >
 
