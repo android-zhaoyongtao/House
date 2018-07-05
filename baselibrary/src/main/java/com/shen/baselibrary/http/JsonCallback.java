@@ -104,4 +104,9 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
         }
         super.onError(response);
     }
+
+    @Override
+    public void onCacheSuccess(com.lzy.okgo.model.Response<T> response) {
+        onSuccess(response);
+    }
 }

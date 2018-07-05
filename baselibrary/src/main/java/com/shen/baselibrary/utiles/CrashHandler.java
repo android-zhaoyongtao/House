@@ -1,5 +1,6 @@
 package com.shen.baselibrary.utiles;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Application;
@@ -29,11 +30,14 @@ import android.view.View;
 
 import com.shen.baselibrary.ContextHouse;
 import com.shen.baselibrary.http.HttpRequest;
+import com.shen.baselibrary.utiles.requestutiles.PermissionCallBack;
+import com.shen.baselibrary.utiles.requestutiles.PermissionUtils;
 
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Date;
@@ -137,16 +141,27 @@ public class CrashHandler extends Instrumentation {
         return sb.toString();
     }
 
-    private static void onCrash(Throwable e) {
+    private static void onCrash(final Throwable e) {
         try {
             Activity activity = ActivityStackManager.getInstance().currentActivity();
             if (ContextHouse.DEBUG) {
                 LogUtils.e("FATAL", e);
+                final String traceString = Log.getStackTraceString(e);
+                PermissionUtils.requestPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE, new PermissionCallBack() {
+                    @Override
+                    public void hasPermission() {
+                        try {
+                            FileOutputStream fos = new FileOutputStream(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "HouseCrash " + new Date().toString() + ".txt");
+                            fos.write(traceString.getBytes());
+                            fos.close();
+                        } catch (IOException e1) {
+                            if (ContextHouse.DEBUG) {
+                                LogUtils.e("FATAL", e1.getMessage());
+                            }
+                        }
+                    }
+                });
                 ToastUtile.showToast("捕获到一个 crash，请使用 qq 等工具分享给研发");
-                String traceString = Log.getStackTraceString(e);
-                FileOutputStream fos = new FileOutputStream(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "crash" + new Date().toString() + ".txt");
-                fos.write(traceString.getBytes());
-                fos.close();
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
                 intent.setType("text/plain"); //纯文本
@@ -159,6 +174,9 @@ public class CrashHandler extends Instrumentation {
 //                MobclickAgent.reportError(ContextXin.getContext(), e);
             }
         } catch (Throwable e1) {
+            if (ContextHouse.DEBUG) {
+                LogUtils.e("FATAL", e.getMessage());
+            }
         }
     }
 

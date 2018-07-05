@@ -34,7 +34,7 @@ public class HttpRequest {
     public static <T> void post(Activity activity, String url, Map<String, String> param, AbsCallback callback) {
         OkGo.<LzyResponse<T>>post(url)
                 .tag(activity)
-//                .cacheMode(cacheMode)
+                .cacheMode(CacheMode.NO_CACHE)
                 .params(param)
 //                .isMultipart(true)//该方法表示是否强制使用multipart/form-data表单上传，因为该框架在有文件的时候，无论你是否设置这个参数，默认都是multipart/form-data格式上传，但是如果参数中不包含文件，默认使用application/x-www-form-urlencoded格式上传，如果你的服务器要求无论是否有文件，都要使用表单上传，那么可以用这个参数设置为true。
                 .execute(callback);
