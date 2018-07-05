@@ -24,12 +24,15 @@ import java.util.Stack;
 
 public class SlideBackHelper {
     private static final String TAG = "SlideBackHelper";
+    private static final int SHADOW_WIDTH = 30;//阴影宽度
+    private static int touchSlop = -1;
     private int downX;
     private int downY;
-    private ImageView backAct;
-    private ViewGroup contentView;
-    private float edgeEffect = (int) (ContextHouse.DP1 * 20);
-    private View conent;
+    private ImageView backAct;//后
+    private ImageView ivShadow;//阴影
+    private ViewGroup contentView;//前
+    private float edgeeFfect = (int) (ContextHouse.DP1 * 20);
+    private View lastDecorView;
 
     public boolean swipeBack(final Activity context, MotionEvent event) {
         try {
@@ -38,7 +41,7 @@ public class SlideBackHelper {
                 float x = event.getX();
                 int action = event.getAction();
                 if (action == MotionEvent.ACTION_DOWN) {//如果按下的位置在左侧边缘
-                    if (edgeEffect > x) {
+                    if (edgeeFfect > x) {////没超过
                         downX = Integer.MIN_VALUE | (int) (x + 1);//防止rawx=0当做没按下处理//downx里包含了两个状态，一个是min_value标识是否滑动超过抖动限制，一个是当前按下的x距离
                         downY = (int) event.getY();
                         Log.i(TAG, downX + "  down " + downY);
@@ -70,10 +73,11 @@ public class SlideBackHelper {
                                         backAct.setBackground(null);
                                         backAct = null;
                                         contentView = null;
+                                        ivShadow = null;
                                     }//防止 acitivity 泄露导致引用一张大图
-                                    if (conent != null) {
-                                        conent.destroyDrawingCache();
-                                        conent = null;
+                                    if (lastDecorView != null) {
+                                        lastDecorView.destroyDrawingCache();
+                                        lastDecorView = null;
                                     }
                                 }
 
@@ -98,11 +102,13 @@ public class SlideBackHelper {
                                         backAct.setBackground(null);
                                         ((ViewGroup) backAct.getParent()).removeView(backAct);
                                         backAct = null;
+                                        ((ViewGroup) ivShadow.getParent()).removeView(ivShadow);
+                                        ivShadow = null;
                                         contentView = null;
                                     }
-                                    if (conent != null) {
-                                        conent.destroyDrawingCache();
-                                        conent = null;
+                                    if (lastDecorView != null) {
+                                        lastDecorView.destroyDrawingCache();
+                                        lastDecorView = null;
                                     }
                                 }
                             });
@@ -114,29 +120,53 @@ public class SlideBackHelper {
                     }
                 } else if (action == MotionEvent.ACTION_MOVE && downX != Integer.MIN_VALUE) {
                     if ((downX | Integer.MAX_VALUE) == 0xffffffff) {//如果downx里包含min_value    则   还没有划出 抖动限制
-                        int touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
+                        if (touchSlop < 0) {
+                            touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
+                        }
                         float moveX = Math.abs(x - (downX & Integer.MAX_VALUE));
                         if (moveX > touchSlop) {//滑动距离超过 抖动限制
                             if (moveX > Math.abs(event.getY() - downY)) {//x轴滑动的多
-                                View decor = context.getWindow().getDecorView();
-                                if (decor instanceof FrameLayout && ((FrameLayout) decor).getChildCount() > 0) {//直接把底下的activity当做一个view的背景加到和contentview同一层
-                                    conent = list.get(list.size() - 2).getWindow().getDecorView();
-                                    conent.setDrawingCacheEnabled(true);
-                                    Bitmap drawingCache = conent.getDrawingCache();
-                                    if (drawingCache != null) {
+                                View nowDecorView = context.getWindow().getDecorView();
+                                if (nowDecorView instanceof FrameLayout && ((FrameLayout) nowDecorView).getChildCount() > 0) {//直接把底下的activity当做一个view的背景加到和contentview同一层
+                                    lastDecorView = list.get(list.size() - 2).getWindow().getDecorView();
+                                    if (lastDecorView != null) {
                                         downX = (downX &= Integer.MAX_VALUE) - 1;//去掉最高位 只留其中x距离的状态  把downx开始+1减掉
-                                        contentView = (ViewGroup) ((FrameLayout) decor).getChildAt(0);
-                                        backAct = new ImageView(context);
-                                        backAct.setScaleType(ImageView.ScaleType.FIT_XY);
-                                        ((FrameLayout) decor).addView(backAct, 0);
-                                        ViewGroup.LayoutParams params = backAct.getLayoutParams();
-                                        params.width = -1;
-                                        params.height = -1;
-                                        backAct.setImageBitmap(drawingCache);
+                                        if (contentView == null) {
+                                            contentView = (ViewGroup) ((FrameLayout) nowDecorView).getChildAt(0);
+                                        }
+                                        if (backAct == null) {
+                                            backAct = new ImageView(context);
+                                            backAct.setScaleType(ImageView.ScaleType.FIT_XY);
+                                            ((FrameLayout) nowDecorView).addView(backAct, 0);
+                                            ViewGroup.LayoutParams params = backAct.getLayoutParams();
+                                            params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                                            params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+                                            lastDecorView.setDrawingCacheEnabled(true);
+                                            lastDecorView.buildDrawingCache();
+                                            Bitmap drawingCache = lastDecorView.getDrawingCache();
+                                            if (drawingCache == null) {
+                                                lastDecorView = null;
+                                                return false;
+                                            } else {
+                                                backAct.setImageBitmap(drawingCache);
+                                            }
+//                                            backAct.bringToFront();
+                                        }
+                                        if (ivShadow == null) {
+                                            ivShadow = new ImageView(context);
+                                            backAct.setScaleType(ImageView.ScaleType.FIT_XY);
+                                            ViewGroup.LayoutParams params = new FrameLayout.LayoutParams(SHADOW_WIDTH, ViewGroup.LayoutParams.MATCH_PARENT);
+                                            ivShadow.setLayoutParams(params);
+//                                            params.width =SHADOW_WIDTH;
+//                                            params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+                                            ivShadow.setImageResource(R.drawable.shadow_slideback);
+                                            ((FrameLayout) nowDecorView).addView(ivShadow, 1);
+//                                            ivShadow.bringToFront();
+                                        }
                                         Log.i(TAG, downX + "  startmove " + downY);
                                     } else {
                                         downX = Integer.MIN_VALUE;
-                                        Log.i(TAG, downX + " bitmap=null  " + downY);
+                                        Log.i(TAG, downX + " lastDecorView=null  " + downY);
                                     }
                                 } else {
                                     downX = Integer.MIN_VALUE;
@@ -168,6 +198,7 @@ public class SlideBackHelper {
 //        backAct.setScaleX((value) / rootWidth * 0.05f + 0.95f);
 //        backAct.setScaleY((value) / rootWidth * 0.05f + 0.95f);
             backAct.setAlpha((value) / rootWidth * 0.3f + 0.7f);
+            ivShadow.setTranslationX(value - SHADOW_WIDTH);
         }
     }
 
@@ -176,6 +207,6 @@ public class SlideBackHelper {
     }
 
     public void setEdgeEffect(float edgeEffect) {
-        this.edgeEffect = edgeEffect;
+        this.edgeeFfect = edgeEffect;
     }
 }
