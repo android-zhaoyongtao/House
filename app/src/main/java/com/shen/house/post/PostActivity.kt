@@ -1,7 +1,8 @@
-package com.shen.house
+package com.shen.house.post
 
 import android.view.View
 import com.shen.baselibrary.base.BaseActivity
+import com.shen.house.R
 import kotlinx.android.synthetic.main.include_title.*
 
 //发布页面

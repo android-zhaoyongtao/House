@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PostActivity"
+            android:name=".post.PostActivity"
             android:screenOrientation="portrait"/>
     </application>
 

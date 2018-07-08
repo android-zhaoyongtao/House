@@ -1,4 +1,4 @@
-package house.shen.com.house
+package com.shen.house
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

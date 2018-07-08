@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.View
 import com.shen.baselibrary.base.BaseActivity
 import com.shen.baselibrary.base.ContentViewWrap
+import com.shen.house.post.PostActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
