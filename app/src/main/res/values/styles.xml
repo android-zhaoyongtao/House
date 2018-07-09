@@ -87,4 +87,10 @@
         <!--相册文件夹列表选中图标-->
         <item name="picture.folder_checked_dot">@drawable/orange_oval</item>
     </style>
+
+    <!--edittext的style-->
+    <style name="inputEditText">
+        <item name="android:background">@null</item>
+        <item name="android:padding">10dp</item>
+    </style>
 </resources>

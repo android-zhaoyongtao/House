@@ -15,6 +15,7 @@ class PostActivity : BaseActivity() {
     override fun afterInjectView(view: View) {
         titleBack.setOnClickListener { finish() }
         titleText.setText("发布信息")
+
     }
 
 }
