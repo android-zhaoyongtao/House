@@ -41,4 +41,5 @@ dependencies {
 ////    compile 'com.jakewharton:butterknife:7.0.1'
 //    //读取网络请求各个参数的
 //    implementation 'com.readystatesoftware.chuck:library:1.0.4'
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
 }
