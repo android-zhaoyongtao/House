@@ -11,7 +11,7 @@
 
     <stroke
         android:width="0.5dp"
-        android:color="@color/color_ff5e41"
+        android:color="@color/mainColor"
         />
 
 

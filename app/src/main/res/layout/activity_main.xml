@@ -11,6 +11,7 @@
         android:id="@+id/flContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/c5"
         android:layout_marginBottom="@dimen/bottom_hight"
         />
 

@@ -74,7 +74,7 @@
             android:layout_weight="1"
             android:background="@drawable/dialog_rightbtn_selector"
             android:gravity="center"
-            android:textColor="@color/color_ff5e41"
+            android:textColor="@color/mainColor"
             android:textSize="16sp"
             tools:text="确认"
             />
