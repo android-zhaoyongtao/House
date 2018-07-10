@@ -56,6 +56,7 @@ public class ContextHouse {
         SCREENHEIGHT = DisplayUtils.getScreenHeight(context);
         CONTENTRECT = DisplayUtils.getContentViewRect(context);
         initOkGo();
+
     }
 
     private static void initOkGo() {

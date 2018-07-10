@@ -33,6 +33,9 @@ public abstract class BaseActivity extends AppCompatActivity implements StatusHa
         super.onCreate(savedInstanceState);
 //        LogUtils.i("Activity", getClass().getName() + "  " + flag + "  " + mask);
         View view = getContentView(getcontentView());
+        if (view == null) {
+            return;
+        }
         if (view.getBackground() == null) {
             view.setBackgroundColor(Color.WHITE);
         }
@@ -46,10 +49,13 @@ public abstract class BaseActivity extends AppCompatActivity implements StatusHa
 
     public @NonNull
     View getContentView(int layout) {
+        if (layout == -1) {
+            return null;
+        }
         return LayoutInflater.from(this).inflate(layout, null);
     }
 
-    public ContentViewWrap injectStatus(View view) {
+    public ContentViewWrap injectStatus(View view) {//空页面和阴影
         ContentViewWrap viewWrap = new ContentViewWrap(this);
         viewWrap.setShadow(getResources().getDimensionPixelOffset(R.dimen.title_hight));
         return viewWrap;

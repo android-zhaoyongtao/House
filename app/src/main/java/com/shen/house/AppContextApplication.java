@@ -10,6 +10,7 @@ import com.shen.baselibrary.utiles.CrashHandler;
 import com.shen.baselibrary.utiles.SystemUtils;
 
 public class AppContextApplication extends Application {
+
 //    {
 //        //微信
 //        PlatformConfig.setWeixin(BuildConfig.wxid, BuildConfig.wxsecret);

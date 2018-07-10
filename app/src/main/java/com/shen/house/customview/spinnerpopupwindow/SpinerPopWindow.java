@@ -12,9 +12,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 
+import com.shen.house.R;
+
 import java.util.List;
 
-import cn.ccibs.homebox.R;
 
 public class SpinerPopWindow extends PopupWindow implements OnItemClickListener {
 
@@ -43,7 +44,7 @@ public class SpinerPopWindow extends PopupWindow implements OnItemClickListener 
 
 
     private void init(View wview) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.spiner_window_layout, null);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.layout_spinner_popup, null);
         setContentView(view);
         setWidth(wview.getWidth());
         setHeight(LayoutParams.WRAP_CONTENT);
@@ -60,7 +61,7 @@ public class SpinerPopWindow extends PopupWindow implements OnItemClickListener 
         });
 
 
-        mListView = (ListView) view.findViewById(R.id.listview);
+        mListView = view.findViewById(R.id.listview);
         mListView.setOnItemClickListener(this);
     }
 

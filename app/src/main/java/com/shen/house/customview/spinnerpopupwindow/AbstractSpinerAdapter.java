@@ -5,26 +5,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
+import android.widget.CheckedTextView;
 
-import java.util.ArrayList;
+import com.shen.house.R;
+
 import java.util.List;
 
-import cn.ccibs.homebox.R;
 
-public class AbstractSpinerAdapter<T> extends BaseAdapter {
+public class AbstractSpinerAdapter<T extends BaseItem> extends BaseAdapter {
 
-    public static interface IOnItemSelectListener {
-        public void onItemClick(int pos);
+    public interface IOnItemSelectListener {
+        void onItemClick(int pos);
     }
 
-    ;
 
     private Context mContext;
-    private List<T> mObjects = new ArrayList<T>();
-    private int mSelectItem = 0;
+    private List<T> mObjects;
+    public boolean singleCheck = false;//是否单选
 
-    private LayoutInflater mInflater;
 
     public AbstractSpinerAdapter(Context context) {
         init(context);
@@ -32,31 +30,31 @@ public class AbstractSpinerAdapter<T> extends BaseAdapter {
 
     public void refreshData(List<T> objects, int selIndex) {
         mObjects = objects;
-        if (selIndex < 0) {
-            selIndex = 0;
+        if (mObjects != null && selIndex < objects.size() - 1 && selIndex > 0) {
+            if (singleCheck) {
+                for (T object : mObjects) {
+                    object.isChecked = false;
+                }
+            }
+            mObjects.get(selIndex).isChecked = true;
         }
-        if (selIndex >= mObjects.size()) {
-            selIndex = mObjects.size() - 1;
-        }
-
-        mSelectItem = selIndex;
+        notifyDataSetChanged();
     }
 
     private void init(Context context) {
         mContext = context;
-        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
 
     @Override
     public int getCount() {
 
-        return mObjects.size();
+        return mObjects == null ? 0 : mObjects.size();
     }
 
     @Override
-    public Object getItem(int pos) {
-        return mObjects.get(pos).toString();
+    public BaseItem getItem(int pos) {
+        return mObjects.get(pos);
     }
 
     @Override
@@ -69,23 +67,23 @@ public class AbstractSpinerAdapter<T> extends BaseAdapter {
         ViewHolder viewHolder;
 
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.spiner_item_layout, null);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_spiner_muliple, null);
             viewHolder = new ViewHolder();
-            viewHolder.mTextView = (TextView) convertView.findViewById(R.id.textView);
+            viewHolder.mTextView = convertView.findViewById(R.id.textView);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
 
-        Object item = getItem(pos);
-        viewHolder.mTextView.setText(item.toString());
-
+        BaseItem item = getItem(pos);
+        viewHolder.mTextView.setText(item.text);
+        viewHolder.mTextView.setChecked(item.isChecked);
         return convertView;
     }
 
     public static class ViewHolder {
-        public TextView mTextView;
+        public CheckedTextView mTextView;
     }
 
 
