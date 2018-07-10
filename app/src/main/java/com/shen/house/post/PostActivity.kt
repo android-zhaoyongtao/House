@@ -10,13 +10,16 @@ import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.tools.PictureFileUtils
 import com.shen.baselibrary.base.BaseActivity
 import com.shen.baselibrary.helper.FullyGridLayoutManager
+import com.shen.baselibrary.utiles.ToastUtile
 import com.shen.baselibrary.utiles.requestutiles.PermissionCallBack
 import com.shen.baselibrary.utiles.requestutiles.PermissionUtils
 import com.shen.house.R
+import com.shen.house.customview.spinnerpopupwindow.BaseItem
+import com.shen.house.customview.spinnerpopupwindow.BaseSpinerAdapter
+import com.shen.house.customview.spinnerpopupwindow.SpinerPopWindow
 import com.shen.house.utiles.MessageDialog
 import kotlinx.android.synthetic.main.activity_post.*
 import kotlinx.android.synthetic.main.include_title.*
-import java.util.*
 
 //发布页面
 class PostActivity : BaseActivity() {
@@ -48,6 +51,22 @@ class PostActivity : BaseActivity() {
                 }
 
             }
+        }
+        tvWuZheng.setOnClickListener {
+            var lists: ArrayList<BaseItem> = ArrayList()
+            for (i in 0..120) {
+                lists.add(BaseItem("第${i}个"))
+            }
+            var baseSpinerAdapter = BaseSpinerAdapter<BaseItem>(`this`, lists, true)
+
+            SpinerPopWindow(`this`).setAdatper(baseSpinerAdapter).setSelect(1)
+                    .setItemSelectListener(object : BaseSpinerAdapter.ItemClickCallBack {
+                        override fun <T : BaseItem> itemClick(position: Int, item: T) {
+                            ToastUtile.showToast("" + item.toString())
+                        }
+
+                    })
+                    .showPopupWindow(it)
         }
     }
 

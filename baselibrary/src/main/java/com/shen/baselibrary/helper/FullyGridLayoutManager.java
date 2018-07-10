@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-
+//可被嵌套的
 public class FullyGridLayoutManager extends GridLayoutManager {
     public FullyGridLayoutManager(Context context, int spanCount) {
         super(context, spanCount);

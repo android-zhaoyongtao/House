@@ -53,6 +53,7 @@
             />
         <activity
             android:name=".post.PostActivity"
+            android:windowSoftInputMode="stateHidden"
             android:screenOrientation="portrait"/>
     </application>
 
