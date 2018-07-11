@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="mainColor">#fecb2f</color>
+    <color name="mainColor2">#ff5e41</color>
     <color name="colorAccent">#0099ff</color>
+
+    <color name="colorAccent2">#079dd4</color>
 
     <color name="inputBg">#757575</color>
     <color name="titleTextColor">#5b5f68</color>
@@ -38,7 +41,6 @@
     <color name="color_e5e6e8">#e5e6e8</color>
     <color name="translate_0000">#0000</color>
     <color name="color_8a8f98">#8a8f98</color>
-    <color name="color_999999">#999999</color>
     <color name="color_f5f8fa">#f5f8fa</color>
     <color name="color_333333">#333333</color>
     <color name="color_666666">#666666</color>

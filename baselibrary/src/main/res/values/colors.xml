@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="nodata">#f5f8fa</color>
+    <color name="grey">#999999</color>
+    <color name="blue">#11b5f2</color>
+    <color name="c5">#d6d8dd</color>
+    <color name="c6">#f0f0f0</color>
+</resources>

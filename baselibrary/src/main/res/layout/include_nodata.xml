@@ -3,7 +3,7 @@
               android:id="@+id/llNoData"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/color_f5f8fa"
+              android:background="@color/nodata"
               android:gravity="bottom"
               android:orientation="vertical"
               android:weightSum="4">
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:text="@string/nodata_text"
+            android:text="暂无数据，点击重新加载"
             android:textColor="@color/blue"
             android:textSize="15sp"/>
     </LinearLayout>

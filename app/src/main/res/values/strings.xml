@@ -1,8 +1,4 @@
 <resources>
     <string name="app_name">House</string>
 
-    <string name="dialog_confirm">确定</string>
-    <string name="dialog_cancel">取消</string>
-    <string name="netfail_text">加载失败，点击重新加载</string>
-    <string name="nodata_text"> 暂无数据，点击重新加载</string>
 </resources>

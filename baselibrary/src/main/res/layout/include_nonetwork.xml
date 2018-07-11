@@ -3,7 +3,7 @@
               android:id="@+id/llNoNet"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/color_f5f8fa"
+              android:background="@color/nodata"
               android:gravity="bottom"
               android:orientation="vertical"
               android:weightSum="5">
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="网络竟然崩溃了"
-            android:textColor="@color/color_1b1b1b"
+            android:textColor="@color/grey"
             android:textSize="15sp"/>
 
         <TextView
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:text="别紧张，试试看刷新页面"
-            android:textColor="@color/color_999999"
+            android:textColor="@color/grey"
             android:textSize="12sp"/>
 
         <Button
@@ -46,8 +46,8 @@
             android:text="刷新"
             android:layout_marginTop="18dp"
             android:textSize="14dp"
-            android:background="@drawable/bg_btn"
-            android:textColor="@color/color_ff5e41"
+            android:background="@drawable/bg_btn_selector_gray"
+            android:textColor="@color/blue"
             />
 
     </LinearLayout>
