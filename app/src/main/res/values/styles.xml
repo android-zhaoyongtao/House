@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/mainColor</item>
         <item name="colorPrimaryDark">@color/mainColor</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:navigationBarColor">@color/mainColor</item>
     </style>
 
     <style name="FullScreenTheme" parent="AppTheme">

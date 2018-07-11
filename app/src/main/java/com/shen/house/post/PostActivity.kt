@@ -69,6 +69,7 @@ class PostActivity : BaseActivity() {
                     })
                     .showPopupWindow(it)
         }
+        btnPost.setOnClickListener { ToastUtile.showToast("fabu发布") }
     }
 
     private fun addPic() {
