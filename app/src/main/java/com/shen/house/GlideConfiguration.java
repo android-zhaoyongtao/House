@@ -17,16 +17,16 @@ import com.bumptech.glide.load.engine.cache.MemorySizeCalculator;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.module.AppGlideModule;
 import com.lzy.okgo.OkGo;
-import com.shen.baselibrary.glide.OkHttpUrlLoader;
 import com.shen.baselibrary.utiles.ExecutorUtile;
 import com.shen.baselibrary.utiles.FileUtils;
 import com.shen.baselibrary.utiles.LogUtils;
+import com.shen.house.glide.OkHttpUrlLoader;
 
 import java.io.File;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 
-@GlideModule(glideName = "GlideLoader")
+@GlideModule(glideName = "GlideApp")
 public final class GlideConfiguration extends AppGlideModule {
     public static final int CACHESIZE = 100 * 1024 * 1024;
 
@@ -41,6 +41,7 @@ public final class GlideConfiguration extends AppGlideModule {
         int customBitmapPoolSize = (int) (0.5 * defaultBitmapPoolSize);
         builder.setMemoryCache(new LruResourceCache(customMemoryCacheSize));
         builder.setBitmapPool(new LruBitmapPool(customBitmapPoolSize));
+//        builder.setDiskCacheExecutor(ExecutorUtile.threadPoolExecutor)
         final DiskLruCacheFactory.CacheDirectoryGetter directoryGetter = new DiskLruCacheFactory.CacheDirectoryGetter() {
             @Override
             public File getCacheDirectory() {

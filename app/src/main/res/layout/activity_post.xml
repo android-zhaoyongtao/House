@@ -52,6 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="详细介绍:"
+                android:textColorHint="@color/colorAccent"
                 app:hintAnimationEnabled="true"
                 app:hintEnabled="true"
                 >
@@ -322,16 +323,16 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="房屋性质"
                     android:padding="10dp"
+                    android:text="房屋性质"
                     android:textAlignment="textStart"/>
 
                 <TextView
                     android:id="@+id/tvWuZheng"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
                     android:layout_weight="1"
+                    android:padding="10dp"
                     android:text="五证进度"
                     android:textAlignment="textStart"/>
             </LinearLayout>

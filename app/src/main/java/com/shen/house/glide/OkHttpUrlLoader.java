@@ -1,4 +1,4 @@
-package com.shen.baselibrary.glide;
+package com.shen.house.glide;
 
 import android.support.annotation.NonNull;
 

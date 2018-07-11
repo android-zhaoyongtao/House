@@ -38,6 +38,7 @@ class PostActivity : BaseActivity() {
         adapter = GridImageAdapter(this, GridImageAdapter.onAddPicClickListener {
             //+点击事件
             addPic()
+
         })
         adapter!!.setList(selectList)
         adapter!!.setSelectMax(maxSelectNum)

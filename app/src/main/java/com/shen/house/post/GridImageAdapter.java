@@ -175,6 +175,7 @@ public class GridImageAdapter extends
             if (mimeType == PictureMimeType.ofAudio()) {
                 viewHolder.mImg.setImageResource(R.drawable.audio_placeholder);
             } else {
+
 //                RequestOptions options = new RequestOptions()
 //                        .centerCrop()
 //                        .placeholder(R.color.c6)
