@@ -53,7 +53,7 @@ class PostActivity : BaseActivity() {
 
             }
         }
-        tvWuZheng.setOnClickListener {
+        layoutWuZheng.setOnClickListener {
             var lists: ArrayList<BaseItem> = ArrayList()
             for (i in 0..120) {
                 lists.add(BaseItem("第${i}个"))
@@ -64,12 +64,17 @@ class PostActivity : BaseActivity() {
                     .setItemSelectListener(object : BaseSpinerAdapter.ItemClickCallBack {
                         override fun <T : BaseItem> itemClick(position: Int, item: T) {
                             ToastUtile.showToast("" + item.toString())
+                            tvWuZheng.setText(item.toString())
                         }
 
                     })
                     .showPopupWindow(it)
         }
         btnPost.setOnClickListener { ToastUtile.showToast("fabu发布") }
+        layoutName.setOnClickListener {
+            ToastUtile.showToast("小区名称点击")
+            edittextName.setText("dianjile")
+        }
     }
 
     private fun addPic() {

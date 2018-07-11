@@ -88,11 +88,17 @@
         <!--相册文件夹列表选中图标-->
         <item name="picture.folder_checked_dot">@drawable/orange_oval</item>
     </style>
-
     <!--edittext的style-->
     <style name="inputEditText">
         <item name="android:background">@null</item>
         <item name="android:padding">10dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:inputType">text</item>
+        <!--<item name="tools:text">测试显示文字</item>-->
     </style>
 
     <style name="splashTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -102,5 +108,15 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowIsTranslucent">false</item>
         <!--add by zyt 主题-->
+    </style>
+    <!--activity_post中含有2个子view的父linearlayout-->
+    <style name="linerlayout_activity_post">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:divider">@drawable/divider_ver</item>
+        <item name="android:showDividers">middle</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
     </style>
 </resources>

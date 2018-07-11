@@ -18,7 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:divider="@drawable/divider_5dp"
+            android:divider="@drawable/divider_hon"
             android:orientation="vertical"
             android:padding="10dp"
             android:showDividers="middle">
@@ -83,38 +83,32 @@
                 tools:layout_height="50dp"/>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                style="@style/linerlayout_activity_post">
 
 
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/layoutName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/colorAccent">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/edittextName"
+                        style="@style/inputEditText"
+                        android:hint="小区名称："/>
+                </android.support.design.widget.TextInputLayout>
+                <!--所在区县-->
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColorHint="@color/colorAccent"
-                    >
+                    android:textColorHint="@color/colorAccent">
 
                     <android.support.design.widget.TextInputEditText
                         style="@style/inputEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left|center_vertical"
-                        android:hint="小区名称"
-                        android:inputType="text"
-                        android:textSize="14sp"
-                        tools:text="tools"
-                        />
-
+                        android:hint="所在区县："/>
                 </android.support.design.widget.TextInputLayout>
-                <!--所在区县-->
-                <Spinner
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="textStart"/>
             </LinearLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -126,94 +120,83 @@
 
                 <android.support.design.widget.TextInputEditText
                     style="@style/inputEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="left|center_vertical"
-                    android:hint="详细地址"
-                    android:inputType="text"
-                    android:textSize="14sp"
+                    android:hint="详细地址："
                     tools:text="tools"
                     />
 
             </android.support.design.widget.TextInputLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                style="@style/linerlayout_activity_post">
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColorHint="@color/colorAccent"
-                    >
+                    android:textColorHint="@color/colorAccent">
 
                     <android.support.design.widget.TextInputEditText
                         style="@style/inputEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left|center_vertical"
-                        android:hint="房屋面积"
-                        android:inputType="text"
-                        android:textSize="14sp"
-                        tools:text="tools"
-                        />
-
-                </android.support.design.widget.TextInputLayout>
-                <!--几室几厅-->
-                <Spinner
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="textStart"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <!--朝向-->
-                <Spinner
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="textStart"/>
-                <!--电梯-->
-                <Spinner
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="textStart"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColorHint="@color/colorAccent"
-                    >
-
-                    <android.support.design.widget.TextInputEditText
-                        style="@style/inputEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left|center_vertical"
-                        android:hint="首付"
+                        android:hint="房屋面积："
                         android:inputType="number|numberDecimal"
-                        android:textSize="14sp"
+                        tools:text="tools"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/colorAccent">
+
+                    <android.support.design.widget.TextInputEditText
+                        style="@style/inputEditText"
+                        android:hint="几室几厅："
+                        tools:text="tools"/>
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linerlayout_activity_post">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/colorAccent">
+
+                    <android.support.design.widget.TextInputEditText
+                        style="@style/inputEditText"
+                        android:hint="朝向："
+                        tools:text="tools"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/colorAccent">
+
+                    <android.support.design.widget.TextInputEditText
+                        style="@style/inputEditText"
+                        android:hint="电梯："
+                        tools:text="tools"/>
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linerlayout_activity_post">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/colorAccent"
+                    >
+
+                    <android.support.design.widget.TextInputEditText
+                        style="@style/inputEditText"
+                        android:hint="首付："
+                        android:inputType="number|numberDecimal"
                         tools:text="tools"
                         />
 
@@ -229,14 +212,60 @@
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/editDaiKuan"
                         style="@style/inputEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left|center_vertical"
+                        android:hint="贷款："
                         android:inputType="number|numberDecimal"
-                        android:hint="贷款"
-                        android:textSize="14sp"
                         tools:text="tools"
                         />
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linerlayout_activity_post">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/colorAccent">
+
+                    <android.support.design.widget.TextInputEditText
+                        style="@style/inputEditText"
+                        android:hint="其他费用："
+                        android:inputType="number|numberDecimal"
+                        tools:text="tools"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/colorAccent">
+
+                    <android.support.design.widget.TextInputEditText
+                        style="@style/inputEditText"
+                        android:hint="房龄："
+                        android:inputType="number|numberDecimal"
+                        tools:text="tools"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linerlayout_activity_post">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/colorAccent">
+
+                    <android.support.design.widget.TextInputEditText
+                        style="@style/inputEditText"
+                        android:hint="总价："
+                        android:inputType="number|numberDecimal"
+                        tools:text="tools"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -244,136 +273,86 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColorHint="@color/colorAccent"
-                    >
+                    android:textColorHint="@color/colorAccent">
 
                     <android.support.design.widget.TextInputEditText
                         style="@style/inputEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left|center_vertical"
-                        android:hint="其他费用"
+                        android:hint="单价："
                         android:inputType="number|numberDecimal"
-                        android:textSize="14sp"
-                        tools:text="tools"
-                        />
+                        tools:text="tools"/>
 
                 </android.support.design.widget.TextInputLayout>
+
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                style="@style/linerlayout_activity_post">
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColorHint="@color/colorAccent"
-                    >
+                    android:textColorHint="@color/colorAccent">
 
                     <android.support.design.widget.TextInputEditText
                         style="@style/inputEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number|numberDecimal"
-                        android:gravity="left|center_vertical"
-                        android:hint="总价"
-                        android:textSize="14sp"
-                        tools:text="tools"
-                        />
-
+                        android:hint="楼层："
+                        tools:text="tools"/>
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColorHint="@color/colorAccent"
-                    >
+                    android:textColorHint="@color/colorAccent">
 
                     <android.support.design.widget.TextInputEditText
                         style="@style/inputEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left|center_vertical"
-                        android:hint="单价"
-                        android:inputType="number|numberDecimal"
-                        android:textSize="14sp"
-                        tools:text="tools"
-                        />
+                        android:hint="装修："
+                        tools:text="tools"/>
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
 
+            <LinearLayout
+                style="@style/linerlayout_activity_post">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/colorAccent">
+
+                    <android.support.design.widget.TextInputEditText
+                        style="@style/inputEditText"
+                        android:hint="房屋性质："
+                        tools:text="tools"/>
                 </android.support.design.widget.TextInputLayout>
 
+                <com.shen.house.post.ClickTextInputLayout
+                    android:id="@+id/layoutWuZheng"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/colorAccent">
 
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/tvWuZheng"
+                        style="@style/inputEditText"
+                        android:hint="五证进度："
+                        tools:text="tools"/>
+                </com.shen.house.post.ClickTextInputLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <!--楼层-->
-                <Spinner
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="textStart"/>
-                <!--装修-->
-                <Spinner
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="textStart"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="10dp"
-                    android:text="房屋性质"
-                    android:textAlignment="textStart"/>
-
-                <TextView
-                    android:id="@+id/tvWuZheng"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="10dp"
-                    android:text="五证进度"
-                    android:textAlignment="textStart"/>
-            </LinearLayout>
-            <!--房龄-->
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_weight="1"
-                android:textAlignment="textStart"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@drawable/bg_dialog"
-                android:divider="@drawable/divider_5dp"
-                android:showDividers="middle"
+                android:divider="@drawable/divider_hon"
+                android:orientation="vertical"
                 android:padding="15dp"
-                android:orientation="vertical">
+                android:showDividers="middle">
 
 
                 <TextView
@@ -381,23 +360,19 @@
                     android:layout_height="wrap_content"
                     android:text="发布人信息"
                     android:textColor="@color/text"
+                    android:paddingBottom="5dp"
                     android:textSize="16sp"/>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_marginTop="5dp"
                     android:layout_height="wrap_content"
                     android:textColorHint="@color/colorAccent"
                     >
 
                     <android.support.design.widget.TextInputEditText
                         style="@style/inputEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left|center_vertical"
                         android:hint="电话："
                         android:inputType="phone"
-                        android:textSize="14sp"
                         tools:text="tools"
                         />
 
@@ -411,12 +386,7 @@
 
                     <android.support.design.widget.TextInputEditText
                         style="@style/inputEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left|center_vertical"
                         android:hint="微信："
-                        android:inputType="phone"
-                        android:textSize="14sp"
                         tools:text="tools"
                         />
 
@@ -430,12 +400,8 @@
 
                     <android.support.design.widget.TextInputEditText
                         style="@style/inputEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left|center_vertical"
                         android:hint="QQ："
-                        android:inputType="phone"
-                        android:textSize="14sp"
+                        android:inputType="number"
                         tools:text="tools"
                         />
 
@@ -444,15 +410,15 @@
 
             <Button
                 android:id="@+id/btnPost"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                style="?android:attr/borderlessButtonStyle"
                 android:background="@drawable/bg_btn_selector_main"
-                android:textStyle="bold"
-                android:textColor="@color/white"
                 android:text="发布"
-                android:textSize="16sp"/>
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
         </LinearLayout>
 
 

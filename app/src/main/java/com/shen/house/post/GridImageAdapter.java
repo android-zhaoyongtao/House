@@ -92,8 +92,7 @@ public class GridImageAdapter extends RecyclerView.Adapter<GridImageAdapter.View
      */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = mInflater.inflate(R.layout.item_post_image,
-                viewGroup, false);
+        View view = mInflater.inflate(R.layout.item_post_image, viewGroup, false);
         final ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
