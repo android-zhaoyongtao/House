@@ -36,48 +36,5 @@
         tools:text="太塔头太塔头太塔头太塔头太塔头太塔头太塔头太塔头太塔头太塔头太塔头太塔头"
         tools:visibility="visible"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/c5"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        >
-
-        <Button
-            android:id="@+id/btn_nega"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/dialog_leftbtn_selector"
-            android:gravity="center"
-            android:textColor="@color/grey"
-            android:textSize="16sp"
-            tools:text="取消"
-            />
-
-        <View
-            android:id="@+id/divider"
-            android:layout_width="1px"
-            android:layout_height="match_parent"
-            android:background="@color/c5"/>
-
-        <Button
-            android:id="@+id/btn_posi"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/dialog_rightbtn_selector"
-            android:gravity="center"
-            android:textColor="@color/blue"
-            android:textSize="16sp"
-            tools:text="确认"
-            />
-
-    </LinearLayout>
+    <include layout="@layout/layout_dialog_bottom_btn"/>
 </LinearLayout>

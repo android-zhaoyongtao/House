@@ -2,6 +2,7 @@ package com.shen.house.post
 
 import android.Manifest
 import android.support.v7.widget.GridLayoutManager
+import android.text.TextUtils
 import android.view.View
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
@@ -11,6 +12,7 @@ import com.luck.picture.lib.tools.PictureFileUtils
 import com.shen.baselibrary.base.BaseActivity
 import com.shen.baselibrary.customview.MessageDialog
 import com.shen.baselibrary.helper.FullyGridLayoutManager
+import com.shen.baselibrary.utiles.DisplayUtils
 import com.shen.baselibrary.utiles.LogUtils
 import com.shen.baselibrary.utiles.ToastUtile
 import com.shen.baselibrary.utiles.resulttutils.PermissionCallBack
@@ -79,7 +81,7 @@ class PostActivity : BaseActivity() {
             for (i in 0..120) {
                 lists.add(BaseItem("第${i}个"))
             }
-            var baseSpinerAdapter = BaseSpinerAdapter<BaseItem>(`this`, lists, true)
+            var baseSpinerAdapter = BaseSpinerAdapter<BaseItem>(`this`, lists, false)
 
             SpinerPopWindow(`this`).setAdatper(baseSpinerAdapter).setSelect(1)
                     .setItemSelectListener(object : BaseSpinerAdapter.ItemClickCallBack {
@@ -89,12 +91,19 @@ class PostActivity : BaseActivity() {
                         }
 
                     })
-                    .showPopupWindow(it)
+                    .showPopupWindow(it, it.width)
         }
         btnPost.setOnClickListener { ToastUtile.showToast("fabu发布") }
         layoutName.setOnClickListener {
             ToastUtile.showToast("小区名称点击")
             edittextName.setText("dianjile")
+        }
+        layoutShiTing.setOnClickListener {
+            ShiTingPopupWindow(`this`).setShiTingCallBack(object : ShiTingPopupWindow.ShiTingCallBack {
+                override fun call(shi: Int, shis: String?, ting: Int, tings: String?, wei: Int, weis: String?) {
+                    tvShiTing.setText(TextUtils.concat(shis, tings, weis))
+                }
+            }).showPopupWindow(it, DisplayUtils.dp2px(`this`, 330f))
         }
     }
 

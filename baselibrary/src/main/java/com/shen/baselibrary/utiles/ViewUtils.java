@@ -1,7 +1,9 @@
 package com.shen.baselibrary.utiles;
 
+import android.app.Activity;
 import android.support.design.widget.TabLayout;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -52,4 +54,16 @@ public class ViewUtils {
 
     }
 
+    /**
+     * 设置添加屏幕的背景透明度
+     *
+     * @param bgAlpha
+     */
+    public static void backgroundAlpha(Activity context, float bgAlpha) {
+        if (context instanceof Activity) {
+            WindowManager.LayoutParams lp = context.getWindow().getAttributes();
+            lp.alpha = bgAlpha; //0.0-1.0
+            context.getWindow().setAttributes(lp);
+        }
+    }
 }
