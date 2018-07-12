@@ -88,6 +88,7 @@ public class AvoidTempFragment extends Fragment {
         int requestCode = callback.hashCode() & 0x0000ffff;
         mSelectPicCallbacks.put(requestCode, callback);
         SelectPicUtils.INSTANCE.open(this, requestCode, singleSelect, selectList);
+//        getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
     }
 
     @Override
