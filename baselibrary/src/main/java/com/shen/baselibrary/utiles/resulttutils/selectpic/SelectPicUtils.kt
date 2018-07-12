@@ -15,8 +15,10 @@ import com.shen.baselibrary.utiles.resulttutils.PermissionCallBack
 import com.shen.baselibrary.utiles.resulttutils.PermissionUtils
 
 object SelectPicUtils {
+    val MAXSELECTNUM: Int = 12
     open fun selectPic(activity: FragmentActivity, singleSelect: Boolean = true, selectList: List<LocalMedia>?, callBack: SelectPicCallback?) {
         PermissionUtils.requestPermission(activity, Manifest.permission.CAMERA, object : PermissionCallBack() {
+
 
             override fun hasPermission() {
                 AvoidTempFragment.getInstance(activity.supportFragmentManager).selectPic(callBack, singleSelect, selectList)
@@ -38,7 +40,7 @@ object SelectPicUtils {
         PictureSelector.create(fragment)
                 .openGallery(PictureMimeType.ofImage())// 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
                 .theme(R.style.picture_default_style)// 主题样式设置 具体参考 values/styles   用法：R.style.picture.white.style
-                .maxSelectNum(12)// 最大图片选择数量
+                .maxSelectNum(MAXSELECTNUM)// 最大图片选择数量
                 .minSelectNum(0)// 最小选择数量
                 .imageSpanCount(4)// 每行显示个数
                 .selectionMode(if (singleSelect) PictureConfig.SINGLE else PictureConfig.MULTIPLE)// 多选 or 单选

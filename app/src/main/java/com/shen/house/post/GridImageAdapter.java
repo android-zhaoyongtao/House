@@ -71,7 +71,9 @@ public class GridImageAdapter extends RecyclerView.Adapter<GridImageAdapter.View
 
     @Override
     public int getItemCount() {
-        if (list.size() < selectMax) {
+        if (list == null) {
+            return 1;
+        } else if (list.size() < selectMax) {
             return list.size() + 1;
         } else {
             return list.size();
@@ -98,7 +100,7 @@ public class GridImageAdapter extends RecyclerView.Adapter<GridImageAdapter.View
     }
 
     private boolean isShowAddItem(int position) {
-        int size = list.size() == 0 ? 0 : list.size();
+        int size = (list == null || list.size() == 0) ? 0 : list.size();
         return position == size;
     }
 
