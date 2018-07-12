@@ -19,7 +19,7 @@ public class PermissionUtils {
         if (ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED) {
             callback.hasPermission();
         } else {
-            new PermissionUtils((Activity) context).requestPermission(new String[]{permission}, callback.hashCode(), callback);
+            requestPermission((Activity) context, new String[]{permission}, callback);
         }
     }
 
@@ -34,14 +34,8 @@ public class PermissionUtils {
         activity.startActivity(intent);
     }
 
-    private AvoidTempFragment avoidTempFragment;
-
-    private PermissionUtils(Activity activity) {
-        avoidTempFragment = AvoidTempFragment.getInstance(activity.getFragmentManager());
-    }
-
-    private void requestPermission(String[] permissions, int requestCode, PermissionCallBack callback) {
-        avoidTempFragment.requestPermission(permissions, requestCode, callback);
+    private static void requestPermission(Activity activity, String[] permissions, PermissionCallBack callback) {
+        AvoidTempFragment.getInstance(activity.getFragmentManager()).requestPermission(permissions, callback);
     }
 
 }

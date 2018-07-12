@@ -32,7 +32,8 @@ class AvoidTempFragment extends Fragment {
         return avoidTempFragment;
     }
 
-    public void requestPermission(String[] permissions, int requestCode, PermissionCallBack callback) {
+    public void requestPermission(String[] permissions, PermissionCallBack callback) {
+        int requestCode = callback.hashCode();
         mPermissionCallbacks.put(requestCode, callback);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(permissions, requestCode);
@@ -65,7 +66,8 @@ class AvoidTempFragment extends Fragment {
     //////////////////////////以下是startActivityForResult()部分/////////////////////////////////////////////////////////////
     private SparseArray<ResultCallback> mRequestActivityCallbacks = new SparseArray<>(1);
 
-    public void startForResult(Intent intent, int requestCode, ResultCallback callback) {
+    public void startForResult(Intent intent, ResultCallback callback) {
+        int requestCode = callback.hashCode();
         mRequestActivityCallbacks.put(requestCode, callback);
         startActivityForResult(intent, requestCode);
         getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);

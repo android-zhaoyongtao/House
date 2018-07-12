@@ -11,35 +11,20 @@ import android.content.Intent;
 public class StartResultUtiles {
 
     public static void startForResult(Activity activity, Intent intent, ResultCallback callback) {
-        new StartResultUtiles(activity).startForResult(intent, callback);
+        AvoidTempFragment.getInstance(activity.getFragmentManager()).startForResult(intent, callback);
     }
 
     public static void startForResult(Fragment fragment, Intent intent, ResultCallback callback) {
-        new StartResultUtiles(fragment.getActivity()).startForResult(intent, callback);
+        startForResult(fragment.getActivity(), intent, callback);
     }
 
     public static void startForResult(Activity activity, Class<?> clazz, ResultCallback callback) {
-        new StartResultUtiles(activity).startForResult(clazz, callback);
+        Intent intent = new Intent(activity, clazz);
+        startForResult(activity, intent, callback);
     }
 
     public static void startForResult(Fragment fragment, Class<?> clazz, ResultCallback callback) {
-        new StartResultUtiles(fragment.getActivity()).startForResult(clazz, callback);
-    }
-
-
-    private AvoidTempFragment mAvoidOnResultFragment;
-
-    private StartResultUtiles(Activity activity) {
-        mAvoidOnResultFragment = AvoidTempFragment.getInstance(activity.getFragmentManager());
-    }
-
-
-    private void startForResult(Intent intent, ResultCallback callback) {
-        mAvoidOnResultFragment.startForResult(intent, callback.hashCode(), callback);
-    }
-
-    private void startForResult(Class<?> clazz, ResultCallback callback) {
-        Intent intent = new Intent(mAvoidOnResultFragment.getActivity(), clazz);
-        startForResult(intent, callback);
+        Intent intent = new Intent(fragment.getActivity(), clazz);
+        startForResult(fragment, intent, callback);
     }
 }
