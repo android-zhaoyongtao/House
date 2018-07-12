@@ -41,7 +41,7 @@ public class AvoidTempFragment extends Fragment {
     }
 
     public void requestPermission(String[] permissions, PermissionCallBack callback) {
-        int requestCode = callback.hashCode() & 0x0000ffff;
+        int requestCode = callback.hashCode() & 0x0000ffff;//Can only use lower 16 bits for requestCode
         mPermissionCallbacks.put(requestCode, callback);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(permissions, requestCode);

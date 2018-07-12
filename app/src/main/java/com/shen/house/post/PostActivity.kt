@@ -42,21 +42,23 @@ class PostActivity : BaseActivity() {
         adapter = GridImageAdapter(this, GridImageAdapter.onAddPicClickListener {
             //+点击事件
 //            addPic()
-            SelectPicUtils.selectPic(this, false, selectList, SelectPicCallback { list ->
-                selectList = list
-                // 例如 LocalMedia 里面返回三种path
-                // 1.media.getPath(); 为原图path
-                // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true
-                // 3.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true
-                // 如果裁剪并压缩了，已取压缩路径为准，因为是先裁剪后压缩的
-                for (media in selectList) {
+            SelectPicUtils.selectPic(this, false, selectList, object : SelectPicCallback {
+                override fun selectPicResult(list: List<LocalMedia>) {
+                    selectList = list
+                    // 例如 LocalMedia 里面返回三种path
+                    // 1.media.getPath(); 为原图path
+                    // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true
+                    // 3.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true
+                    // 如果裁剪并压缩了，已取压缩路径为准，因为是先裁剪后压缩的
+                    for (media in selectList) {
 //                    LogUtils.e("图片-----》", media.compressPath)
-                    LogUtils.e("图片-----》", "1.${File(media.path).length() / 1024}kb")
-                    LogUtils.e("图片-----》", "2.${File(media.compressPath).length() / 1024}kb")
+                        LogUtils.e("图片-----》", "1.${File(media.path).length() / 1024}kb")
+                        LogUtils.e("图片-----》", "2.${File(media.compressPath).length() / 1024}kb")
 
+                    }
+                    adapter!!.setList(selectList)
+                    adapter!!.notifyDataSetChanged()
                 }
-                adapter!!.setList(selectList)
-                adapter!!.notifyDataSetChanged()
             })
         })
         adapter!!.setList(selectList)
