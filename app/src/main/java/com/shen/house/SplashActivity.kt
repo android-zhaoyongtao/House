@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.view.View
 import com.shen.baselibrary.base.BaseActivity
 import com.shen.baselibrary.utiles.FileUtils
-import com.shen.baselibrary.utiles.requestutiles.PermissionCallBack
-import com.shen.baselibrary.utiles.requestutiles.PermissionUtils
+import com.shen.baselibrary.utiles.resulttutils.PermissionCallBack
+import com.shen.baselibrary.utiles.resulttutils.PermissionUtils
 import java.io.File
 
 class SplashActivity : BaseActivity() {

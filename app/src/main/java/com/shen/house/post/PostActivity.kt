@@ -11,8 +11,8 @@ import com.luck.picture.lib.tools.PictureFileUtils
 import com.shen.baselibrary.base.BaseActivity
 import com.shen.baselibrary.helper.FullyGridLayoutManager
 import com.shen.baselibrary.utiles.ToastUtile
-import com.shen.baselibrary.utiles.requestutiles.PermissionCallBack
-import com.shen.baselibrary.utiles.requestutiles.PermissionUtils
+import com.shen.baselibrary.utiles.resulttutils.PermissionCallBack
+import com.shen.baselibrary.utiles.resulttutils.PermissionUtils
 import com.shen.house.R
 import com.shen.house.customview.spinnerpopupwindow.BaseItem
 import com.shen.house.customview.spinnerpopupwindow.BaseSpinerAdapter

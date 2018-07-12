@@ -30,8 +30,8 @@ import android.view.View;
 
 import com.shen.baselibrary.ContextHouse;
 import com.shen.baselibrary.http.HttpRequest;
-import com.shen.baselibrary.utiles.requestutiles.PermissionCallBack;
-import com.shen.baselibrary.utiles.requestutiles.PermissionUtils;
+import com.shen.baselibrary.utiles.resulttutils.PermissionCallBack;
+import com.shen.baselibrary.utiles.resulttutils.PermissionUtils;
 
 import org.json.JSONObject;
 
