@@ -1,4 +1,4 @@
-package com.shen.house.utiles;
+package com.shen.baselibrary.customview;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.shen.baselibrary.ContextHouse;
-import com.shen.house.R;
+import com.shen.baselibrary.R;
 
 
 /**

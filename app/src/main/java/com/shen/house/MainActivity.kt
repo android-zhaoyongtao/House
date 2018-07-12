@@ -6,12 +6,12 @@ import android.view.KeyEvent
 import android.view.View
 import com.shen.baselibrary.base.BaseActivity
 import com.shen.baselibrary.base.ContentViewWrap
+import com.shen.baselibrary.customview.MessageDialog
 import com.shen.baselibrary.utiles.ActivityStackManager
 import com.shen.baselibrary.utiles.ToastUtile
 import com.shen.baselibrary.utiles.resulttutils.PermissionCallBack
 import com.shen.baselibrary.utiles.resulttutils.PermissionUtils
 import com.shen.house.post.PostActivity
-import com.shen.house.utiles.MessageDialog
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {

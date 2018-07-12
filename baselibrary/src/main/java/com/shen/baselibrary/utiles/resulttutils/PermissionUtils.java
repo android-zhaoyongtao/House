@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 
 
@@ -19,7 +20,7 @@ public class PermissionUtils {
         if (ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED) {
             callback.hasPermission();
         } else {
-            requestPermission((Activity) context, new String[]{permission}, callback);
+            requestPermission((FragmentActivity) context, new String[]{permission}, callback);
         }
     }
 
@@ -34,8 +35,8 @@ public class PermissionUtils {
         activity.startActivity(intent);
     }
 
-    private static void requestPermission(Activity activity, String[] permissions, PermissionCallBack callback) {
-        AvoidTempFragment.getInstance(activity.getFragmentManager()).requestPermission(permissions, callback);
+    private static void requestPermission(FragmentActivity activity, String[] permissions, PermissionCallBack callback) {
+        AvoidTempFragment.getInstance(activity.getSupportFragmentManager()).requestPermission(permissions, callback);
     }
 
 }

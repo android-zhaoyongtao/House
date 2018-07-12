@@ -1,25 +1,26 @@
 package com.shen.baselibrary.utiles.resulttutils;
 
 import android.annotation.SuppressLint;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.SparseArray;
 
 import com.shen.baselibrary.R;
 
 @SuppressLint("ValidFragment")
-class AvoidTempFragment extends Fragment {
+public class AvoidTempFragment extends Fragment {
     private static final String FRAGMENT_TAG = "PermissionUtils";
     private SparseArray<PermissionCallBack> mPermissionCallbacks = new SparseArray<>(1);
 
     public AvoidTempFragment() {
     }
 
-    public static AvoidTempFragment getInstance(FragmentManager fragmentManager) {
+    public static @NonNull
+    AvoidTempFragment getInstance(FragmentManager fragmentManager) {
         AvoidTempFragment avoidTempFragment = (AvoidTempFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG);
         if (avoidTempFragment == null) {
             avoidTempFragment = new AvoidTempFragment();

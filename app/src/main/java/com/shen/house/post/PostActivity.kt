@@ -9,6 +9,7 @@ import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.tools.PictureFileUtils
 import com.shen.baselibrary.base.BaseActivity
+import com.shen.baselibrary.customview.MessageDialog
 import com.shen.baselibrary.helper.FullyGridLayoutManager
 import com.shen.baselibrary.utiles.ToastUtile
 import com.shen.baselibrary.utiles.resulttutils.PermissionCallBack
@@ -17,7 +18,6 @@ import com.shen.house.R
 import com.shen.house.customview.spinnerpopupwindow.BaseItem
 import com.shen.house.customview.spinnerpopupwindow.BaseSpinerAdapter
 import com.shen.house.customview.spinnerpopupwindow.SpinerPopWindow
-import com.shen.house.utiles.MessageDialog
 import kotlinx.android.synthetic.main.activity_post.*
 import kotlinx.android.synthetic.main.include_title.*
 

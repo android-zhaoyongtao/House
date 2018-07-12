@@ -41,9 +41,7 @@ dependencies {
 ////    compile 'com.jakewharton:butterknife:7.0.1'
 //    //读取网络请求各个参数的
 //    implementation 'com.readystatesoftware.chuck:library:1.0.4'
-    implementation ('com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'){
-        exclude group: "com.github.bumptech.glide"
-    }
+
     //glide注解生成AppGlideModule实例的
 //    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
     kapt 'com.github.bumptech.glide:compiler:4.7.1'

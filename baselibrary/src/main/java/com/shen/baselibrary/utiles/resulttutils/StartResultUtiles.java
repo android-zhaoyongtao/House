@@ -1,8 +1,8 @@
 package com.shen.baselibrary.utiles.resulttutils;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 
 
 /**
@@ -10,15 +10,15 @@ import android.content.Intent;
  */
 public class StartResultUtiles {
 
-    public static void startForResult(Activity activity, Intent intent, ResultCallback callback) {
-        AvoidTempFragment.getInstance(activity.getFragmentManager()).startForResult(intent, callback);
+    public static void startForResult(FragmentActivity activity, Intent intent, ResultCallback callback) {
+        AvoidTempFragment.getInstance(activity.getSupportFragmentManager()).startForResult(intent, callback);
     }
 
     public static void startForResult(Fragment fragment, Intent intent, ResultCallback callback) {
         startForResult(fragment.getActivity(), intent, callback);
     }
 
-    public static void startForResult(Activity activity, Class<?> clazz, ResultCallback callback) {
+    public static void startForResult(FragmentActivity activity, Class<?> clazz, ResultCallback callback) {
         Intent intent = new Intent(activity, clazz);
         startForResult(activity, intent, callback);
     }

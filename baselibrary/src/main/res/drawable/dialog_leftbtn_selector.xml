@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--只有左右下角圆角-->
+<!--只有左下角圆角-->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
         <shape>
             <solid
-                android:color="@color/bright_grey"/>
+                android:color="@color/c6"/>
             <!--<stroke android:width="0px"/>-->
             <corners
                 android:bottomLeftRadius="5dp"
-                android:bottomRightRadius="5dp"
+                android:bottomRightRadius="0dp"
                 android:topLeftRadius="0dp"
                 android:topRightRadius="0dp"
                 />
@@ -22,7 +22,7 @@
             <!--<stroke android:width="0px"/>-->
             <corners
                 android:bottomLeftRadius="5dp"
-                android:bottomRightRadius="5dp"
+                android:bottomRightRadius="0dp"
                 android:topLeftRadius="0dp"
                 android:topRightRadius="0dp"
                 />

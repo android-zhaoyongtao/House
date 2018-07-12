@@ -17,7 +17,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="25dp"
-        android:textColor="@color/color_1b1b1b"
+        android:textColor="#1b1b1b"
         android:textSize="17sp"
         tools:text="太塔头太塔头太塔头太塔头太塔头太太塔头太塔头太塔头太塔头太塔头太"/>
 
@@ -30,7 +30,7 @@
         android:layout_marginRight="30dp"
         android:gravity="center"
         android:lineSpacingExtra="4dp"
-        android:textColor="@color/color_848484"
+        android:textColor="#848484"
         android:textSize="14sp"
         android:visibility="gone"
         tools:text="太塔头太塔头太塔头太塔头太塔头太塔头太塔头太塔头太塔头太塔头太塔头太塔头"
@@ -39,7 +39,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/line"/>
+        android:background="@color/c5"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,7 +55,7 @@
             android:layout_weight="1"
             android:background="@drawable/dialog_leftbtn_selector"
             android:gravity="center"
-            android:textColor="@color/color_848484"
+            android:textColor="@color/grey"
             android:textSize="16sp"
             tools:text="取消"
             />
@@ -64,7 +64,7 @@
             android:id="@+id/divider"
             android:layout_width="1px"
             android:layout_height="match_parent"
-            android:background="@color/line"/>
+            android:background="@color/c5"/>
 
         <Button
             android:id="@+id/btn_posi"
@@ -74,7 +74,7 @@
             android:layout_weight="1"
             android:background="@drawable/dialog_rightbtn_selector"
             android:gravity="center"
-            android:textColor="@color/mainColor"
+            android:textColor="@color/blue"
             android:textSize="16sp"
             tools:text="确认"
             />
