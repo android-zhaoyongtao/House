@@ -11,20 +11,24 @@ import com.luck.picture.lib.tools.PictureFileUtils
 import com.shen.baselibrary.base.BaseActivity
 import com.shen.baselibrary.customview.MessageDialog
 import com.shen.baselibrary.helper.FullyGridLayoutManager
+import com.shen.baselibrary.utiles.LogUtils
 import com.shen.baselibrary.utiles.ToastUtile
 import com.shen.baselibrary.utiles.resulttutils.PermissionCallBack
 import com.shen.baselibrary.utiles.resulttutils.PermissionUtils
+import com.shen.baselibrary.utiles.resulttutils.selectpic.SelectPicCallback
+import com.shen.baselibrary.utiles.resulttutils.selectpic.SelectPicUtils
 import com.shen.house.R
 import com.shen.house.customview.spinnerpopupwindow.BaseItem
 import com.shen.house.customview.spinnerpopupwindow.BaseSpinerAdapter
 import com.shen.house.customview.spinnerpopupwindow.SpinerPopWindow
 import kotlinx.android.synthetic.main.activity_post.*
 import kotlinx.android.synthetic.main.include_title.*
+import java.io.File
 
 //发布页面
 class PostActivity : BaseActivity() {
     var adapter: GridImageAdapter? = null
-    val selectList: List<LocalMedia> = ArrayList()
+    var selectList: List<LocalMedia> = ArrayList()
     val maxSelectNum = 12
     override fun getcontentView(): Int {
         return R.layout.activity_post
@@ -37,8 +41,23 @@ class PostActivity : BaseActivity() {
         recycler.layoutManager = FullyGridLayoutManager(this, 4, GridLayoutManager.VERTICAL, false)
         adapter = GridImageAdapter(this, GridImageAdapter.onAddPicClickListener {
             //+点击事件
-            addPic()
+//            addPic()
+            SelectPicUtils.selectPic(this, false, selectList, SelectPicCallback { list ->
+                selectList = list
+                // 例如 LocalMedia 里面返回三种path
+                // 1.media.getPath(); 为原图path
+                // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true
+                // 3.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true
+                // 如果裁剪并压缩了，已取压缩路径为准，因为是先裁剪后压缩的
+                for (media in selectList) {
+//                    LogUtils.e("图片-----》", media.compressPath)
+                    LogUtils.e("图片-----》", "1.${File(media.path).length() / 1024}kb")
+                    LogUtils.e("图片-----》", "2.${File(media.compressPath).length() / 1024}kb")
 
+                }
+                adapter!!.setList(selectList)
+                adapter!!.notifyDataSetChanged()
+            })
         })
         adapter!!.setList(selectList)
         adapter!!.setSelectMax(maxSelectNum)

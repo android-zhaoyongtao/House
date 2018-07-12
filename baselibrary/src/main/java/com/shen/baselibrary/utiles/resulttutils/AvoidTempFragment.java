@@ -5,11 +5,18 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.SparseArray;
 
+import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.entity.LocalMedia;
 import com.shen.baselibrary.R;
+import com.shen.baselibrary.utiles.resulttutils.selectpic.SelectPicCallback;
+import com.shen.baselibrary.utiles.resulttutils.selectpic.SelectPicUtils;
+
+import java.util.List;
 
 @SuppressLint("ValidFragment")
 public class AvoidTempFragment extends Fragment {
@@ -34,7 +41,7 @@ public class AvoidTempFragment extends Fragment {
     }
 
     public void requestPermission(String[] permissions, PermissionCallBack callback) {
-        int requestCode = callback.hashCode();
+        int requestCode = callback.hashCode() & 0x0000ffff;
         mPermissionCallbacks.put(requestCode, callback);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(permissions, requestCode);
@@ -64,24 +71,38 @@ public class AvoidTempFragment extends Fragment {
         }
     }
 
-    //////////////////////////以下是startActivityForResult()部分/////////////////////////////////////////////////////////////
+    //////////////////////////1以下是startActivityForResult()部分/////////////////////////////////////////////////////////////
     private SparseArray<ResultCallback> mRequestActivityCallbacks = new SparseArray<>(1);
 
     public void startForResult(Intent intent, ResultCallback callback) {
-        int requestCode = callback.hashCode();
+        int requestCode = callback.hashCode() & 0x0000ffff;
         mRequestActivityCallbacks.put(requestCode, callback);
         startActivityForResult(intent, requestCode);
         getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
     }
 
+    //////////////////////////2以下是selectorPicture()部分/////////////////////////////////////////////////////////////
+    private SparseArray<SelectPicCallback> mSelectPicCallbacks = new SparseArray<>(1);
+
+    public void selectPic(@Nullable SelectPicCallback callback, boolean singleSelect, List<LocalMedia> selectList) {
+        int requestCode = callback.hashCode() & 0x0000ffff;
+        mSelectPicCallbacks.put(requestCode, callback);
+        SelectPicUtils.INSTANCE.open(this, requestCode, singleSelect, selectList);
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        //1
         ResultCallback callback = mRequestActivityCallbacks.get(requestCode);
         if (callback != null) {
             callback.onActivityResult(requestCode, resultCode, data);
             mRequestActivityCallbacks.remove(requestCode);
+        }
+        //2
+        SelectPicCallback callback2 = mSelectPicCallbacks.get(requestCode);
+        if (callback2 != null) {
+            callback2.selectPicResult(PictureSelector.obtainMultipleResult(data));
+            mSelectPicCallbacks.remove(requestCode);
         }
     }
 }
