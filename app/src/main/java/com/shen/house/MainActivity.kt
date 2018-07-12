@@ -1,16 +1,12 @@
 package com.shen.house
 
-import android.Manifest
 import android.content.Intent
 import android.view.KeyEvent
 import android.view.View
 import com.shen.baselibrary.base.BaseActivity
 import com.shen.baselibrary.base.ContentViewWrap
-import com.shen.baselibrary.customview.MessageDialog
 import com.shen.baselibrary.utiles.ActivityStackManager
 import com.shen.baselibrary.utiles.ToastUtile
-import com.shen.baselibrary.utiles.resulttutils.PermissionCallBack
-import com.shen.baselibrary.utiles.resulttutils.PermissionUtils
 import com.shen.house.post.PostActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -28,18 +24,7 @@ class MainActivity : BaseActivity() {
         setEnableSwipeBack(-1)
         ivPost.setOnClickListener { v ->
             v.animate().withLayer().scaleX(1.1f).scaleY(1.1f).setDuration(100).withEndAction({ v.animate().scaleX(1.0f).scaleY(1.0f).setDuration(100).start() }).start()
-            PermissionUtils.requestPermission(`this`, Manifest.permission.WRITE_EXTERNAL_STORAGE, object : PermissionCallBack() {
-                override fun refusePermissionDonotAskAgain() {
-                    MessageDialog(`this`, "提示", "授予该应用读取存储权限后才能上传照片,是否去设置中开启权限?", "前往") {
-                        PermissionUtils.toAppSetting(`this`)
-                    }
-                }
-
-                override fun hasPermission() {
-                    startActivity(Intent(`this`, PostActivity::class.java))
-                }
-            })
-
+            startActivity(Intent(`this`, PostActivity::class.java))
         }
 
         rb1.setChecked(true)
