@@ -19,7 +19,6 @@ import com.zaaach.citypicker.adapter.decoration.GridItemDecoration;
 import com.zaaach.citypicker.model.CityBean;
 import com.zaaach.citypicker.model.HotCityBean;
 import com.zaaach.citypicker.model.LocateState;
-import com.zaaach.citypicker.model.LocatedCityBean;
 
 import java.util.List;
 

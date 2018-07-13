@@ -79,9 +79,6 @@ public class Key {
         public static int CODE_DETAIL = 2;
     }
 
-    public static final class ResultCode {
-
-    }
 
 
     public static final class BroadCastKey {
@@ -91,9 +88,6 @@ public class Key {
     }
 
     public static final class SPKEY {
-        public static final String SEARCH_HISTORY = "search_history_1_3";
-        public static final String SEARCH_HISTORY2 = "search_history2";//新增的U2的历史
         public static final String SPKEY_CITYINFO = "spkey_cityinfo";
-        public static final String SPKEY_USERINFO = "spkey_userinfo";
     }
 }

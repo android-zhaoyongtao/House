@@ -3,6 +3,8 @@ package com.zaaach.citypicker;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.os.Looper;
+import android.os.MessageQueue;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StyleRes;
@@ -30,7 +32,6 @@ import com.zaaach.citypicker.db.DBManager;
 import com.zaaach.citypicker.model.CityBean;
 import com.zaaach.citypicker.model.HotCityBean;
 import com.zaaach.citypicker.model.LocateState;
-import com.zaaach.citypicker.model.LocatedCityBean;
 import com.zaaach.citypicker.view.SideIndexBar;
 
 import java.util.ArrayList;
@@ -97,8 +98,8 @@ public class CityPickerDialogFragment extends AppCompatDialogFragment implements
 
     private void initLocatedCity() {
         if (mLocatedCity == null) {
-            mLocatedCity = new CityBean(getString(R.string.cp_locating),"定位城市", "0");
-            locateState = LocateState.FAILURE;
+            mLocatedCity = new CityBean(getString(R.string.cp_locating), "当前城市", "0");
+            locateState = LocateState.LOCATING;
         } else {
             locateState = LocateState.SUCCESS;
         }
@@ -172,7 +173,15 @@ public class CityPickerDialogFragment extends AppCompatDialogFragment implements
         mClearAllBtn = mContentView.findViewById(R.id.cp_clear_all);
         mCancelBtn.setOnClickListener(this);
         mClearAllBtn.setOnClickListener(this);
-
+        if (locateState != LocateState.SUCCESS) {
+            Looper.myQueue().addIdleHandler(new MessageQueue.IdleHandler() {
+                @Override
+                public boolean queueIdle() {
+                    locate();
+                    return false;
+                }
+            });
+        }
         return mContentView;
     }
 

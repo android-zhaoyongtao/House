@@ -19,7 +19,7 @@ import java.util.List;
 /**
  */
 public class SideIndexBar extends View {
-    private static final String[] DEFAULT_INDEX_ITEMS = {"定位", "热门", "A", "B", "C", "D", "E", "F", "G", "H",
+    private static final String[] DEFAULT_INDEX_ITEMS = {"当前", "热门", "A", "B", "C", "D", "E", "F", "G", "H",
             "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "#"};
 
     private List<String> mIndexItems;

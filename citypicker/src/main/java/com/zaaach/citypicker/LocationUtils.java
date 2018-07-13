@@ -1,4 +1,4 @@
-package com.shen.house.utiles;
+package com.zaaach.citypicker;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -11,7 +11,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -47,8 +46,9 @@ public class LocationUtils {
                     public void onLocationChanged(Location location) {
                         myLocationManager.removeUpdates(this);
                         locationListener[0] = null;
-                            callBack.call(location);
+                        callBack.call(location);
                     }
+
                     @Override
                     public void onStatusChanged(String provider, int status, Bundle extras) {
 
@@ -66,9 +66,9 @@ public class LocationUtils {
 
                 };
                 //2000代表每2000毫秒更新一次，5代表每5秒更新一次
-                myLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 200, 1, locationListener[0]);
+                myLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 2000, 5, locationListener[0]);
 
-                myLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 200, 1, locationListener[0]);
+                myLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 5, locationListener[0]);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -97,7 +97,7 @@ public class LocationUtils {
         });
     }
 
-    public static void getCity(final Activity activity, @NonNull final CityCallBack cityCallBack) {
+    public static void locationCity(final Activity activity, @NonNull final CityCallBack cityCallBack) {
         //1自带
         //2,百度返回百度码
         //3本地https://blog.csdn.net/qq_24636637/article/details/50461284
@@ -121,7 +121,7 @@ public class LocationUtils {
                                 List<CityBean> allCities = new DBManager(activity).getAllCities();
                                 for (final CityBean city : allCities) {
                                     if (city.areaName.contains(shortCity)) {
-                                        city.pinyin="定位城市";
+                                        city.pinyin = "当前城市";
                                         activity.runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
