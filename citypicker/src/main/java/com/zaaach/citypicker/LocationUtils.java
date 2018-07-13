@@ -17,7 +17,7 @@ import android.support.annotation.Nullable;
 import com.shen.baselibrary.utiles.ExecutorUtile;
 import com.shen.baselibrary.utiles.resulttutils.PermissionCallBack;
 import com.shen.baselibrary.utiles.resulttutils.PermissionUtils;
-import com.zaaach.citypicker.db.DBManager;
+import com.zaaach.citypicker.db.CitysManager;
 import com.zaaach.citypicker.model.CityBean;
 
 import java.util.List;
@@ -118,7 +118,7 @@ public class LocationUtils {
 //                                LogUtils.e("location25", "address:" + result.get(0).getLocality());
                                 String cityName = result.get(0).getLocality();
                                 String shortCity = cityName.replaceAll("市", "");
-                                List<CityBean> allCities = new DBManager(activity).getAllCities();
+                                List<CityBean> allCities = new CitysManager(activity).getAllCities();
                                 for (final CityBean city : allCities) {
                                     if (city.areaName.contains(shortCity)) {
                                         city.pinyin = "当前城市";

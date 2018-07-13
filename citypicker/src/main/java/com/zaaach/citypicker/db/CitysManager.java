@@ -2,13 +2,17 @@ package com.zaaach.citypicker.db;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.shen.baselibrary.http.Convert;
 import com.zaaach.citypicker.HanziToPinyin;
+import com.zaaach.citypicker.model.AreaBean;
 import com.zaaach.citypicker.model.CityBean;
 import com.zaaach.citypicker.model.ProvinceBean;
+
+import org.jetbrains.annotations.Nullable;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -17,11 +21,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class DBManager {
+public class CitysManager {
 
     private Context mContext;
 
-    public DBManager(Context context) {
+    public CitysManager(Context context) {
         this.mContext = context;
     }
 
@@ -64,6 +68,19 @@ public class DBManager {
             }
         }
         return resultCities;
+    }
+
+    public @Nullable
+    List<AreaBean> allAreaInCity(String cityId) {
+        if (TextUtils.isEmpty(cityId)) {
+            return null;
+        }
+        for (CityBean cityBean : getAllCities()) {
+            if (cityId.equals(cityBean.areaId)) {
+                return cityBean.counties;
+            }
+        }
+        return null;
     }
 
     /**

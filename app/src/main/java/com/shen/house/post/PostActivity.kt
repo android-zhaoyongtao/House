@@ -15,10 +15,13 @@ import com.shen.baselibrary.utiles.ToastUtile
 import com.shen.baselibrary.utiles.resulttutils.selectpic.SelectPicCallback
 import com.shen.baselibrary.utiles.resulttutils.selectpic.SelectPicUtils
 import com.shen.house.CityActivity
+import com.shen.house.ConfigUtils
 import com.shen.house.R
 import com.shen.house.customview.spinnerpopupwindow.BaseItem
 import com.shen.house.customview.spinnerpopupwindow.BaseSpinerAdapter
 import com.shen.house.customview.spinnerpopupwindow.SpinerPopWindow
+import com.zaaach.citypicker.db.CitysManager
+import com.zaaach.citypicker.model.AreaBean
 import kotlinx.android.synthetic.main.activity_post.*
 import kotlinx.android.synthetic.main.include_title.*
 import java.io.File
@@ -26,19 +29,23 @@ import java.io.File
 //发布页面
 class PostActivity : BaseActivity() {
     val postBean = PostBean();
-    var adapter: GridImageAdapter? = null
+    var imageAdapter: GridImageAdapter? = null
     override fun getcontentView(): Int {
         return R.layout.activity_post
     }
 
 
     override fun afterInjectView(view: View) {
-        titleBack.setOnClickListener { finish() }
         titleText.setText("发布信息")
+        initListener()
+    }
+
+    private fun initListener() {
+        titleBack.setOnClickListener { finish() }
         recycler.layoutManager = FullyGridLayoutManager(this, 4, GridLayoutManager.VERTICAL, false)
-        adapter = GridImageAdapter(this, GridImageAdapter.onAddPicClickListener {
+        imageAdapter = GridImageAdapter(this, GridImageAdapter.onAddPicClickListener {
             //+点击事件
-//            addPic()
+            //            addPic()
             SelectPicUtils.selectPic(this, false, postBean.pics, object : SelectPicCallback {
                 override fun selectPicResult(list: List<LocalMedia>) {
                     postBean.pics = list
@@ -48,20 +55,20 @@ class PostActivity : BaseActivity() {
                     // 3.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true
                     // 如果裁剪并压缩了，已取压缩路径为准，因为是先裁剪后压缩的
                     for (media in list) {
-//                    LogUtils.e("图片-----》", media.compressPath)
+                        //                    LogUtils.e("图片-----》", media.compressPath)
                         LogUtils.e("图片-----》", "1.${File(media.path).length() / 1024}kb")
                         LogUtils.e("图片-----》", "2.${File(media.compressPath).length() / 1024}kb")
 
                     }
-                    adapter!!.setList(postBean.pics)
-                    adapter!!.notifyDataSetChanged()
+                    imageAdapter!!.setList(postBean.pics)
+                    imageAdapter!!.notifyDataSetChanged()
                 }
             })
         })
-//        adapter!!.setList(postBean.pics)
-        adapter!!.setSelectMax(SelectPicUtils.MAXSELECTNUM)
-        recycler.adapter = adapter
-        adapter!!.setOnItemClickListener { position, v ->
+        //        adapter!!.setList(postBean.pics)
+        imageAdapter!!.setSelectMax(SelectPicUtils.MAXSELECTNUM)
+        recycler.adapter = imageAdapter
+        imageAdapter!!.setOnItemClickListener { position, v ->
             if (postBean.pics!!.size > 0) {
                 var media = postBean.pics!!.get(position)
                 var mediaType = PictureMimeType.isPictureType(media.pictureType)
@@ -71,14 +78,34 @@ class PostActivity : BaseActivity() {
 
             }
         }
+        layoutQuXian.setOnClickListener {
+            val cuttentCity = ConfigUtils.getCurrentCity()
+            if (cuttentCity != null) {
+                var areas: List<AreaBean>? = CitysManager(`this`).allAreaInCity(cuttentCity.areaId)
+                var quXianAdapter = BaseSpinerAdapter<BaseItem>(`this`, areas, false)
+                SpinerPopWindow(`this`).setAdatper(quXianAdapter).setSelect(1)
+                        .setItemSelectListener(object : BaseSpinerAdapter.ItemClickCallBack {
+                            override fun <T : BaseItem> itemClick(position: Int, item: T) {
+                                ToastUtile.showToast("" + item.toString())
+                                tvWuZheng.setText(item.toString())
+                            }
+
+                        })
+                        .showPopupWindow(it, it.width)
+            } else {
+
+            }
+
+
+        }
         layoutWuZheng.setOnClickListener {
             val lists: ArrayList<BaseItem> = ArrayList()
             for (i in 0..120) {
                 lists.add(BaseItem("第${i}个"))
             }
-            var baseSpinerAdapter = BaseSpinerAdapter<BaseItem>(`this`, lists, false)
+            var wuZhengAdapter = BaseSpinerAdapter<BaseItem>(`this`, lists, false)
 
-            SpinerPopWindow(`this`).setAdatper(baseSpinerAdapter).setSelect(1)
+            SpinerPopWindow(`this`).setAdatper(wuZhengAdapter).setSelect(1)
                     .setItemSelectListener(object : BaseSpinerAdapter.ItemClickCallBack {
                         override fun <T : BaseItem> itemClick(position: Int, item: T) {
                             ToastUtile.showToast("" + item.toString())

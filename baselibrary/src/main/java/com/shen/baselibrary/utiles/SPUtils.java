@@ -74,8 +74,6 @@ public class SPUtils {
         } catch (JsonSyntaxException e) {
             return null;
         }
-
         return null;
     }
-
 }

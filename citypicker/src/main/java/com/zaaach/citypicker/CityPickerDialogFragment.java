@@ -28,7 +28,7 @@ import com.zaaach.citypicker.adapter.InnerListener;
 import com.zaaach.citypicker.adapter.OnPickListener;
 import com.zaaach.citypicker.adapter.decoration.DividerItemDecoration;
 import com.zaaach.citypicker.adapter.decoration.SectionItemDecoration;
-import com.zaaach.citypicker.db.DBManager;
+import com.zaaach.citypicker.db.CitysManager;
 import com.zaaach.citypicker.model.CityBean;
 import com.zaaach.citypicker.model.HotCityBean;
 import com.zaaach.citypicker.model.LocateState;
@@ -54,7 +54,7 @@ public class CityPickerDialogFragment extends AppCompatDialogFragment implements
     private List<HotCityBean> mHotCities;
     private List<CityBean> mResults;
 
-    private DBManager dbManager;
+    private CitysManager citysManager;
 
     private boolean enableAnim = false;
     private int mAnimStyle = R.style.DefaultCityPickerAnimation;
@@ -89,8 +89,8 @@ public class CityPickerDialogFragment extends AppCompatDialogFragment implements
         initHotCities();
         initLocatedCity();
 
-        dbManager = new DBManager(getContext());
-        mAllCities = dbManager.getAllCities();
+        citysManager = new CitysManager(getContext());
+        mAllCities = citysManager.getAllCities();
         mAllCities.add(0, mLocatedCity);
         mAllCities.add(1, new HotCityBean("热门城市", "0"));
         mResults = mAllCities;
@@ -224,7 +224,7 @@ public class CityPickerDialogFragment extends AppCompatDialogFragment implements
         } else {
             mClearAllBtn.setVisibility(View.VISIBLE);
             //开始数据库查找
-            mResults = dbManager.searchCity(mAllCities, keyword);
+            mResults = citysManager.searchCity(mAllCities, keyword);
             ((SectionItemDecoration) (mRecyclerView.getItemDecorationAt(0))).setData(mResults);
             if (mResults == null || mResults.isEmpty()) {
                 mEmptyView.setVisibility(View.VISIBLE);
