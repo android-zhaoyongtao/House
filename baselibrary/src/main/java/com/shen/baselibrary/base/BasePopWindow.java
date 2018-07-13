@@ -49,7 +49,7 @@ public abstract class BasePopWindow extends PopupWindow {
 
     final public BasePopWindow showPopupWindow(View parent) {
         if (!this.isShowing()) {
-            setWidth(LayoutParams.MATCH_PARENT);
+            setWidth(LayoutParams.WRAP_CONTENT);
             setHeight(LayoutParams.WRAP_CONTENT);
             this.showAsDropDown(parent);
             ViewUtils.backgroundAlpha((Activity) parent.getContext(), 0.5f);

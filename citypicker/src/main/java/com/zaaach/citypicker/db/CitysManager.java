@@ -5,8 +5,7 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
-import com.shen.baselibrary.http.Convert;
+import com.shen.baselibrary.utiles.AssetsUtils;
 import com.zaaach.citypicker.HanziToPinyin;
 import com.zaaach.citypicker.model.AreaBean;
 import com.zaaach.citypicker.model.CityBean;
@@ -14,8 +13,6 @@ import com.zaaach.citypicker.model.ProvinceBean;
 
 import org.jetbrains.annotations.Nullable;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -35,13 +32,8 @@ public class CitysManager {
     public @NonNull
     List<CityBean> getAllCities() {
         try {
-            InputStream is = mContext.getAssets().open("city.json");
-            InputStreamReader reader = new InputStreamReader(is, "utf-8");
-            JsonReader jsonReader = new JsonReader(reader);
-            ArrayList<ProvinceBean> provinceBeans = Convert.fromJson(jsonReader, new TypeToken<ArrayList<ProvinceBean>>() {
+            ArrayList<ProvinceBean> provinceBeans = AssetsUtils.INSTANCE.getObjectFromAssets(mContext, "city.json", new TypeToken<ArrayList<ProvinceBean>>() {
             }.getType());
-            reader.close();
-            is.close();
             ArrayList<CityBean> cities = new ArrayList<>(360);
             for (ProvinceBean province : provinceBeans) {
                 for (CityBean cityBean : province.cities) {
@@ -56,6 +48,7 @@ public class CitysManager {
             return new ArrayList<>();
         }
     }
+
 
     public List<CityBean> searchCity(List<CityBean> allCities, final String keyword) {
         if (allCities == null || allCities.isEmpty()) {

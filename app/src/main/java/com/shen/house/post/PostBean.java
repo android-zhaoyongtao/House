@@ -3,6 +3,7 @@ package com.shen.house.post;
 import android.util.Pair;
 
 import com.luck.picture.lib.entity.LocalMedia;
+import com.shen.baselibrary.customview.spinnerpopupwindow.BaseItem;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class PostBean {
     public Pair<Integer, Integer> louceng;
     public Pair<Integer, String> zhuangxiu;
     public Pair<Integer, String> xingzhi;
-    public List<Integer> wuzheng;
+    public List<BaseItem> wuzhengs;//选中的
 
     private static class ShiTing {
         public Pair<Integer, String> shi;

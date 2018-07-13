@@ -6,4 +6,6 @@
     <color name="c5">#d6d8dd</color>
     <color name="c6">#f0f0f0</color>
     <color name="color_fecb2f">#fecb2f</color>
+    <color name="bg">#f9f9f9</color>
+    <color name="line">#f1f1f1</color>
 </resources>

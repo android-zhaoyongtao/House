@@ -13,7 +13,7 @@
     <color name="text">#585858</color>
     <color name="grey">#999999</color>
     <color name="bright_grey">#f0f0f0</color>
-    <color name="bg">#f9f9f9</color>
+
     <color name="color_ff5e41">#ff5e41</color>
 
     <color name="c1">#1e1e1e</color>
@@ -25,8 +25,6 @@
     <color name="c7">#ffffff</color>
     <color name="cc">#eaeef0</color>
 
-
-    <color name="line">#f1f1f1</color>
 
 
     <color name="color_0dff5e41">#0dff5e41</color>
