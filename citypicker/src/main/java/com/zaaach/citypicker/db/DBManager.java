@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.shen.baselibrary.http.Convert;
-import com.shen.baselibrary.utiles.LogUtils;
 import com.zaaach.citypicker.HanziToPinyin;
 import com.zaaach.citypicker.model.CityBean;
 import com.zaaach.citypicker.model.ProvinceBean;
@@ -47,7 +46,6 @@ public class DBManager {
                 }
             }
             Collections.sort(cities, new CityComparator());
-            LogUtils.e("cities", "" + cities.size());
             return cities;
         } catch (Exception e) {
             e.printStackTrace();
@@ -55,8 +53,10 @@ public class DBManager {
         }
     }
 
-    public List<CityBean> searchCity(final String keyword) {
-        List<CityBean> allCities = getAllCities();
+    public List<CityBean> searchCity(List<CityBean> allCities, final String keyword) {
+        if (allCities == null || allCities.isEmpty()) {
+            allCities = getAllCities();
+        }
         List<CityBean> resultCities = new ArrayList<>();
         for (CityBean cityBean : allCities) {
             if (cityBean.areaName.contains(keyword) || cityBean.pinyin.contains(keyword)) {

@@ -215,7 +215,7 @@ public class CityPickerDialogFragment extends AppCompatDialogFragment implements
         } else {
             mClearAllBtn.setVisibility(View.VISIBLE);
             //开始数据库查找
-            mResults = dbManager.searchCity(keyword);
+            mResults = dbManager.searchCity(mAllCities, keyword);
             ((SectionItemDecoration) (mRecyclerView.getItemDecorationAt(0))).setData(mResults);
             if (mResults == null || mResults.isEmpty()) {
                 mEmptyView.setVisibility(View.VISIBLE);
