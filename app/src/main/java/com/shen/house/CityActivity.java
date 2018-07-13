@@ -29,8 +29,8 @@ public class CityActivity extends BaseActivity {
 
                 CityPicker.getInstance()
                         .setFragmentManager(getSupportFragmentManager())
-                        .enableAnimation(false)
-                        .setAnimationStyle(R.style.DefaultCityPickerAnimation)
+                        .enableAnimation(true)
+//                        .setAnimationStyle(R.style.DefaultCityPickerAnimation)
                         .setLocatedCity(null)
 //                        .setHotCities(hotCities)
                         .setOnPickListener(new OnPickListener() {
