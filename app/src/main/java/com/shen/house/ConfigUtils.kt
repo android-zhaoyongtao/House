@@ -5,4 +5,7 @@ import com.zaaach.citypicker.model.CityBean
 
 object ConfigUtils {
     fun getCurrentCity(): CityBean? = SPUtils.getJsonObject(Key.SPKEY.SPKEY_CITYINFO, CityBean::class.java)
+    fun setCurrentCity(city: CityBean) {
+        SPUtils.setJsonObject(Key.SPKEY.SPKEY_CITYINFO, city)
+    }
 }

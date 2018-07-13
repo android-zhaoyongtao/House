@@ -251,9 +251,15 @@ public class CityPickerDialogFragment extends AppCompatDialogFragment implements
         //滚动RecyclerView到索引位置
         mAdapter.scrollToSection(index);
     }
-
-    public void locationChanged(CityBean location, int state) {
+    //定位完成
+    public void locationChanged(final CityBean location, int state) {
         mAdapter.updateLocateState(location, state);
+        mRecyclerView.postDelayed(new Runnable() {//选中后再消失,肉眼可见
+            @Override
+            public void run() {
+                 dismiss(0,location);
+            }
+        }, 100);
     }
 
     @Override

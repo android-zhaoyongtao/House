@@ -35,14 +35,14 @@ public class CityActivity extends BaseActivity {
                         .setFragmentManager(getSupportFragmentManager())
                         .enableAnimation(true)
 //                        .setAnimationStyle(R.style.DefaultCityPickerAnimation)
-                        .setLocatedCity(SPUtils.getJsonObject(Key.SPKEY.SPKEY_CITYINFO, CityBean.class))
+                        .setLocatedCity(ConfigUtils.INSTANCE.getCurrentCity())
 //                        .setHotCities(hotCities)
                         .setOnPickListener(new OnPickListener() {
                             @Override
                             public void onPick(int position, CityBean data) {
                                 if (data != null) {
                                     data.pinyin = "当前城市";
-                                    SPUtils.setJsonObject(Key.SPKEY.SPKEY_CITYINFO, data);
+                                    ConfigUtils.INSTANCE.setCurrentCity(data);
                                 }
                                 ToastUtile.showToast(data == null ? "点的空" : String.format("点击的数据：%s，%s", data.areaName, data.areaId));
                                 ((TextView) v).setText(data == null ? "点的空" : String.format("点击的数据：%s，%s", data.areaName, data.areaId));
@@ -68,7 +68,7 @@ public class CityActivity extends BaseActivity {
                     tv.setText(city.areaName);
                     ToastUtile.showToast("定位成功");
                     CityPicker.getInstance().locateComplete(city, LocateState.SUCCESS);
-                    SPUtils.setJsonObject(Key.SPKEY.SPKEY_CITYINFO, city);
+                    ConfigUtils.INSTANCE.setCurrentCity(city);
                 } else {
                     CityPicker.getInstance().locateComplete(new CityBean(getString(com.zaaach.citypicker.R.string.cp_locate_failed), "当前城市", "0"), LocateState.FAILURE);
                 }

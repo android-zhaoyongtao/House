@@ -20,23 +20,28 @@ class SplashActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         PermissionUtils.requestPermission(`this`, Manifest.permission.WRITE_EXTERNAL_STORAGE, object : PermissionCallBack() {
             override fun hasPermission() {
-                toMainActivity()
+                toNextActivity()
                 File(FileUtils.getCacheDir(`this`), ".nomedia").mkdirs()
             }
 
             override fun refusePermission() {
-                toMainActivity()
+                toNextActivity()
             }
 
             override fun refusePermissionDonotAskAgain() {
-                toMainActivity()
+                toNextActivity()
             }
         })
 
     }
 
-    private fun toMainActivity() {
-        startActivity(Intent(`this`, MainActivity::class.java))
+    private fun toNextActivity() {
+        if (ConfigUtils.getCurrentCity()!=null) {
+            startActivity(Intent(`this`, MainActivity::class.java))
+        }else{
+            startActivities(arrayOf(Intent(`this`, MainActivity::class.java),Intent(`this`, CityActivity::class.java)))
+        }
+
         overridePendingTransition(0, 0);
         finish()
     }
