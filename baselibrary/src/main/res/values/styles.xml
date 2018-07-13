@@ -1,6 +1,12 @@
 <resources>
 
-
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/color_fecb2f</item>
+        <item name="colorPrimaryDark">@color/color_fecb2f</item>
+        <item name="colorAccent">@color/blue</item>
+        <item name="android:navigationBarColor">@color/color_fecb2f</item>
+    </style>
     <style name="Rent_Dialog">
         <!-- 边框 -->
         <item name="android:windowFrame">@null</item>
@@ -22,7 +28,7 @@
     </style>
     <!--图片选择,样式-->
     <!--默认样式-->
-    <style name="picture.default.style" parent="AppTheme">
+    <style name="picture.default.style" parent="BaseTheme">
         <!-- Customize your theme here. -->
         <!--标题栏背景色-->
         <!--<item name="colorPrimary">@color/bar_grey</item>-->
@@ -73,4 +79,5 @@
         <!--相册文件夹列表选中图标-->
         <item name="picture.folder_checked_dot">@drawable/orange_oval</item>
     </style>
+
 </resources>

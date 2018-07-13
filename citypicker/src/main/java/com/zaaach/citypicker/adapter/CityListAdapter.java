@@ -53,7 +53,7 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.BaseVi
         notifyDataSetChanged();
     }
 
-    public void updateLocateState(LocatedCityBean location, int state) {
+    public void updateLocateState(CityBean location, int state) {
         mData.remove(0);
         mData.add(0, location);
         stateChanged = !(locateState == state);

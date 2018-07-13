@@ -11,6 +11,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -25,16 +26,17 @@ import java.util.Locale;
 
 public class LocationUtils {
 
-    public static void getLocation(final Activity context, final LocationCallBack callBack) {
+    public static void getLocation(final Activity context, @NonNull final LocationCallBack callBack) {
         final LocationListener[] locationListener = new LocationListener[1];
         PermissionUtils.requestPermission(context, Manifest.permission.ACCESS_FINE_LOCATION, new PermissionCallBack() {
             @Override
             public void refusePermission() {
+                callBack.call(null);
             }
 
             @Override
             public void refusePermissionDonotAskAgain() {
-                PermissionUtils.toAppSetting(context);
+                callBack.call(null);
             }
 
             @SuppressLint("MissingPermission")
@@ -45,28 +47,8 @@ public class LocationUtils {
                     public void onLocationChanged(Location location) {
                         myLocationManager.removeUpdates(this);
                         locationListener[0] = null;
-                        if (location != null) {
-                            //获取国家，省份，城市的名称
-//                            String str = "getLatitude:" + location.getLatitude() + ";getLongitude:" + location.getLongitude() + ";getTime:" + location.getTime() + ";getProvider:" + location.getProvider();
-
-//                            Log.e("location24", "changed:" + str);
-//                List<Address> m_list = getAddress(location);
-//                ExecutorUtile.runInSubThred();
-//                new MyAsyncExtue().execute(location);
-//                Log.e("str", m_list.toString());
-//                String city = "";
-////                if (m_list != null && m_list.size() > 0) {
-////                    city = m_list.get(0).getLocality();//获取城市
-////                }
-//                city = m_list;
-                        } else {
-
-                        }
-                        if (callBack != null) {
                             callBack.call(location);
-                        }
                     }
-
                     @Override
                     public void onStatusChanged(String provider, int status, Bundle extras) {
 
@@ -131,15 +113,21 @@ public class LocationUtils {
                             try {
                                 Geocoder gc = new Geocoder(activity, Locale.getDefault());
                                 List<Address> result = gc.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                                result = gc.getFromLocation(38.75, 114.98, 1);
+//                                result = gc.getFromLocation(38.75, 114.98, 1);
 //                                    LogUtils.e("location25", "address:" + result.get(0).toString());
 //                                LogUtils.e("location25", "address:" + result.get(0).getLocality());
                                 String cityName = result.get(0).getLocality();
                                 String shortCity = cityName.replaceAll("市", "");
                                 List<CityBean> allCities = new DBManager(activity).getAllCities();
-                                for (CityBean city : allCities) {
+                                for (final CityBean city : allCities) {
                                     if (city.areaName.contains(shortCity)) {
-                                        cityCallBack.call(city);
+                                        city.pinyin="定位城市";
+                                        activity.runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                cityCallBack.call(city);
+                                            }
+                                        });
                                         return;
                                     }
                                 }
@@ -147,7 +135,6 @@ public class LocationUtils {
                                 e.printStackTrace();
                                 cityCallBack.call(null);
                             }
-
                         }
                     });
                 }

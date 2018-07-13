@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="HouseTheme" parent="BaseTheme">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/mainColor</item>
         <item name="colorPrimaryDark">@color/mainColor</item>
@@ -9,7 +9,7 @@
         <item name="android:navigationBarColor">@color/mainColor</item>
     </style>
 
-    <style name="FullScreenTheme" parent="AppTheme">
+    <style name="FullScreenTheme" parent="HouseTheme">
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowTranslucentNavigation">true</item>
         <!--Android 5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色-->

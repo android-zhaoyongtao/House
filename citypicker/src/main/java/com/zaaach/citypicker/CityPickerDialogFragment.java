@@ -57,7 +57,7 @@ public class CityPickerDialogFragment extends AppCompatDialogFragment implements
 
     private boolean enableAnim = false;
     private int mAnimStyle = R.style.DefaultCityPickerAnimation;
-    private LocatedCityBean mLocatedCity;
+    private CityBean mLocatedCity;
     private int locateState;
     private OnPickListener mOnPickListener;
 
@@ -97,7 +97,7 @@ public class CityPickerDialogFragment extends AppCompatDialogFragment implements
 
     private void initLocatedCity() {
         if (mLocatedCity == null) {
-            mLocatedCity = new LocatedCityBean(getString(R.string.cp_locating), "0");
+            mLocatedCity = new CityBean(getString(R.string.cp_locating),"定位城市", "0");
             locateState = LocateState.FAILURE;
         } else {
             locateState = LocateState.SUCCESS;
@@ -119,7 +119,7 @@ public class CityPickerDialogFragment extends AppCompatDialogFragment implements
         }
     }
 
-    public void setLocatedCity(LocatedCityBean location) {
+    public void setLocatedCity(CityBean location) {
         mLocatedCity = location;
     }
 
@@ -243,7 +243,7 @@ public class CityPickerDialogFragment extends AppCompatDialogFragment implements
         mAdapter.scrollToSection(index);
     }
 
-    public void locationChanged(LocatedCityBean location, int state) {
+    public void locationChanged(CityBean location, int state) {
         mAdapter.updateLocateState(location, state);
     }
 

@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import com.zaaach.citypicker.adapter.OnPickListener;
+import com.zaaach.citypicker.model.CityBean;
 import com.zaaach.citypicker.model.HotCityBean;
 import com.zaaach.citypicker.model.LocateState;
 import com.zaaach.citypicker.model.LocatedCityBean;
@@ -36,7 +37,7 @@ public class CityPicker {
 
     private boolean enableAnim;
     private int mAnimStyle;
-    private LocatedCityBean mLocation;
+    private CityBean mLocation;
     private List<HotCityBean> mHotCities;
     private OnPickListener mOnPickListener;
 
@@ -67,7 +68,7 @@ public class CityPicker {
      * @param location
      * @return
      */
-    public CityPicker setLocatedCity(LocatedCityBean location) {
+    public CityPicker setLocatedCity(CityBean location) {
         this.mLocation = location;
         return this;
     }
@@ -127,7 +128,7 @@ public class CityPicker {
      * @param location
      * @param state
      */
-    public void locateComplete(LocatedCityBean location, @LocateState.State int state) {
+    public void locateComplete(CityBean location, @LocateState.State int state) {
         CityPickerDialogFragment fragment = (CityPickerDialogFragment) mFragmentManager.findFragmentByTag(TAG);
         if (fragment != null) {
             fragment.locationChanged(location, state);
