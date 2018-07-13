@@ -17,13 +17,19 @@ public class PermissionUtils {
      * 请求权限
      */
     public static void requestPermission(Context context, String permission, @NonNull PermissionCallBack callback) {
-        if (ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED) {
+        if (hasPermission(context, permission)) {
             callback.hasPermission();
         } else {
             requestPermission((FragmentActivity) context, new String[]{permission}, callback);
         }
     }
 
+    /**
+     * 判断权限
+     */
+    public static boolean hasPermission(Context context, String permission) {
+        return ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED;
+    }
     /**
      * 显示前往应用设置
      */

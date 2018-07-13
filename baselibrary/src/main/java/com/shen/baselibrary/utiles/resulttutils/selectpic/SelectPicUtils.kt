@@ -1,12 +1,14 @@
 package com.shen.baselibrary.utiles.resulttutils.selectpic
 
 import android.Manifest
+import android.content.Context
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
+import com.luck.picture.lib.tools.PictureFileUtils
 import com.shen.baselibrary.R
 import com.shen.baselibrary.customview.MessageDialog
 import com.shen.baselibrary.utiles.ToastUtile
@@ -36,6 +38,11 @@ object SelectPicUtils {
         })
     }
 
+    fun deleteCache(context: Context) {//// 清空图片缓存，包括裁剪、压缩后的图片 注意:必须要在上传完成后调用 必须要获取权限
+        if (PermissionUtils.hasPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            PictureFileUtils.deleteCacheDirFile(context)
+        }
+    }
     fun open(fragment: Fragment, requestCode: Int, singleSelect: Boolean = true, selectList: List<LocalMedia>?) {
         PictureSelector.create(fragment)
                 .openGallery(PictureMimeType.ofImage())// 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()

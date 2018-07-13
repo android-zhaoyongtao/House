@@ -46,4 +46,5 @@ dependencies {
     //glide注解生成AppGlideModule实例的
 //    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
     kapt 'com.github.bumptech.glide:compiler:4.7.1'
+    implementation project(':citypicker')
 }

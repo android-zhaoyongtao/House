@@ -19,3 +19,10 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keep class **Bean {*;}
+-keep class **.bean.** {*;}
+-keep class **Model {*;}
+-keep class **.modle.** {*;}
+-keep class **Entity {*;}
+-keep class **.entity.** {*;}
+-keep class android.support.design.widget.TabLayout$TabView{*;}

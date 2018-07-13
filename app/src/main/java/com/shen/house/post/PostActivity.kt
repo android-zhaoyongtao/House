@@ -1,12 +1,12 @@
 package com.shen.house.post
 
+import android.content.Intent
 import android.support.v7.widget.GridLayoutManager
 import android.text.TextUtils
 import android.view.View
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
-import com.luck.picture.lib.tools.PictureFileUtils
 import com.shen.baselibrary.base.BaseActivity
 import com.shen.baselibrary.helper.FullyGridLayoutManager
 import com.shen.baselibrary.utiles.DisplayUtils
@@ -14,6 +14,7 @@ import com.shen.baselibrary.utiles.LogUtils
 import com.shen.baselibrary.utiles.ToastUtile
 import com.shen.baselibrary.utiles.resulttutils.selectpic.SelectPicCallback
 import com.shen.baselibrary.utiles.resulttutils.selectpic.SelectPicUtils
+import com.shen.house.CityActivity
 import com.shen.house.R
 import com.shen.house.customview.spinnerpopupwindow.BaseItem
 import com.shen.house.customview.spinnerpopupwindow.BaseSpinerAdapter
@@ -88,6 +89,7 @@ class PostActivity : BaseActivity() {
                     .showPopupWindow(it, it.width)
         }
         btnPost.setOnClickListener { ToastUtile.showToast("fabu发布") }
+        layoutQuXian.setOnClickListener { startActivity(Intent(`this`, CityActivity::class.java)) }
         layoutName.setOnClickListener {
             ToastUtile.showToast("小区名称点击")
             edittextName.setText("dianjile")
@@ -101,7 +103,5 @@ class PostActivity : BaseActivity() {
         }
     }
 
-    fun deleteCache() {//// 清空图片缓存，包括裁剪、压缩后的图片 注意:必须要在上传完成后调用 必须要获取权限
-        PictureFileUtils.deleteCacheDirFile(`this`)
-    }
+
 }

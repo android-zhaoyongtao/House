@@ -20,6 +20,7 @@
         <meta-data
             android:name="android.max_aspect"
             android:value="2.1"/>
+
         <activity
             android:name="com.shen.house.SplashActivity"
             android:screenOrientation="portrait"
@@ -53,8 +54,12 @@
             />
         <activity
             android:name=".post.PostActivity"
-            android:windowSoftInputMode="stateHidden"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".CityActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"/>
     </application>
 
 </manifest>

@@ -32,7 +32,7 @@ dependencies {
     //    api 'com.android.support.constraint:constraint-layout:1.1.2'
     //http
     api 'com.lzy.net:okgo:3.0.4'
-    api 'com.google.code.gson:gson:2.8.0'
+    api 'com.google.code.gson:gson:2.8.2'
     //okdemo用到的
     //    compile 'com.jakewharton:butterknife:7.0.1'
     //读取网络请求各个参数的

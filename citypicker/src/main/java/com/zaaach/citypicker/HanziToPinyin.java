@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.shen.baselibrary.utiles.selectutils;
+package com.zaaach.citypicker;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -379,24 +379,26 @@ public class HanziToPinyin {
     }
 
     public static HanziToPinyin getInstance() {
-        if (sInstance != null) {
-            return sInstance;
-        }
-        // Check if zh_CN collation data is available
-        final Locale locale[] = Collator.getAvailableLocales();
-        for (int i = 0; i < locale.length; i++) {
-            if (locale[i].equals(Locale.CHINESE)) {
-                // Do self validation just once.
-                if (DEBUG) {
-                    Log.d(TAG, "Self validation. Result: " + doSelfValidation());
-                }
-                sInstance = new HanziToPinyin(true);
+        synchronized (HanziToPinyin.class) {
+            if (sInstance != null) {
                 return sInstance;
             }
+            // Check if zh_CN collation data is available
+            final Locale locale[] = Collator.getAvailableLocales();
+            for (int i = 0; i < locale.length; i++) {
+                if (locale[i].equals(Locale.CHINESE)) {
+                    // Do self validation just once.
+                    if (DEBUG) {
+                        Log.d(TAG, "Self validation. Result: " + doSelfValidation());
+                    }
+                    sInstance = new HanziToPinyin(true);
+                    return sInstance;
+                }
+            }
+            Log.w(TAG, "There is no Chinese collator, HanziToPinyin is disabled");
+            sInstance = new HanziToPinyin(false);
+            return sInstance;
         }
-        Log.w(TAG, "There is no Chinese collator, HanziToPinyin is disabled");
-        sInstance = new HanziToPinyin(false);
-        return sInstance;
     }
 
     /**
@@ -540,8 +542,7 @@ public class HanziToPinyin {
         return tokens;
     }
 
-    private void addToken(
-            final StringBuilder sb, final ArrayList<Token> tokens, final int tokenType) {
+    private void addToken(final StringBuilder sb, final ArrayList<Token> tokens, final int tokenType) {
         String str = sb.toString();
         tokens.add(new Token(tokenType, str, str));
         sb.setLength(0);
