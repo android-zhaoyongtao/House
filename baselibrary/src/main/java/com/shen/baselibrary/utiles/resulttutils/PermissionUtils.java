@@ -9,6 +9,9 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.view.View;
+
+import com.shen.baselibrary.customview.MessageDialog;
 
 
 public class PermissionUtils {
@@ -39,6 +42,15 @@ public class PermissionUtils {
         intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         intent.setData(Uri.fromParts("package", activity.getPackageName(), null));
         activity.startActivity(intent);
+    }
+
+    public static void showNoticeDialog(final Activity activity, String message) {
+        new MessageDialog(activity, "提示", message, "前往", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toAppSetting(activity);
+            }
+        }).show();
     }
 
     private static void requestPermission(FragmentActivity activity, String[] permissions, PermissionCallBack callback) {

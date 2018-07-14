@@ -10,7 +10,6 @@ import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.tools.PictureFileUtils
 import com.shen.baselibrary.R
-import com.shen.baselibrary.customview.MessageDialog
 import com.shen.baselibrary.utiles.ToastUtile
 import com.shen.baselibrary.utiles.resulttutils.AvoidTempFragment
 import com.shen.baselibrary.utiles.resulttutils.PermissionCallBack
@@ -20,8 +19,6 @@ object SelectPicUtils {
     val MAXSELECTNUM: Int = 12
     open fun selectPic(activity: FragmentActivity, singleSelect: Boolean = true, selectList: List<LocalMedia>?, callBack: SelectPicCallback?) {
         PermissionUtils.requestPermission(activity, Manifest.permission.CAMERA, object : PermissionCallBack() {
-
-
             override fun hasPermission() {
                 AvoidTempFragment.getInstance(activity.supportFragmentManager).selectPic(callBack, singleSelect, selectList)
             }
@@ -31,9 +28,7 @@ object SelectPicUtils {
             }
 
             override fun refusePermissionDonotAskAgain() {
-                MessageDialog(activity, "提示", "授予该应用相机权限后才能上传照片,是否去设置中开启权限?", "前往") {
-                    PermissionUtils.toAppSetting(activity)
-                }
+                PermissionUtils.showNoticeDialog(activity, "授予该应用相机权限后才能上传照片,是否去设置中开启权限?")
             }
         })
     }
@@ -43,6 +38,8 @@ object SelectPicUtils {
             PictureFileUtils.deleteCacheDirFile(context)
         }
     }
+
+    //私有的
     fun open(fragment: Fragment, requestCode: Int, singleSelect: Boolean = true, selectList: List<LocalMedia>?) {
         PictureSelector.create(fragment)
                 .openGallery(PictureMimeType.ofImage())// 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()

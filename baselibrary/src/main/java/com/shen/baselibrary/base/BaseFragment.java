@@ -3,6 +3,7 @@ package com.shen.baselibrary.base;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -82,7 +83,7 @@ public abstract class BaseFragment extends Fragment implements StatusHandle, Vie
 
     public abstract int getcontentView();
 
-    public abstract void afterInjectView(View view);
+    public abstract void afterInjectView(@NonNull View view);
 
     public void getData() {
     }

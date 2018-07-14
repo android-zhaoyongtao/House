@@ -11,9 +11,11 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.shen.baselibrary.ContextHouse;
+import com.shen.baselibrary.utiles.ExecutorUtile;
 import com.shen.house.GlideApp;
 
 public class ImageLoader {
@@ -46,7 +48,7 @@ public class ImageLoader {
 //                load = requests.animate(anim);
 //            }
         } else {
-            GlideApp.with(context).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(place).error(error).fallback(fallback).into(imageView);
+            GlideApp.with(context).load(url).transition(DrawableTransitionOptions.withCrossFade()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(place).error(error).fallback(fallback).into(imageView);
         }
     }
 
@@ -70,6 +72,22 @@ public class ImageLoader {
 
     private static class ImageLoaderHolder {
         private static final ImageLoader INSTANCE = new ImageLoader();
+
+    }
+
+    public void clearCache(final Context context) {
+        ExecutorUtile.runInSubThred(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    GlideApp.get(context).clearMemory();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                GlideApp.get(context).clearDiskCache();//由于删除了文件夹，导致清除缓存后 不重启应用 图片无法加载。
+            }
+        });
+
 
     }
 }

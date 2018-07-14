@@ -8,7 +8,6 @@ import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.Region;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.graphics.drawable.DrawableCompat;
 
@@ -49,7 +48,8 @@ public class DefaultImgDrawable extends Drawable {
     private OnBoundChangeListener mListener = DEFAULT_LISTENER;
 
     public DefaultImgDrawable(Context context) {
-        this(new ColorDrawable(context.getResources().getColor(R.color.bright_grey)));
+//        this(context.getResources().getDrawable(R.drawable.bg_image_default_small), context.getResources().getDrawable(R.mipmap.ic_launcher));
+        this(context.getResources().getDrawable(R.drawable.bg_image_default_small));
     }
 
     public DefaultImgDrawable(Drawable... fore) {
