@@ -41,14 +41,19 @@ public class ImageLoader {
 
     public void displayImage(Context context, ImageView imageView, String url, DecodeFormat format, Drawable place, Drawable error, Drawable fallback, Animation anim) {
         if (format != null) {
-            GlideApp.with(context).asBitmap().format(format).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(place).error(error).fallback(fallback).into(imageView);
+            GlideApp.with(context).asBitmap().format(format).load(url).diskCacheStrategy(DiskCacheStrategy.ALL)
+//                    .placeholder(place)//这个有问题
+                    .error(error).fallback(fallback).into(imageView);
 //            if (anim == null) {
 //                load = requests.dontAnimate();
 //            } else {
 //                load = requests.animate(anim);
 //            }
         } else {
-            GlideApp.with(context).load(url).transition(DrawableTransitionOptions.withCrossFade()).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(place).error(error).fallback(fallback).into(imageView);
+            GlideApp.with(context).load(url).transition(DrawableTransitionOptions.withCrossFade()).diskCacheStrategy(DiskCacheStrategy.ALL)
+//                    .placeholder(place)
+                    .error(error).fallback(fallback)
+                    .into(imageView);
         }
     }
 
