@@ -10,8 +10,16 @@ public class BaseItem {
         this.text = text;
     }
 
-    public String text = "";//下来要去掉的
+    private String text = "";//搞成private否则子类不好覆盖
     public boolean isChecked = false;
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 
     @Override
     public String toString() {
