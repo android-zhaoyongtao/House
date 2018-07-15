@@ -52,14 +52,14 @@ class SplashActivity : BaseActivity() {
             CityPicker.getInstance()
                     .setFragmentManager(supportFragmentManager)
                     .enableAnimation(true)
-                    .setLocatedCity(ConfigUtils.getCurrentCity())
+                    .setLocatedCity(LocationUtils.getSPCity())
                     .setOnPickListener(object : OnPickListener {
                         override fun onPick(position: Int, data: CityBean?) {
                             if (data != null) {
                                 data.pinyin = "当前城市"
-                                ConfigUtils.setCurrentCity(data)
+                                LocationUtils.setSPCity(data)
                             } else {
-                                ConfigUtils.setCurrentCity(CityBean("北京", "当前城市", ""))
+                                LocationUtils.setSPCity(CityBean("北京", "当前城市", ""))
                             }
                             startActivity(Intent(`this`, MainActivity::class.java))
                             overridePendingTransition(0, 0);
@@ -82,7 +82,7 @@ class SplashActivity : BaseActivity() {
             if (city != null) {
                 ToastUtile.showToast("定位成功")
                 CityPicker.getInstance().locateComplete(city, LocateState.SUCCESS)
-                ConfigUtils.setCurrentCity(city)
+                LocationUtils.setSPCity(city)
             } else {
                 CityPicker.getInstance().locateComplete(CityBean(getString(com.zaaach.citypicker.R.string.cp_locate_failed), "当前城市", "0"), LocateState.FAILURE)
             }

@@ -39,7 +39,6 @@ import java.util.List;
 
 public class CityPickerDialogFragment extends AppCompatDialogFragment implements TextWatcher,
         View.OnClickListener, SideIndexBar.OnIndexTouchedChangedListener, InnerListener {
-    private View mContentView;
     private RecyclerView mRecyclerView;
     private View mEmptyView;
     private TextView mOverlayTextView;
@@ -138,7 +137,7 @@ public class CityPickerDialogFragment extends AppCompatDialogFragment implements
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mContentView = inflater.inflate(R.layout.cp_dialog_city_picker, container, false);
+        View mContentView = inflater.inflate(R.layout.cp_dialog_city_picker, container, false);
 
         mRecyclerView = mContentView.findViewById(R.id.cp_city_recyclerview);
         mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);

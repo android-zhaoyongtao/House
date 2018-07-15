@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.shen.baselibrary.base.BaseActivity;
-import com.shen.baselibrary.utiles.SPUtils;
 import com.shen.baselibrary.utiles.ToastUtile;
 import com.zaaach.citypicker.CityPicker;
 import com.zaaach.citypicker.LocationUtils;
@@ -19,7 +18,6 @@ public class CityActivity extends BaseActivity {
 
     @Override
     public int getcontentView() {
-        setTheme(R.style.DefaultCityPickerTheme);
         return R.layout.activity_city;
     }
 
@@ -35,14 +33,14 @@ public class CityActivity extends BaseActivity {
                         .setFragmentManager(getSupportFragmentManager())
                         .enableAnimation(true)
 //                        .setAnimationStyle(R.style.DefaultCityPickerAnimation)
-                        .setLocatedCity(ConfigUtils.INSTANCE.getCurrentCity())
+                        .setLocatedCity(LocationUtils.getSPCity())
 //                        .setHotCities(hotCities)
                         .setOnPickListener(new OnPickListener() {
                             @Override
                             public void onPick(int position, CityBean data) {
                                 if (data != null) {
                                     data.pinyin = "当前城市";
-                                    ConfigUtils.INSTANCE.setCurrentCity(data);
+                                    LocationUtils.setSPCity(data);
                                 }
                                 ToastUtile.showToast(data == null ? "点的空" : String.format("点击的数据：%s，%s", data.areaName, data.areaId));
                                 ((TextView) v).setText(data == null ? "点的空" : String.format("点击的数据：%s，%s", data.areaName, data.areaId));
@@ -51,7 +49,20 @@ public class CityActivity extends BaseActivity {
                             @Override
                             public void onLocate() {
                                 //开始定位，这里模拟一下定位
-                                getLocation();
+                                LocationUtils.locationCity(getThis(), new LocationUtils.CityCallBack() {
+                                    @Override
+                                    public void call(@Nullable CityBean city) {
+                                        if (city != null) {
+                                            ToastUtile.showToast("定位成功");
+                                            CityPicker.getInstance().locateComplete(city, LocateState.SUCCESS);
+                                            LocationUtils.setSPCity(city);
+                                            tv.setText(city.areaName);
+                                        } else {
+                                            CityPicker.getInstance().locateComplete(new CityBean(getString(com.zaaach.citypicker.R.string.cp_locate_failed), "当前城市", "0"), LocateState.FAILURE);
+                                        }
+
+                                    }
+                                });
                             }
                         })
                         .show();
@@ -60,21 +71,5 @@ public class CityActivity extends BaseActivity {
 
     }
 
-    private void getLocation() {
-        LocationUtils.locationCity(getThis(), new LocationUtils.CityCallBack() {
-            @Override
-            public void call(@Nullable CityBean city) {
-                if (city != null) {
-                    tv.setText(city.areaName);
-                    ToastUtile.showToast("定位成功");
-                    CityPicker.getInstance().locateComplete(city, LocateState.SUCCESS);
-                    ConfigUtils.INSTANCE.setCurrentCity(city);
-                } else {
-                    CityPicker.getInstance().locateComplete(new CityBean(getString(com.zaaach.citypicker.R.string.cp_locate_failed), "当前城市", "0"), LocateState.FAILURE);
-                }
-
-            }
-        });
-    }
 
 }

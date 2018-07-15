@@ -13,17 +13,23 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 
 import com.shen.baselibrary.utiles.ExecutorUtile;
+import com.shen.baselibrary.utiles.SPUtils;
+import com.shen.baselibrary.utiles.ToastUtile;
 import com.shen.baselibrary.utiles.resulttutils.PermissionCallBack;
 import com.shen.baselibrary.utiles.resulttutils.PermissionUtils;
+import com.zaaach.citypicker.adapter.OnPickListener;
 import com.zaaach.citypicker.db.CitysManager;
 import com.zaaach.citypicker.model.CityBean;
+import com.zaaach.citypicker.model.LocateState;
 
 import java.util.List;
 import java.util.Locale;
 
 public class LocationUtils {
+    private static final String SPKEY_CITYINFO = "key_cityinfo";
 
     public static void getLocation(final Activity context, @NonNull final LocationCallBack callBack) {
         final LocationListener[] locationListener = new LocationListener[1];
@@ -148,5 +154,50 @@ public class LocationUtils {
 
     public interface CityCallBack {
         void call(@Nullable CityBean city);
+    }
+
+    /**
+     * 调到选城市页面
+     */
+    public static void toSelectPage(final FragmentActivity activity, final CityCallBack callBack) {
+        CityPicker.getInstance()
+                .setFragmentManager(activity.getSupportFragmentManager())
+                .enableAnimation(true)
+                .setLocatedCity(getSPCity())
+                .setOnPickListener(new OnPickListener() {
+                    @Override
+                    public void onPick(int position, CityBean data) {
+                        if (data != null) {
+                            data.pinyin = "当前城市";
+                            setSPCity(data);
+                            callBack.call(data);
+                        }
+                    }
+
+                    @Override
+                    public void onLocate() {
+                        locationCity(activity, new CityCallBack() {
+                            @Override
+                            public void call(@Nullable CityBean city) {
+                                if (city == null) {
+                                    CityPicker.getInstance().locateComplete(new CityBean(activity.getResources().getString(R.string.cp_locate_failed), "当前城市", "0"), LocateState.FAILURE);
+                                } else {
+                                    ToastUtile.showToast("定位成功");
+                                    CityPicker.getInstance().locateComplete(city, LocateState.SUCCESS);
+                                    setSPCity(city);
+                                }
+                            }
+                        });
+                    }
+                })
+                .show();
+    }
+
+    public static CityBean getSPCity() {
+        return SPUtils.getJsonObject(SPKEY_CITYINFO, CityBean.class);
+    }
+
+    public static void setSPCity(CityBean city) {
+        SPUtils.setJsonObject(SPKEY_CITYINFO, city);
     }
 }

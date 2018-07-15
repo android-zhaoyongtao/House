@@ -88,6 +88,6 @@ public class Key {
     }
 
     public static final class SPKEY {
-        public static final String SPKEY_CITYINFO = "spkey_cityinfo";
+
     }
 }

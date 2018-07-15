@@ -15,8 +15,8 @@ import com.shen.baselibrary.helper.FullyGridLayoutManager
 import com.shen.baselibrary.utiles.*
 import com.shen.baselibrary.utiles.resulttutils.selectpic.SelectPicCallback
 import com.shen.baselibrary.utiles.resulttutils.selectpic.SelectPicUtils
-import com.shen.house.ConfigUtils
 import com.shen.house.R
+import com.zaaach.citypicker.LocationUtils
 import com.zaaach.citypicker.db.CitysManager
 import com.zaaach.citypicker.model.AreaBean
 import kotlinx.android.synthetic.main.activity_post.*
@@ -81,7 +81,7 @@ class PostActivity : BaseActivity() {
             }
         }
         layoutQuXian.setOnClickListener {
-            val cuttentCity = ConfigUtils.getCurrentCity()
+            val cuttentCity = LocationUtils.getSPCity()
             if (cuttentCity != null) {
                 var areas: List<AreaBean>? = CitysManager(`this`).allAreaInCity(cuttentCity.areaId)
                 if (StringUtils.listSize(areas) > 0) {
@@ -100,6 +100,20 @@ class PostActivity : BaseActivity() {
                 ToastUtile.showToast("当前城市无地区信息")
             }
         }
+        layoutShiTing.setOnClickListener {
+            ShiTingPopupWindow(`this`).setShiTingCallBack(object : ShiTingPopupWindow.ShiTingCallBack {
+                override fun call(shi: Int, shis: String?, ting: Int, tings: String?, wei: Int, weis: String?) {
+                    tvShiTing.setText(TextUtils.concat(shis, tings, weis))
+                }
+            }).showPopupWindow(it, DisplayUtils.dp2px(`this`, 330f))
+        }
+        layoutChaoXiang.setOnClickListener {
+            ShiTingPopupWindow(`this`).setShiTingCallBack(object : ShiTingPopupWindow.ShiTingCallBack {
+                override fun call(shi: Int, shis: String?, ting: Int, tings: String?, wei: Int, weis: String?) {
+                    tvShiTing.setText(TextUtils.concat(shis, tings, weis))
+                }
+            }).showPopupWindow(it, DisplayUtils.dp2px(`this`, 330f))
+        }
         layoutWuZheng.setOnClickListener {
             val wuzhengs = AssetsUtils.getObjectFromAssets<ArrayList<BaseItem>>(`this`
                     , "wuzheng.json", object : TypeToken<ArrayList<BaseItem>>() {}.type)
@@ -116,17 +130,7 @@ class PostActivity : BaseActivity() {
                     .showPopupWindow(it)
         }
         btnPost.setOnClickListener { ToastUtile.showToast("fabu发布") }
-        layoutName.setOnClickListener {
-            ToastUtile.showToast("小区名称点击")
-            edittextName.setText("dianjile")
-        }
-        layoutShiTing.setOnClickListener {
-            ShiTingPopupWindow(`this`).setShiTingCallBack(object : ShiTingPopupWindow.ShiTingCallBack {
-                override fun call(shi: Int, shis: String?, ting: Int, tings: String?, wei: Int, weis: String?) {
-                    tvShiTing.setText(TextUtils.concat(shis, tings, weis))
-                }
-            }).showPopupWindow(it, DisplayUtils.dp2px(`this`, 330f))
-        }
+
     }
 
 
