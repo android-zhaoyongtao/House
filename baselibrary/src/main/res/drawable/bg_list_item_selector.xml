@@ -3,7 +3,7 @@
     <item android:state_pressed="true">
         <shape>
             <solid
-                android:color="@color/cp_color_grid_item_bg"/>
+                android:color="@color/c6"/>
 
         </shape>
     </item>

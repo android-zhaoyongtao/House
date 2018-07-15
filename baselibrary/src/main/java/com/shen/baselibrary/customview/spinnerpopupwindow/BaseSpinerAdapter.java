@@ -3,6 +3,8 @@ package com.shen.baselibrary.customview.spinnerpopupwindow;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
@@ -14,12 +16,14 @@ import com.shen.baselibrary.utiles.StringUtils;
 import java.util.List;
 
 
-public class BaseSpinerAdapter<T extends BaseItem> extends RecyclerAdapter<T> {
+public class BaseSpinerAdapter<T extends BaseItem> extends RecyclerAdapter<T> implements AdapterView.OnItemClickListener {
     public boolean singleCheck = false;//是否单选
     private ItemClickCallBack callBack;
+    private boolean chileMatchParent =false;
 
     public void setOnItemClickListener(ItemClickCallBack callBack) {
         this.callBack = callBack;
+        setOnItemClickListener(this);
     }
 
     public BaseSpinerAdapter(Context context) {
@@ -43,6 +47,9 @@ public class BaseSpinerAdapter<T extends BaseItem> extends RecyclerAdapter<T> {
 
     @Override
     public void onSetView(final EViewHolder holder, final T item, final int position) {
+        if (chileMatchParent) {
+            holder.getConvertView().getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
+        }
         TextView textView = holder.getViewById(R.id.textView);
         CompoundButton checkBox = holder.getViewById(R.id.checkBox);
         CompoundButton radioButton = holder.getViewById(R.id.radioButton);
@@ -56,15 +63,6 @@ public class BaseSpinerAdapter<T extends BaseItem> extends RecyclerAdapter<T> {
             checkBox.setChecked(item.isChecked);
             radioButton.setVisibility(View.GONE);
         }
-        holder.getConvertView().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changeSelected(position);
-                if (callBack != null) {
-                    callBack.itemClick(position, item);
-                }
-            }
-        });
     }
 
 
@@ -144,6 +142,18 @@ public class BaseSpinerAdapter<T extends BaseItem> extends RecyclerAdapter<T> {
                 notifyDataSetChanged();
             }
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        changeSelected(position);
+        if (callBack != null) {
+            callBack.itemClick(position, mList.get(position));
+        }
+    }
+
+    public void setChileMatchParent(boolean chileMatchParent) {
+        this.chileMatchParent = chileMatchParent;
     }
 
     public interface ItemClickCallBack<T> {

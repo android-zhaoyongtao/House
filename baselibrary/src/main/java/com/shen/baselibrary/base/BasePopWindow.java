@@ -37,6 +37,7 @@ public abstract class BasePopWindow extends PopupWindow {
 
     final public BasePopWindow showPopupWindow(View parent, int width) {
         if (!this.isShowing()) {
+            makeContentViewWidthExactly(width);
             setWidth(width);
             setHeight(LayoutParams.WRAP_CONTENT);
             this.showAsDropDown(parent);
@@ -45,6 +46,10 @@ public abstract class BasePopWindow extends PopupWindow {
             this.dismiss();
         }
         return this;
+    }
+
+    //确切展示宽度回调
+    public void makeContentViewWidthExactly(int width) {
     }
 
     final public BasePopWindow showPopupWindow(View parent) {

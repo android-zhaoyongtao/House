@@ -93,11 +93,16 @@ public class SpinerPopWindow extends BasePopWindow implements BaseSpinerAdapter.
             layoutParams.width = relwidth;
 //            layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;
             layoutParams.height = scrheight;
-            recyclerView.setLayoutParams(layoutParams);
         }
         return this;
     }
+    @Override
+    public void makeContentViewWidthExactly(int width) {
+        ViewGroup.LayoutParams layoutParams = recyclerView.getLayoutParams();
+        layoutParams.width = width;
+        mAdapter.setChileMatchParent(true);
 
+    }
     public SpinerPopWindow setColunms(int colunms) {
         if (colunms == 1) {
             recyclerView.setLayoutManager(new WrapContentLinearLayoutManager(mContext));
