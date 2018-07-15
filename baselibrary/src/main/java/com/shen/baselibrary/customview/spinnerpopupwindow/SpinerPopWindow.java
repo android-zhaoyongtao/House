@@ -83,8 +83,6 @@ public class SpinerPopWindow extends BasePopWindow implements BaseSpinerAdapter.
                 }
             });
         }
-        //控制下recyclerView高度屏幕2/3,宽度
-        setViewWidthHeight(mColunms, mAdapter);
         return this;
     }
 
@@ -102,6 +100,8 @@ public class SpinerPopWindow extends BasePopWindow implements BaseSpinerAdapter.
         int row = (int) Math.ceil(mAdapter.getItemCount() / colunms);
         if (itemHeight * row > maxHight) {
             layoutParams.height = maxHight;
+        } else {
+            layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         }
         layoutParams.width = itemWidth * colunms + colunms;//不知道为啥站不下，那就+个colunms个px吧
         mAdapter.setChildWidth(itemWidth);
@@ -127,7 +127,7 @@ public class SpinerPopWindow extends BasePopWindow implements BaseSpinerAdapter.
             recyclerView.setLayoutManager(new GridLayoutManager(mContext, colunms));
             recyclerView.addItemDecoration(new DividerGridItemDecoration(mContext, 1, mContext.getResources().getColor(R.color.line), false));
         }
-        setViewWidthHeight(mColunms, mAdapter);
+        setViewWidthHeight(mColunms, mAdapter);//控制下recyclerView高度屏幕2/3,宽度
         return this;
     }
 
