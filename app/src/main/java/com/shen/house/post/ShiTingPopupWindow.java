@@ -9,6 +9,8 @@ import android.widget.RadioGroup;
 import com.shen.baselibrary.base.BasePopWindow;
 import com.shen.house.R;
 
+import org.jetbrains.annotations.Nullable;
+
 public class ShiTingPopupWindow extends BasePopWindow {
     public ShiTingPopupWindow(Context context) {
         super(context);
@@ -109,6 +111,22 @@ public class ShiTingPopupWindow extends BasePopWindow {
             }
         });
         return view;
+    }
+
+    public ShiTingPopupWindow setData(@Nullable PostBean.ShiTing shiting) {
+        if (shiting != null) {
+            View v = getContentView();
+            RadioGroup rgShi = v.findViewById(R.id.rgShi);
+            int resId1 = mContext.getResources().getIdentifier("rbShi" + shiting.shi, "id", mContext.getPackageName());
+            rgShi.check(resId1);
+            RadioGroup rgTing = v.findViewById(R.id.rgTing);
+            int resId2 = mContext.getResources().getIdentifier("rbTing" + shiting.ting, "id", mContext.getPackageName());
+            rgTing.check(resId2);
+            RadioGroup rgWei = v.findViewById(R.id.rgWei);
+            int resId3 = mContext.getResources().getIdentifier("rbWei" + shiting.wei, "id", mContext.getPackageName());
+            rgWei.check(resId3);
+        }
+        return this;
     }
 
     public interface ShiTingCallBack {

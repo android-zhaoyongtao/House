@@ -102,8 +102,9 @@ class PostActivity : BaseActivity() {
             }
         }
         layoutShiTing.setOnClickListener {
-            ShiTingPopupWindow(`this`).setShiTingCallBack(object : ShiTingPopupWindow.ShiTingCallBack {
+            ShiTingPopupWindow(`this`).setData(postBean.shiting).setShiTingCallBack(object : ShiTingPopupWindow.ShiTingCallBack {
                 override fun call(shi: Int, shis: String?, ting: Int, tings: String?, wei: Int, weis: String?) {
+                    postBean.shiting = PostBean.ShiTing(shi, ting, wei)
                     tvShiTing.setText(TextUtils.concat(shis, tings, weis))
                 }
             }).showPopupWindow(it, DisplayUtils.dp2px(`this`, 330f))

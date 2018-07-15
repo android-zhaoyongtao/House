@@ -30,13 +30,16 @@ public class PostBean {
     public Pair<Integer, String> xingzhi;
     public List<BaseItem> wuzhengs;//选中的
 
-    private static class ShiTing {
-        public Pair<Integer, String> shi;
-        //        public String shis;
-        public Pair<Integer, String> ting;
-        //        public String tings;
-        public Pair<Integer, String> wei;
-//        public String weis;
+    public static class ShiTing {
+        public int shi;
+        public int ting;
+        public int wei;
+
+        public ShiTing(int shi, int ting, int wei) {
+            this.shi = shi;
+            this.ting = ting;
+            this.wei = wei;
+        }
     }
 
     public static class DianTi {
