@@ -109,15 +109,23 @@ class PostActivity : BaseActivity() {
             }).showPopupWindow(it, DisplayUtils.dp2px(`this`, 330f))
         }
         layoutChaoXiang.setOnClickListener {
-            ShiTingPopupWindow(`this`).setShiTingCallBack(object : ShiTingPopupWindow.ShiTingCallBack {
-                override fun call(shi: Int, shis: String?, ting: Int, tings: String?, wei: Int, weis: String?) {
-                    tvShiTing.setText(TextUtils.concat(shis, tings, weis))
-                }
-            }).showPopupWindow(it, DisplayUtils.dp2px(`this`, 330f))
+            val chaoxiangs: List<BaseItem>? = AssetsUtils.getObjectFromAssets<ArrayList<BaseItem>>(`this`, "chaoxiang.json", object : TypeToken<ArrayList<BaseItem>>() {}.type)
+            if (StringUtils.listSize(chaoxiangs) > 0) {
+                var chaoXiangAdapter = BaseSpinerAdapter<BaseItem>(`this`, chaoxiangs, true)
+                SpinerPopWindow(`this`).setAdatper(chaoXiangAdapter).setSelect(postBean.chaoxiang).setColunms(2)
+                        .setItemSelectListener(object : BaseSpinerAdapter.ItemClickCallBack<BaseItem> {
+                            override fun itemClick(position: Int, item: BaseItem) {
+                                postBean.chaoxiang = item
+                                tvChaoXiang.setText(item.text)
+                            }
+                        })
+                        .showPopupWindow(it)
+            } else {
+                ToastUtile.showToast("当前城市无地区信息")
+            }
         }
         layoutWuZheng.setOnClickListener {
-            val wuzhengs = AssetsUtils.getObjectFromAssets<ArrayList<BaseItem>>(`this`
-                    , "wuzheng.json", object : TypeToken<ArrayList<BaseItem>>() {}.type)
+            val wuzhengs = AssetsUtils.getObjectFromAssets<ArrayList<BaseItem>>(`this`, "wuzheng.json", object : TypeToken<ArrayList<BaseItem>>() {}.type)
             var wuZhengAdapter = BaseSpinerAdapter<BaseItem>(`this`, wuzhengs, false)
             SpinerPopWindow(`this`).setAdatper(wuZhengAdapter).setSelect(postBean.wuzhengs)
                     .setPosiButtonClickListener(object : SpinerPopWindow.PosiButtonClickCallBack<BaseItem> {

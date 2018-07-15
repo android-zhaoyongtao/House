@@ -82,19 +82,23 @@ public class SpinerPopWindow extends BasePopWindow implements BaseSpinerAdapter.
                 }
             });
         }
-        //控制下recyclerView高度屏幕2/3
+        //控制下recyclerView高度屏幕2/3,宽度
+        setViewWidthHeight(1);
+        return this;
+    }
+
+    private void setViewWidthHeight(int colunms) {
         View itemView = mAdapter.onCreateViewHolder(recyclerView, 0).itemView;
         itemView.measure(0, 0);
-        int relheight = itemView.getMeasuredHeight();
-        int relwidth = itemView.getMeasuredWidth();
-        int scrheight = ContextHouse.SCREENHEIGHT * 2 / 3;
-        if (relheight * mAdapter.getItemCount() > scrheight) {
-            ViewGroup.LayoutParams layoutParams = recyclerView.getLayoutParams();
-            layoutParams.width = relwidth;
-//            layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;
-            layoutParams.height = scrheight;
+        int itemHeight = itemView.getMeasuredHeight();
+        int itemWidth = itemView.getMeasuredWidth();
+        int maxHight = ContextHouse.SCREENHEIGHT * 2 / 3;
+        ViewGroup.LayoutParams layoutParams = recyclerView.getLayoutParams();
+        int row = (int) Math.ceil(mAdapter.getItemCount() / colunms);
+        if (itemHeight * row > maxHight) {
+            layoutParams.height = maxHight;
         }
-        return this;
+        layoutParams.width = itemWidth * colunms;
     }
     @Override
     public void makeContentViewWidthExactly(int width) {

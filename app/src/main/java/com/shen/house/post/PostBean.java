@@ -17,7 +17,7 @@ public class PostBean {
     public String address;
     public float mianji;
     public ShiTing shiting;
-    public String chaoxiang;
+    public BaseItem chaoxiang;
     public DianTi dianti;
     public float shoufu;
     public float daikuan;
