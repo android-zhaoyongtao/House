@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="330dp"
+              android:layout_height="wrap_content"
+              android:background="@drawable/bg_spiner_popup"
+              android:orientation="vertical">
+
+    <CheckBox
+        android:id="@+id/hasDianTi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:checked="true"
+        android:text="有电梯"
+        android:background="@drawable/bg_list_item_selector"
+        android:textColor="@color/bg_color_blue"
+        android:textSize="16sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/divider_ver"
+        android:orientation="horizontal"
+        android:showDividers="middle">
+
+        <RadioGroup
+            android:id="@+id/rgTi"
+            android:layout_width="@dimen/divider_0_5dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="几梯："
+                android:textColor="@color/text"
+                android:textSize="13sp"/>
+
+            <RadioButton
+                android:id="@+id/rbTi1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:gravity="center"
+                android:paddingEnd="15dp"
+                android:text="一梯"
+                android:background="@drawable/bg_list_item_selector"
+                android:textColor="@color/bg_color_blue"
+                android:textSize="14sp"/>
+
+            <RadioButton
+                android:id="@+id/rbTi2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingEnd="15dp"
+                android:text="二梯"
+                android:background="@drawable/bg_list_item_selector"
+                android:textColor="@color/bg_color_blue"
+                android:textSize="14sp"/>
+
+            <RadioButton
+                android:id="@+id/rbTi3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingEnd="15dp"
+                android:text="三梯"
+                android:background="@drawable/bg_list_item_selector"
+                android:textColor="@color/bg_color_blue"
+                android:textSize="14sp"/>
+
+            <RadioButton
+                android:id="@+id/rbTi4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingEnd="5dp"
+                android:text="≧四梯"
+                android:background="@drawable/bg_list_item_selector"
+                android:textColor="@color/bg_color_blue"
+                android:textSize="14sp"/>
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/rgHu"
+            android:layout_width="@dimen/divider_0_5dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="几户："
+                android:textColor="@color/text"
+                android:textSize="13sp"/>
+
+            <RadioButton
+                android:id="@+id/rbHu1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:gravity="center"
+                android:paddingEnd="15dp"
+                android:background="@drawable/bg_list_item_selector"
+                android:text="一户"
+                android:textColor="@color/bg_color_blue"
+                android:textSize="14sp"/>
+
+            <RadioButton
+                android:id="@+id/rbHu2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/bg_list_item_selector"
+                android:paddingEnd="15dp"
+                android:text="二户"
+                android:textColor="@color/bg_color_blue"
+                android:textSize="14sp"/>
+
+            <RadioButton
+                android:id="@+id/rbHu3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingEnd="15dp"
+                android:background="@drawable/bg_list_item_selector"
+                android:text="三户"
+                android:textColor="@color/bg_color_blue"
+                android:textSize="14sp"/>
+
+            <RadioButton
+                android:id="@+id/rbHu4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingEnd="15dp"
+                android:background="@drawable/bg_list_item_selector"
+                android:text="四户"
+                android:textColor="@color/bg_color_blue"
+                android:textSize="14sp"/>
+
+            <RadioButton
+                android:id="@+id/rbHu5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingEnd="15dp"
+                android:background="@drawable/bg_list_item_selector"
+                android:text="五户"
+                android:textColor="@color/bg_color_blue"
+                android:textSize="14sp"/>
+
+            <RadioButton
+                android:id="@+id/rbHu6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingEnd="5dp"
+                android:text="≧六户"
+                android:background="@drawable/bg_list_item_selector"
+                android:textColor="@color/bg_color_blue"
+                android:textSize="14sp"/>
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <include layout="@layout/layout_dialog_bottom_btn"/>
+</LinearLayout>

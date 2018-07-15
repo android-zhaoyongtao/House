@@ -39,9 +39,15 @@ public class PostBean {
 //        public String weis;
     }
 
-    private static class DianTi {
+    public static class DianTi {
         public boolean has;
         public int ti;
         public int hu;
+
+        public DianTi(boolean has, int ti, int hu) {
+            this.has = has;
+            this.ti = ti;
+            this.hu = hu;
+        }
     }
 }

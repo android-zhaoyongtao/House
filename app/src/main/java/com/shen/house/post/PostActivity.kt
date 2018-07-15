@@ -124,6 +124,14 @@ class PostActivity : BaseActivity() {
                 ToastUtile.showToast("当前城市无地区信息")
             }
         }
+        layoutDianTi.setOnClickListener {
+            DianTiPopupWindow(`this`).setData(postBean.dianti).setDianTiCallBack(object : DianTiPopupWindow.DianTiCallBack {
+                override fun call(hasDianTi: Boolean, ti: Int, tis: String?, hu: Int, hus: String?) {
+                    postBean.dianti = PostBean.DianTi(hasDianTi, ti, hu)
+                    tvDianTi.setText(TextUtils.concat(if (hasDianTi) "有电梯 " else "", tis, hus))
+                }
+            }).showPopupWindow(it, DisplayUtils.dp2px(`this`, 220f))
+        }
         layoutWuZheng.setOnClickListener {
             val wuzhengs = AssetsUtils.getObjectFromAssets<ArrayList<BaseItem>>(`this`, "wuzheng.json", object : TypeToken<ArrayList<BaseItem>>() {}.type)
             var wuZhengAdapter = BaseSpinerAdapter<BaseItem>(`this`, wuzhengs, false)

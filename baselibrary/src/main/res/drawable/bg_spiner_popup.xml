@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- 内部颜色 -->
     <solid
-        android:color="@color/bg"/>
+        android:color="@color/white"/>
     <!-- 边缘线条颜色 -->
     <stroke
         android:width="0px"
