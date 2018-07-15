@@ -19,7 +19,7 @@ import java.util.List;
 public class BaseSpinerAdapter<T extends BaseItem> extends RecyclerAdapter<T> implements AdapterView.OnItemClickListener {
     public boolean singleCheck = false;//是否单选
     private ItemClickCallBack callBack;
-    private boolean chileMatchParent =false;
+    private int chileNewWidth = ViewGroup.LayoutParams.WRAP_CONTENT;
 
     public void setOnItemClickListener(ItemClickCallBack callBack) {
         this.callBack = callBack;
@@ -46,10 +46,8 @@ public class BaseSpinerAdapter<T extends BaseItem> extends RecyclerAdapter<T> im
     }
 
     @Override
-    public void onSetView(final EViewHolder holder, final T item, final int position) {
-        if (chileMatchParent) {
-            holder.getConvertView().getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
-        }
+    public void onSetView(final EViewHolder holder, final BaseItem item, final int position) {
+        holder.getConvertView().getLayoutParams().width = chileNewWidth;
         TextView textView = holder.getViewById(R.id.textView);
         CompoundButton checkBox = holder.getViewById(R.id.checkBox);
         CompoundButton radioButton = holder.getViewById(R.id.radioButton);
@@ -152,8 +150,8 @@ public class BaseSpinerAdapter<T extends BaseItem> extends RecyclerAdapter<T> im
         }
     }
 
-    public void setChileMatchParent(boolean chileMatchParent) {
-        this.chileMatchParent = chileMatchParent;
+    public void setChildWidth(int width) {
+        this.chileNewWidth = width;
     }
 
     public interface ItemClickCallBack<T> {
