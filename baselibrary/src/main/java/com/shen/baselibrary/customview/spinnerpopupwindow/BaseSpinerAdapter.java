@@ -46,7 +46,8 @@ public class BaseSpinerAdapter<T extends BaseItem> extends RecyclerAdapter<T> {
         TextView textView = holder.getViewById(R.id.textView);
         CompoundButton checkBox = holder.getViewById(R.id.checkBox);
         CompoundButton radioButton = holder.getViewById(R.id.radioButton);
-        textView.setText(item.text);
+        String text = item.text;
+        textView.setText(text);
         textView.setTextColor(mContext.getResources().getColor(item.isChecked ? R.color.blue : R.color.grey));
         if (singleCheck) {
             radioButton.setChecked(item.isChecked);

@@ -83,13 +83,13 @@ class PostActivity : BaseActivity() {
         layoutQuXian.setOnClickListener {
             val cuttentCity = LocationUtils.getSPCity()
             if (cuttentCity != null) {
-                var areas: List<AreaBean>? = CitysManager(`this`).allAreaInCity(cuttentCity.areaId)
+                var areas: List<AreaBean>? = CitysManager(`this`).getAllArea(cuttentCity.areaId)
                 if (StringUtils.listSize(areas) > 0) {
                     var quXianAdapter = BaseSpinerAdapter<AreaBean>(`this`, areas, true)
                     SpinerPopWindow(`this`).setAdatper(quXianAdapter).setSelect(1)
                             .setItemSelectListener(object : BaseSpinerAdapter.ItemClickCallBack<AreaBean> {
                                 override fun itemClick(position: Int, item: AreaBean) {
-                                    tvQuXian.setText(item.areaName)
+                                    tvQuXian.setText(item.text)
                                 }
                             })
                             .showPopupWindow(it, it.width)

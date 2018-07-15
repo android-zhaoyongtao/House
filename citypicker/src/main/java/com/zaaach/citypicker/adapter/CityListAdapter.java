@@ -127,7 +127,7 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.BaseVi
                     }
                 }
             });
-        }
+        } else
         //定位城市
         if (holder instanceof LocationViewHolder) {
             final int pos = holder.getAdapterPosition();
@@ -172,7 +172,7 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.BaseVi
                     }
                 }
             });
-        }
+        } else
         //热门城市
         if (holder instanceof HotViewHolder) {
             final int pos = holder.getAdapterPosition();

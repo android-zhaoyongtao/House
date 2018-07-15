@@ -63,8 +63,12 @@ public class CitysManager {
         return resultCities;
     }
 
+    /**
+     * @param cityId cityId
+     * @return 获取城市下所有区
+     */
     public @Nullable
-    List<AreaBean> allAreaInCity(String cityId) {
+    List<AreaBean> getAllArea(String cityId) {
         if (TextUtils.isEmpty(cityId)) {
             return null;
         }
