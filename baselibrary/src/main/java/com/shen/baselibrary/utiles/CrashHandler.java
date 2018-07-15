@@ -144,7 +144,8 @@ public class CrashHandler extends Instrumentation {
     private static void onCrash(final Throwable e) {
         try {
             Activity activity = ActivityStackManager.getInstance().currentActivity();
-            if (ContextHouse.DEBUG) {
+//            if (ContextHouse.DEBUG) {
+            if (true) {
                 LogUtils.e("FATAL", e);
                 final String traceString = Log.getStackTraceString(e);
                 PermissionUtils.requestPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE, new PermissionCallBack() {
@@ -169,7 +170,7 @@ public class CrashHandler extends Instrumentation {
                         .put("version", ApkUtils.getVersionName(activity).replaceAll("\\D", ""))
                         .put("desc", traceString + "\n\n\n" + getDeviceInfo()).toString());
                 activity.startActivity(intent);
-                ActivityStackManager.getInstance().AppExit(ContextHouse.getContext());
+//                ActivityStackManager.getInstance().AppExit(ContextHouse.getContext());
             } else {
 //                MobclickAgent.reportError(ContextXin.getContext(), e);
             }

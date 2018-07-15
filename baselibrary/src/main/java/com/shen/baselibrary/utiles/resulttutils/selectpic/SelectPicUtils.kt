@@ -18,7 +18,7 @@ import com.shen.baselibrary.utiles.resulttutils.PermissionUtils
 object SelectPicUtils {
     val MAXSELECTNUM: Int = 12
     open fun selectPic(activity: FragmentActivity, singleSelect: Boolean = true, selectList: List<LocalMedia>?, callBack: SelectPicCallback?) {
-        PermissionUtils.requestPermission(activity, Manifest.permission.CAMERA, object : PermissionCallBack() {
+        PermissionUtils.requestPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE, object : PermissionCallBack() {
             override fun hasPermission() {
                 AvoidTempFragment.getInstance(activity.supportFragmentManager).selectPic(callBack, singleSelect, selectList)
             }
