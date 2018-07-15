@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.shen.baselibrary.utiles.KeyBoardUtils;
 import com.zaaach.citypicker.adapter.CityListAdapter;
 import com.zaaach.citypicker.adapter.InnerListener;
 import com.zaaach.citypicker.adapter.OnPickListener;
@@ -264,6 +265,7 @@ public class CityPickerDialogFragment extends AppCompatDialogFragment implements
     @Override
     public void dismiss(int position, CityBean city) {
         dismiss();
+        KeyBoardUtils.INSTANCE.toggleKeyBoard(false, mRecyclerView);
         if (mOnPickListener != null) {
             mOnPickListener.onPick(position, city);
         }

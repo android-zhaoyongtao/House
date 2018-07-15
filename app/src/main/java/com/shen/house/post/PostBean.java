@@ -4,6 +4,7 @@ import android.util.Pair;
 
 import com.luck.picture.lib.entity.LocalMedia;
 import com.shen.baselibrary.customview.spinnerpopupwindow.BaseItem;
+import com.zaaach.citypicker.model.AreaBean;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class PostBean {
     public String content;
     public List<LocalMedia> pics;
     public String name;
-    public Pair<String, String> area;// TODO: 2018/7/13 city
+    public AreaBean area;//区县
     public String address;
     public float mianji;
     public ShiTing shiting;

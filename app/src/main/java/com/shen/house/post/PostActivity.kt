@@ -86,9 +86,10 @@ class PostActivity : BaseActivity() {
                 var areas: List<AreaBean>? = CitysManager(`this`).getAllArea(cuttentCity.areaId)
                 if (StringUtils.listSize(areas) > 0) {
                     var quXianAdapter = BaseSpinerAdapter<AreaBean>(`this`, areas, true)
-                    SpinerPopWindow(`this`).setAdatper(quXianAdapter).setSelect(1)
+                    SpinerPopWindow(`this`).setAdatper(quXianAdapter).setSelect(postBean.area)
                             .setItemSelectListener(object : BaseSpinerAdapter.ItemClickCallBack<AreaBean> {
                                 override fun itemClick(position: Int, item: AreaBean) {
+                                    postBean.area = item
                                     tvQuXian.setText(item.text)
                                 }
                             })

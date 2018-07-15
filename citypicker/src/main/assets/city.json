@@ -1,3 +1,4 @@
+//雄安写成了131200
 [
   {
     "areaId": "110000",
@@ -519,23 +520,39 @@
         "counties": [
           {
             "areaId": "130602",
-            "areaName": "新市区"
+            "areaName": "竞秀区"
           },
           {
             "areaId": "130603",
-            "areaName": "北市区"
+            "areaName": "莲池区"
           },
           {
             "areaId": "130604",
-            "areaName": "南市区"
+            "areaName": "徐水区"
           },
           {
             "areaId": "130621",
-            "areaName": "满城县"
+            "areaName": "满城区"
           },
           {
             "areaId": "130622",
-            "areaName": "清苑县"
+            "areaName": "清苑区"
+          },
+          {
+            "areaId": "130681",
+            "areaName": "涿州市"
+          },
+          {
+            "areaId": "130683",
+            "areaName": "安国市"
+          },
+          {
+            "areaId": "130684",
+            "areaName": "高碑店市"
+          },
+          {
+            "areaId": "130627",
+            "areaName": "唐县"
           },
           {
             "areaId": "130623",
@@ -554,16 +571,8 @@
             "areaName": "定兴县"
           },
           {
-            "areaId": "130627",
-            "areaName": "唐县"
-          },
-          {
             "areaId": "130628",
             "areaName": "高阳县"
-          },
-          {
-            "areaId": "130629",
-            "areaName": "容城县"
           },
           {
             "areaId": "130630",
@@ -572,10 +581,6 @@
           {
             "areaId": "130631",
             "areaName": "望都县"
-          },
-          {
-            "areaId": "130632",
-            "areaName": "安新县"
           },
           {
             "areaId": "130633",
@@ -596,28 +601,12 @@
           {
             "areaId": "130637",
             "areaName": "博野县"
-          },
-          {
-            "areaId": "130638",
-            "areaName": "雄县"
           }
         ]
       },
       {
-        "areaId": "130681",
-        "areaName": "涿州市"
-      },
-      {
         "areaId": "130682",
         "areaName": "定州市"
-      },
-      {
-        "areaId": "130683",
-        "areaName": "安国市"
-      },
-      {
-        "areaId": "130684",
-        "areaName": "高碑店市"
       },
       {
         "areaId": "130700",
@@ -906,6 +895,24 @@
           {
             "areaId": "131182",
             "areaName": "深州市"
+          }
+        ]
+      },
+      {
+        "areaId": "131200",
+        "areaName": "雄安新区",
+        "counties": [
+          {
+            "areaId": "130638",
+            "areaName": "雄县"
+          },
+          {
+            "areaId": "130632",
+            "areaName": "安新县"
+          },
+          {
+            "areaId": "130629",
+            "areaName": "容城县"
           }
         ]
       }
