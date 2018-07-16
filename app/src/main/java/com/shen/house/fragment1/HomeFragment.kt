@@ -12,7 +12,7 @@ class HomeFragment : BaseFragment() {
 
     override fun afterInjectView(view: View) {
         val tvCity = view.findViewById<TextView>(R.id.tvCity)
-        tvCity.setText(LocationUtils.getSPCity()?.areaName ?: "城市")
+        tvCity.setText(LocationUtils.getSPCity()?.areaName ?: "定位")
         tvCity.setOnClickListener {
             LocationUtils.toSelectPage(activity, object : LocationUtils.CityCallBack {
                 override fun call(city: CityBean?) {
