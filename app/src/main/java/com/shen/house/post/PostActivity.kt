@@ -121,8 +121,6 @@ class PostActivity : BaseActivity() {
                             }
                         })
                         .showPopupWindow(it)
-            } else {
-                ToastUtile.showToast("当前城市无地区信息")
             }
         }
         layoutDianTi.setOnClickListener {

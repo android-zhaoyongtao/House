@@ -150,7 +150,7 @@ public class ActivityStackManager {
             activityStack = new Stack<>();
         }
         activityStack.add(activity);
-        LogUtils.d("zhaoyt", "pushActivity: " + activity.getClass().getSimpleName());
+        LogUtils.d("activity~:", "pushActivity: " + activity.getClass().getSimpleName());
     }
 
     /**
@@ -169,7 +169,7 @@ public class ActivityStackManager {
      */
     public void popActivity(Activity activity) {
         if (activity != null) {
-            LogUtils.d("zhaoyt", "popActivity: " + activity.getClass().getSimpleName());
+            LogUtils.d("activity~:", "popActivity: " + activity.getClass().getSimpleName());
             activityStack.remove(activity);
         }
         if (!activity.isFinishing()) {
