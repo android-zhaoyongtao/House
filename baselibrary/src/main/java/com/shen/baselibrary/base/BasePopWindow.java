@@ -48,7 +48,7 @@ public abstract class BasePopWindow extends PopupWindow {
             setHeight(LayoutParams.WRAP_CONTENT);
 
             Rect r = new Rect();
-            parent.getLocalVisibleRect(r);
+            parent.getGlobalVisibleRect(r);
             int bottom = r.bottom;
             LogUtils.e("zhaoy", "bottom:" + bottom);
             int marginBottom = ContextHouse.SCREENHEIGHT - bottom;//parent到屏幕底部距离
@@ -56,7 +56,7 @@ public abstract class BasePopWindow extends PopupWindow {
             getContentView().measure(0, 0);
             int contentHeight = getContentView().getMeasuredHeight();
             if (marginBottom < contentHeight) {//如果占不下这个框了
-                super.showAtLocation(parent, Gravity.TOP | Gravity.START, 0, 0);
+                super.showAtLocation(parent, Gravity.TOP | Gravity.START, r.left, ContextHouse.SCREENHEIGHT - contentHeight);
             } else {
                 this.showAsDropDown(parent);
             }
