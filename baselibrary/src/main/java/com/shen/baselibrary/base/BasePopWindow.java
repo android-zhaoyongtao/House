@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.PopupWindow;
 
+import com.shen.baselibrary.utiles.KeyBoardUtils;
 import com.shen.baselibrary.utiles.ViewUtils;
 
 
@@ -36,6 +37,7 @@ public abstract class BasePopWindow extends PopupWindow {
 
 
     final public BasePopWindow showPopupWindow(View parent, int width) {
+        KeyBoardUtils.INSTANCE.toggleKeyBoard(false, parent);
         if (!this.isShowing()) {
             makeContentViewWidthExactly(width);
             setWidth(width);
@@ -48,11 +50,8 @@ public abstract class BasePopWindow extends PopupWindow {
         return this;
     }
 
-    //确切展示宽度回调
-    public void makeContentViewWidthExactly(int width) {
-    }
-
     final public BasePopWindow showPopupWindow(View parent) {
+        KeyBoardUtils.INSTANCE.toggleKeyBoard(false, parent);
         if (!this.isShowing()) {
             setWidth(LayoutParams.WRAP_CONTENT);
             setHeight(LayoutParams.WRAP_CONTENT);
@@ -62,5 +61,9 @@ public abstract class BasePopWindow extends PopupWindow {
             this.dismiss();
         }
         return this;
+    }
+
+    //确切展示宽度回调
+    public void makeContentViewWidthExactly(int width) {
     }
 }

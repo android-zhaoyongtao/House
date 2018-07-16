@@ -26,7 +26,7 @@ public class PostBean {
     public float zongjia;
     public float danjia;
     public Pair<Integer, Integer> louceng;
-    public Pair<Integer, String> zhuangxiu;
+    public BaseItem zhuangxiu;
     public Pair<Integer, String> xingzhi;
     public List<BaseItem> wuzhengs;//选中的
 

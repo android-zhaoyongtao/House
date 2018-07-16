@@ -85,7 +85,6 @@
             <LinearLayout
                 style="@style/linerlayout_activity_post">
 
-
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/layoutName"
                     android:layout_width="0dp"
@@ -96,8 +95,27 @@
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/edittextName"
                         style="@style/inputEditText"
-                        android:hint="小区名称："/>
+                        android:hint="小区名称："
+                        tools:text="tools"/>
                 </android.support.design.widget.TextInputLayout>
+
+                <com.shen.house.post.ClickTextInputLayout
+                    android:id="@+id/layoutXingZhi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/colorAccent">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/tvXingZhi"
+                        style="@style/inputEditText"
+                        android:hint="房屋性质："
+                        tools:text="tools"/>
+                </com.shen.house.post.ClickTextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linerlayout_activity_post">
                 <!--所在区县-->
                 <com.shen.house.post.ClickTextInputLayout
                     android:id="@+id/layoutQuXian"
@@ -109,24 +127,26 @@
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/tvQuXian"
                         style="@style/inputEditText"
-                        android:hint="所在区县："/>
+                        android:hint="所在区县："
+                        tools:text="tools"/>
                 </com.shen.house.post.ClickTextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/colorAccent"
+                    >
+
+                    <android.support.design.widget.TextInputEditText
+                        style="@style/inputEditText"
+                        android:hint="详细地址："
+                        tools:text="tools"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColorHint="@color/colorAccent"
-                >
-
-                <android.support.design.widget.TextInputEditText
-                    style="@style/inputEditText"
-                    android:hint="详细地址："
-                    tools:text="tools"
-                    />
-
-            </android.support.design.widget.TextInputLayout>
 
             <LinearLayout
                 style="@style/linerlayout_activity_post">
@@ -189,6 +209,37 @@
                         android:hint="电梯："
                         tools:text="tools"/>
                 </com.shen.house.post.ClickTextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                style="@style/linerlayout_activity_post">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/colorAccent">
+
+                    <android.support.design.widget.TextInputEditText
+                        style="@style/inputEditText"
+                        android:hint="单价(万)："
+                        android:inputType="number|numberDecimal"
+                        tools:text="tools"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/colorAccent">
+
+                    <android.support.design.widget.TextInputEditText
+                        style="@style/inputEditText"
+                        android:hint="总价(万)："
+                        android:inputType="number|numberDecimal"
+                        tools:text="tools"/>
+
+                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -266,31 +317,33 @@
                 style="@style/linerlayout_activity_post">
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/layoutInLouCeng"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textColorHint="@color/colorAccent">
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/tvInLouCeng"
                         style="@style/inputEditText"
-                        android:hint="总价(万)："
-                        android:inputType="number|numberDecimal"
+                        android:hint="所在楼层："
+                        android:inputType="number"
                         tools:text="tools"/>
-
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/layoutAllLouCeng"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textColorHint="@color/colorAccent">
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/tvAllLouCeng"
                         style="@style/inputEditText"
-                        android:hint="单价(万)："
-                        android:inputType="number|numberDecimal"
+                        android:hint="总楼层："
+                        android:inputType="number"
                         tools:text="tools"/>
-
                 </android.support.design.widget.TextInputLayout>
 
 
@@ -300,16 +353,16 @@
                 style="@style/linerlayout_activity_post">
 
                 <com.shen.house.post.ClickTextInputLayout
-                    android:id="@+id/layoutLouCeng"
+                    android:id="@+id/layoutWuZheng"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textColorHint="@color/colorAccent">
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/tvLouCeng"
+                        android:id="@+id/tvWuZheng"
                         style="@style/inputEditText"
-                        android:hint="楼层："
+                        android:hint="五证进度："
                         tools:text="tools"/>
                 </com.shen.house.post.ClickTextInputLayout>
 
@@ -329,38 +382,6 @@
             </LinearLayout>
 
             <LinearLayout
-                style="@style/linerlayout_activity_post">
-
-                <com.shen.house.post.ClickTextInputLayout
-                    android:id="@+id/layoutXingZhi"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColorHint="@color/colorAccent">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/tvXingZhi"
-                        style="@style/inputEditText"
-                        android:hint="房屋性质："
-                        tools:text="tools"/>
-                </com.shen.house.post.ClickTextInputLayout>
-
-                <com.shen.house.post.ClickTextInputLayout
-                    android:id="@+id/layoutWuZheng"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColorHint="@color/colorAccent">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/tvWuZheng"
-                        style="@style/inputEditText"
-                        android:hint="五证进度："
-                        tools:text="tools"/>
-                </com.shen.house.post.ClickTextInputLayout>
-            </LinearLayout>
-
-            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -374,9 +395,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
                     android:text="发布人信息"
                     android:textColor="@color/text"
-                    android:paddingBottom="5dp"
                     android:textSize="16sp"/>
 
                 <android.support.design.widget.TextInputLayout

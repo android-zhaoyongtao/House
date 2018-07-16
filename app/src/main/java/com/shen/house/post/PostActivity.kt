@@ -147,6 +147,22 @@ class PostActivity : BaseActivity() {
                     })
                     .showPopupWindow(it)
         }
+        layoutZhuangXiu.setOnClickListener {
+            val zhuangxius: List<BaseItem>? = AssetsUtils.getObjectFromAssets<ArrayList<BaseItem>>(`this`, "zhuangxiu.json", object : TypeToken<ArrayList<BaseItem>>() {}.type)
+            if (StringUtils.listSize(zhuangxius) > 0) {
+                var zhuangXiuAdapter = BaseSpinerAdapter<BaseItem>(`this`, zhuangxius, true)
+                SpinerPopWindow(`this`).setAdatper(zhuangXiuAdapter).setSelect(postBean.zhuangxiu).setColunms(2)
+                        .setItemSelectListener(object : BaseSpinerAdapter.ItemClickCallBack<BaseItem> {
+                            override fun itemClick(position: Int, item: BaseItem) {
+                                postBean.zhuangxiu = item
+                                tvZhuangXiu.setText(item.text)
+                            }
+                        })
+                        .showPopupWindow(it)
+            } else {
+                ToastUtile.showToast("当前城市无地区信息")
+            }
+        }
         btnPost.setOnClickListener { ToastUtile.showToast("fabu发布") }
 
     }
