@@ -7,12 +7,16 @@ import com.google.gson.reflect.TypeToken
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
+import com.shen.baselibrary.ContextHouse
 import com.shen.baselibrary.base.BaseActivity
 import com.shen.baselibrary.customview.spinnerpopupwindow.BaseItem
 import com.shen.baselibrary.customview.spinnerpopupwindow.BaseSpinerAdapter
 import com.shen.baselibrary.customview.spinnerpopupwindow.SpinerPopWindow
 import com.shen.baselibrary.helper.FullyGridLayoutManager
-import com.shen.baselibrary.utiles.*
+import com.shen.baselibrary.utiles.AssetsUtils
+import com.shen.baselibrary.utiles.LogUtils
+import com.shen.baselibrary.utiles.StringUtils
+import com.shen.baselibrary.utiles.ToastUtile
 import com.shen.baselibrary.utiles.resulttutils.selectpic.SelectPicCallback
 import com.shen.baselibrary.utiles.resulttutils.selectpic.SelectPicUtils
 import com.shen.house.R
@@ -107,7 +111,7 @@ class PostActivity : BaseActivity() {
                     postBean.shiting = PostBean.ShiTing(shi, ting, wei)
                     tvShiTing.setText(TextUtils.concat(shis, tings, weis))
                 }
-            }).showPopupWindow(it, DisplayUtils.dp2px(`this`, 330f))
+            }).showPopupWindow(it, (330 * ContextHouse.DP1).toInt())
         }
         layoutChaoXiang.setOnClickListener {
             val chaoxiangs: List<BaseItem>? = AssetsUtils.getObjectFromAssets<ArrayList<BaseItem>>(`this`, "chaoxiang.json", object : TypeToken<ArrayList<BaseItem>>() {}.type)
@@ -129,7 +133,7 @@ class PostActivity : BaseActivity() {
                     postBean.dianti = PostBean.DianTi(hasDianTi, ti, hu)
                     tvDianTi.setText(TextUtils.concat(if (hasDianTi) "有电梯 " else "", tis, hus))
                 }
-            }).showPopupWindow(it, DisplayUtils.dp2px(`this`, 220f))
+            }).showPopupWindow(it, (250 * ContextHouse.DP1).toInt())
         }
         layoutWuZheng.setOnClickListener {
             val wuzhengs = AssetsUtils.getObjectFromAssets<ArrayList<BaseItem>>(`this`, "wuzheng.json", object : TypeToken<ArrayList<BaseItem>>() {}.type)
