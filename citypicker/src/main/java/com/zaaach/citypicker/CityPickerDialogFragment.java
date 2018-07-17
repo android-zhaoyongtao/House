@@ -254,12 +254,14 @@ public class CityPickerDialogFragment extends AppCompatDialogFragment implements
     //定位完成
     public void locationChanged(final CityBean location, int state) {
         mAdapter.updateLocateState(location, state);
-        mRecyclerView.postDelayed(new Runnable() {//选中后再消失,肉眼可见
-            @Override
-            public void run() {
-                 dismiss(0,location);
-            }
-        }, 100);
+        if (state == LocateState.SUCCESS) {//成功后再消失
+            mRecyclerView.postDelayed(new Runnable() {//选中后再消失,肉眼可见
+                @Override
+                public void run() {
+                    dismiss(0, location);
+                }
+            }, 100);
+        }
     }
 
     @Override

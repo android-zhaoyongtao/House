@@ -191,7 +191,7 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.BaseVi
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0 && TextUtils.equals("定", mData.get(position).getSection().substring(0, 1)))
+        if (position == 0 && TextUtils.equals("当", mData.get(position).getSection().substring(0, 1)))
             return VIEW_TYPE_CURRENT;
         if (position == 1 && TextUtils.equals("热", mData.get(position).getSection().substring(0, 1)))
             return VIEW_TYPE_HOT;
