@@ -170,8 +170,8 @@ public class LocationUtils {
                         if (data != null) {
                             data.pinyin = "当前城市";
                             setSPCity(data);
-                            callBack.call(data);
                         }
+                        callBack.call(data);
                     }
 
                     @Override
