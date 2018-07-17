@@ -29,7 +29,7 @@ import java.io.File
 
 //发布页面
 class PostActivity : BaseActivity() {
-    val postBean = PostBean();
+    val postBean = PostBean()
     var imageAdapter: GridImageAdapter? = null
     override fun getcontentView(): Int {
         return R.layout.activity_post
@@ -82,6 +82,20 @@ class PostActivity : BaseActivity() {
                     PictureSelector.create(`this`).themeStyle(R.style.picture_default_style).openExternalPreview(position, postBean.pics)
                 }
 
+            }
+        }
+        layoutXingZhi.setOnClickListener {
+            val xingzhis: List<BaseItem>? = AssetsUtils.getObjectFromAssets<ArrayList<BaseItem>>(`this`, "xingzhi.json", object : TypeToken<ArrayList<BaseItem>>() {}.type)
+            if (StringUtils.listSize(xingzhis) > 0) {
+                var xingZhiAdapter = BaseSpinerAdapter<BaseItem>(`this`, xingzhis, true)
+                SpinerPopWindow(`this`).setAdatper(xingZhiAdapter).setSelect(postBean.xingzhi).setColunms(2)
+                        .setItemSelectListener(object : BaseSpinerAdapter.ItemClickCallBack<BaseItem> {
+                            override fun itemClick(position: Int, item: BaseItem) {
+                                postBean.xingzhi = item
+                                tvXingZhi.setText(item.text)
+                            }
+                        })
+                        .showPopupWindow(it)
             }
         }
         layoutQuXian.setOnClickListener {
@@ -161,8 +175,6 @@ class PostActivity : BaseActivity() {
                             }
                         })
                         .showPopupWindow(it)
-            } else {
-                ToastUtile.showToast("当前城市无地区信息")
             }
         }
         btnPost.setOnClickListener { ToastUtile.showToast("fabu发布") }
