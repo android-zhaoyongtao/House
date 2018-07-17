@@ -161,7 +161,7 @@ class PostActivity : BaseActivity() {
                             }
                         }
                     })
-                    .showPopupWindow(it)
+                    .showPopupWindow(it, (200 * ContextHouse.DP1).toInt())
         }
         layoutZhuangXiu.setOnClickListener {
             val zhuangxius: List<BaseItem>? = AssetsUtils.getObjectFromAssets<ArrayList<BaseItem>>(`this`, "zhuangxiu.json", object : TypeToken<ArrayList<BaseItem>>() {}.type)
@@ -174,7 +174,7 @@ class PostActivity : BaseActivity() {
                                 tvZhuangXiu.setText(item.text)
                             }
                         })
-                        .showPopupWindow(it)
+                        .showPopupWindow(it, (250 * ContextHouse.DP1).toInt())
             }
         }
         btnPost.setOnClickListener { ToastUtile.showToast("fabu发布") }
