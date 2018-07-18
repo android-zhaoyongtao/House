@@ -40,8 +40,8 @@
         android:paddingRight="9.5dp"
         android:paddingTop="5dp"
         android:textColor="@color/colorAccent"
-        tools:text="tools"
-        android:textSize="14dp"
+        tools:text="按钮"
+        android:textSize="16dp"
         tools:visibility="visible"
         android:visibility="gone"/>
 

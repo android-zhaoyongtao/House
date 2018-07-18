@@ -50,8 +50,8 @@ class PostActivity : BaseActivity() {
         titleRight.setText("存草稿")
         titleRight.visibility = View.VISIBLE
         titleRight.setOnClickListener {
+            ToastUtile.showToast("已将此信息存为草稿")
             savePostBean()
-            onBackPressed()
         }
         recycler.layoutManager = FullyGridLayoutManager(this, 4, GridLayoutManager.VERTICAL, false)
         imageAdapter = GridImageAdapter(this, GridImageAdapter.onAddPicClickListener {
@@ -188,6 +188,11 @@ class PostActivity : BaseActivity() {
         savePostBean()
     }
 
+    override fun onBackPressed() {
+        ToastUtile.showToast("已将此未完成信息存为草稿")//onStop()存了
+        super.onBackPressed()
+    }
+
     fun savePostBean() {
         postBean.title = tvTitle.text.toString().trim()
         postBean.content = tvContent.text.toString().trim()
@@ -208,7 +213,6 @@ class PostActivity : BaseActivity() {
         if (postBean.isNotEmpty()) {
             val list = arrayListOf(postBean)
             SPUtils.setJsonObject(Key.SPKEY.POST_BEANS, list)
-            ToastUtile.showToast("已将此未完成信息存为草稿")//onStop()存了
         }
     }
 
