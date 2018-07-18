@@ -1,7 +1,10 @@
 package com.shen.house.post;
 
+import android.text.TextUtils;
+
 import com.luck.picture.lib.entity.LocalMedia;
 import com.shen.baselibrary.customview.spinnerpopupwindow.BaseItem;
+import com.shen.baselibrary.utiles.StringUtils;
 import com.zaaach.citypicker.model.AreaBean;
 
 import java.util.List;
@@ -32,7 +35,13 @@ public class PostBean {
     public String weixin;
     public String qq;//int
 
-    public boolean isNotEmpty() {
+    public boolean isNotEmpty() {//联系信息就不计算在内判断了
+        if (!TextUtils.isEmpty(title) || !TextUtils.isEmpty(content) || StringUtils.listSize(pics) > 0 || !TextUtils.isEmpty(name) || area != null || !TextUtils.isEmpty(address)
+                || !TextUtils.isEmpty(mianji) || shiting != null || chaoxiang != null || dianti != null || !TextUtils.isEmpty(fangling) || !TextUtils.isEmpty(danjia) || !TextUtils.isEmpty(zongjia)
+                || !TextUtils.isEmpty(shoufu) || !TextUtils.isEmpty(daikuan) || !TextUtils.isEmpty(qita) || !TextUtils.isEmpty(louceng) || !TextUtils.isEmpty(alllouceng) || zhuangxiu != null
+                || xingzhi != null || StringUtils.listSize(wuzhengs) > 0) {
+            return true;
+        }
         return false;
     }
 

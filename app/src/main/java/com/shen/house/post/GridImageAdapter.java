@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +16,7 @@ import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.tools.DateUtils;
 import com.luck.picture.lib.tools.StringUtils;
+import com.shen.baselibrary.utiles.LogUtils;
 import com.shen.house.R;
 import com.shen.house.glide.ImageLoader;
 
@@ -53,6 +53,7 @@ public class GridImageAdapter extends RecyclerView.Adapter<GridImageAdapter.View
 
     public void setList(List<LocalMedia> list) {
         this.list = list;
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -149,14 +150,14 @@ public class GridImageAdapter extends RecyclerView.Adapter<GridImageAdapter.View
             }
             // 图片
             if (media.isCompressed()) {
-                Log.i("compress image result:", new File(media.getCompressPath()).length() / 1024 + "k");
-                Log.i("压缩地址::", media.getCompressPath());
+                LogUtils.i("compress image result:", new File(media.getCompressPath()).length() / 1024 + "k");
+                LogUtils.i("压缩地址::", media.getCompressPath());
             }
 
-            Log.i("原图地址::", media.getPath());
+            LogUtils.i("原图地址::", media.getPath());
             int pictureType = PictureMimeType.isPictureType(media.getPictureType());
             if (media.isCut()) {
-                Log.i("裁剪地址::", media.getCutPath());
+                LogUtils.i("裁剪地址::", media.getCutPath());
             }
             long duration = media.getDuration();
             viewHolder.tv_duration.setVisibility(pictureType == PictureConfig.TYPE_VIDEO

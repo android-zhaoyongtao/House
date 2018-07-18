@@ -29,7 +29,7 @@ import java.io.File
 //发布页面
 class PostActivity : BaseActivity() {
     lateinit var postBean: PostBean
-    var imageAdapter: GridImageAdapter? = null
+    lateinit var imageAdapter: GridImageAdapter
     override fun getcontentView(): Int {
         return R.layout.activity_post
     }
@@ -37,8 +37,8 @@ class PostActivity : BaseActivity() {
 
     override fun afterInjectView(view: View) {
         titleText.setText("发布信息")
-        initData()
         initListener()
+        initData()
     }
 
     private fun initData() {
@@ -56,7 +56,6 @@ class PostActivity : BaseActivity() {
         recycler.layoutManager = FullyGridLayoutManager(this, 4, GridLayoutManager.VERTICAL, false)
         imageAdapter = GridImageAdapter(this, GridImageAdapter.onAddPicClickListener {
             //+点击事件
-            //            addPic()
             SelectPicUtils.selectPic(this, false, postBean.pics, object : SelectPicCallback {
                 override fun selectPicResult(list: List<LocalMedia>) {
                     postBean.pics = list
@@ -71,18 +70,16 @@ class PostActivity : BaseActivity() {
                         LogUtils.e("图片-----》", "2.${File(media.compressPath).length() / 1024}kb")
 
                     }
-                    imageAdapter!!.setList(postBean.pics)
-                    imageAdapter!!.notifyDataSetChanged()
+                    imageAdapter.setList(postBean.pics)
                 }
             })
         })
-        //        adapter!!.setList(postBean.pics)
-        imageAdapter!!.setSelectMax(SelectPicUtils.MAXSELECTNUM)
+        imageAdapter.setSelectMax(SelectPicUtils.MAXSELECTNUM)
         recycler.adapter = imageAdapter
-        imageAdapter!!.setOnItemClickListener { position, v ->
+        imageAdapter.setOnItemClickListener { position, v ->
             if (postBean.pics!!.size > 0) {
-                var media = postBean.pics!!.get(position)
-                var mediaType = PictureMimeType.isPictureType(media.pictureType)
+                val media = postBean.pics!!.get(position)
+                val mediaType = PictureMimeType.isPictureType(media.pictureType)
                 if (mediaType == 1) {
                     PictureSelector.create(`this`).themeStyle(R.style.picture_default_style).openExternalPreview(position, postBean.pics)
                 }
@@ -92,7 +89,7 @@ class PostActivity : BaseActivity() {
         layoutXingZhi.setOnClickListener {
             val xingzhis: List<BaseItem>? = AssetsUtils.getObjectFromAssets<ArrayList<BaseItem>>(`this`, "xingzhi.json", object : TypeToken<ArrayList<BaseItem>>() {}.type)
             if (StringUtils.listSize(xingzhis) > 0) {
-                var xingZhiAdapter = BaseSpinerAdapter<BaseItem>(`this`, xingzhis, true)
+                val xingZhiAdapter = BaseSpinerAdapter<BaseItem>(`this`, xingzhis, true)
                 SpinerPopWindow(`this`).setAdatper(xingZhiAdapter).setSelect(postBean.xingzhi).setColunms(2)
                         .setItemSelectListener(object : BaseSpinerAdapter.ItemClickCallBack<BaseItem> {
                             override fun itemClick(position: Int, item: BaseItem) {
@@ -106,9 +103,9 @@ class PostActivity : BaseActivity() {
         layoutQuXian.setOnClickListener {
             val cuttentCity = LocationUtils.getSPCity()
             if (cuttentCity != null) {
-                var areas: List<AreaBean>? = CitysManager(`this`).getAllArea(cuttentCity.areaId)
+                val areas: List<AreaBean>? = CitysManager(`this`).getAllArea(cuttentCity.areaId)
                 if (StringUtils.listSize(areas) > 0) {
-                    var quXianAdapter = BaseSpinerAdapter<AreaBean>(`this`, areas, true)
+                    val quXianAdapter = BaseSpinerAdapter<AreaBean>(`this`, areas, true)
                     SpinerPopWindow(`this`).setAdatper(quXianAdapter).setSelect(postBean.area)
                             .setItemSelectListener(object : BaseSpinerAdapter.ItemClickCallBack<AreaBean> {
                                 override fun itemClick(position: Int, item: AreaBean) {
@@ -135,7 +132,7 @@ class PostActivity : BaseActivity() {
         layoutChaoXiang.setOnClickListener {
             val chaoxiangs: List<BaseItem>? = AssetsUtils.getObjectFromAssets<ArrayList<BaseItem>>(`this`, "chaoxiang.json", object : TypeToken<ArrayList<BaseItem>>() {}.type)
             if (StringUtils.listSize(chaoxiangs) > 0) {
-                var chaoXiangAdapter = BaseSpinerAdapter<BaseItem>(`this`, chaoxiangs, true)
+                val chaoXiangAdapter = BaseSpinerAdapter<BaseItem>(`this`, chaoxiangs, true)
                 SpinerPopWindow(`this`).setAdatper(chaoXiangAdapter).setSelect(postBean.chaoxiang).setColunms(2)
                         .setItemSelectListener(object : BaseSpinerAdapter.ItemClickCallBack<BaseItem> {
                             override fun itemClick(position: Int, item: BaseItem) {
@@ -156,7 +153,7 @@ class PostActivity : BaseActivity() {
         }
         layoutWuZheng.setOnClickListener {
             val wuzhengs = AssetsUtils.getObjectFromAssets<ArrayList<BaseItem>>(`this`, "wuzheng.json", object : TypeToken<ArrayList<BaseItem>>() {}.type)
-            var wuZhengAdapter = BaseSpinerAdapter<BaseItem>(`this`, wuzhengs, false)
+            val wuZhengAdapter = BaseSpinerAdapter<BaseItem>(`this`, wuzhengs, false)
             SpinerPopWindow(`this`).setAdatper(wuZhengAdapter).setSelect(postBean.wuzhengs)
                     .setPosiButtonClickListener(object : SpinerPopWindow.PosiButtonClickCallBack<BaseItem> {
                         override fun onClick(items: MutableList<BaseItem>) {
@@ -171,7 +168,7 @@ class PostActivity : BaseActivity() {
         layoutZhuangXiu.setOnClickListener {
             val zhuangxius: List<BaseItem>? = AssetsUtils.getObjectFromAssets<ArrayList<BaseItem>>(`this`, "zhuangxiu.json", object : TypeToken<ArrayList<BaseItem>>() {}.type)
             if (StringUtils.listSize(zhuangxius) > 0) {
-                var zhuangXiuAdapter = BaseSpinerAdapter<BaseItem>(`this`, zhuangxius, true)
+                val zhuangXiuAdapter = BaseSpinerAdapter<BaseItem>(`this`, zhuangxius, true)
                 SpinerPopWindow(`this`).setAdatper(zhuangXiuAdapter).setSelect(postBean.zhuangxiu).setColunms(2)
                         .setItemSelectListener(object : BaseSpinerAdapter.ItemClickCallBack<BaseItem> {
                             override fun itemClick(position: Int, item: BaseItem) {
@@ -209,20 +206,19 @@ class PostActivity : BaseActivity() {
         postBean.weixin = tvWeiXin.text.toString().trim()
         postBean.qq = tvQQ.text.toString().trim()
         if (postBean.isNotEmpty()) {
-            var list = arrayListOf(postBean)
+            val list = arrayListOf(postBean)
             SPUtils.setJsonObject(Key.SPKEY.POST_BEANS, list)
-            ToastUtile.showToast("已将此未完成信息存为草稿")//onstop存了
-        } else {
-            SPUtils.setJsonObject(Key.SPKEY.POST_BEANS, null)
+            ToastUtile.showToast("已将此未完成信息存为草稿")//onStop()存了
         }
     }
 
     private fun initSavePostBean() {
         val lists: ArrayList<PostBean>? = SPUtils.getJsonObject(Key.SPKEY.POST_BEANS, object : TypeToken<ArrayList<PostBean>>() {}.type)
         if (lists?.isNotEmpty() ?: false) {
-            MessageDialog(`this`, "发现本地草稿，是否进入编辑？", null, "编辑", object : View.OnClickListener {
+            MessageDialog(`this`, "发现本地草稿", "是否进入编辑？如果取消会删除上次草稿", "编辑", object : View.OnClickListener {
                 override fun onClick(v: View?) {
                     postBean = lists!!.get(0)
+                    imageAdapter.setList(postBean.pics)//图片
                     tvTitle.setText(postBean.title)
                     tvContent.setText(postBean.content)
                     tvName.setText(postBean.name)
