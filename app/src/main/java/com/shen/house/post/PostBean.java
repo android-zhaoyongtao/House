@@ -49,23 +49,33 @@ public class PostBean {
         public int shi;
         public int ting;
         public int wei;
+        public String shis;
+        public String tings;
+        public String weis;
 
-        public ShiTing(int shi, int ting, int wei) {
+        public ShiTing(int shi, String shis, int ting, String tings, int wei, String weis) {
             this.shi = shi;
+            this.shis = shis;
             this.ting = ting;
+            this.tings = tings;
             this.wei = wei;
+            this.weis = weis;
         }
     }
 
     public static class DianTi {
         public boolean has;
         public int ti;
+        public String tis;
         public int hu;
+        public String hus;
 
-        public DianTi(boolean has, int ti, int hu) {
+        public DianTi(boolean has, int ti, String tis, int hu, String hus) {
             this.has = has;
             this.ti = ti;
+            this.tis = tis;
             this.hu = hu;
+            this.hus = hus;
         }
     }
 }

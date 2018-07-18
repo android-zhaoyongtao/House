@@ -124,7 +124,7 @@ class PostActivity : BaseActivity() {
         layoutShiTing.setOnClickListener {
             ShiTingPopupWindow(`this`).setData(postBean.shiting).setShiTingCallBack(object : ShiTingPopupWindow.ShiTingCallBack {
                 override fun call(shi: Int, shis: String?, ting: Int, tings: String?, wei: Int, weis: String?) {
-                    postBean.shiting = PostBean.ShiTing(shi, ting, wei)
+                    postBean.shiting = PostBean.ShiTing(shi, shis, ting, tings, wei, weis)
                     tvShiTing.setText(TextUtils.concat(shis, tings, weis))
                 }
             }).showPopupWindow(it, (330 * ContextHouse.DP1).toInt())
@@ -146,7 +146,7 @@ class PostActivity : BaseActivity() {
         layoutDianTi.setOnClickListener {
             DianTiPopupWindow(`this`).setData(postBean.dianti).setDianTiCallBack(object : DianTiPopupWindow.DianTiCallBack {
                 override fun call(hasDianTi: Boolean, ti: Int, tis: String?, hu: Int, hus: String?) {
-                    postBean.dianti = PostBean.DianTi(hasDianTi, ti, hu)
+                    postBean.dianti = PostBean.DianTi(hasDianTi, ti, tis, hu, hus)
                     tvDianTi.setText(TextUtils.concat(if (hasDianTi) "有电梯 " else "", tis, hus))
                 }
             }).showPopupWindow(it, (250 * ContextHouse.DP1).toInt())
@@ -222,8 +222,13 @@ class PostActivity : BaseActivity() {
                     tvTitle.setText(postBean.title)
                     tvContent.setText(postBean.content)
                     tvName.setText(postBean.name)
+                    postBean.xingzhi?.let { tvXingZhi.setText(it.text) }
+                    postBean.area?.let { tvQuXian.setText(it.text) }
                     tvAddress.setText(postBean.address)
                     tvMianji.setText(postBean.mianji)
+                    postBean.shiting?.let { tvShiTing.setText(TextUtils.concat(it.shis, it.tings, it.weis)) }
+                    postBean.chaoxiang?.let { tvChaoXiang.setText(it.text) }
+                    postBean.dianti?.let { tvDianTi.setText(TextUtils.concat(if (it.has) "有电梯 " else "", it.tis, it.hus)) }
                     tvDanjia.setText(postBean.danjia)
                     tvZongjia.setText(postBean.zongjia)
                     tvShoufu.setText(postBean.shoufu)
@@ -232,6 +237,8 @@ class PostActivity : BaseActivity() {
                     tvFangLing.setText(postBean.fangling)
                     tvInLouCeng.setText(postBean.louceng)
                     tvAllLouCeng.setText(postBean.alllouceng)
+                    postBean.wuzhengs?.let { tvWuZheng.setText(it.last()?.text) }
+                    postBean.zhuangxiu?.let { tvZhuangXiu.setText(it.text) }
                     tvPhone.setText(postBean.phone)
                     tvWeiXin.setText(postBean.weixin)
                     tvQQ.setText(postBean.qq)

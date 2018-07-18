@@ -214,6 +214,7 @@
                         tools:text="tools"/>
                 </com.shen.house.post.ClickTextInputLayout>
             </LinearLayout>
+
             <LinearLayout
                 style="@style/linerlayout_activity_post">
 
@@ -433,7 +434,9 @@
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/tvWeiXin"
                         style="@style/inputEditText"
+                        android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_~@"
                         android:hint="微信："
+                        android:inputType="number"
                         tools:text="tools"
                         />
 
