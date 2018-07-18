@@ -39,8 +39,10 @@
         android:paddingBottom="5dp"
         android:paddingRight="9.5dp"
         android:paddingTop="5dp"
-        android:textColor="#2486d6"
+        android:textColor="@color/colorAccent"
+        tools:text="tools"
         android:textSize="14dp"
+        tools:visibility="visible"
         android:visibility="gone"/>
 
     <View

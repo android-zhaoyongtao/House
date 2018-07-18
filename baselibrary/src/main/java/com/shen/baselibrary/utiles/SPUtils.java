@@ -3,11 +3,14 @@ package com.shen.baselibrary.utiles;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.google.gson.JsonSyntaxException;
 import com.shen.baselibrary.ContextHouse;
 import com.shen.baselibrary.http.Convert;
+
+import java.lang.reflect.Type;
 
 public class SPUtils {
     private static final String SPNAME = "sp_house";
@@ -65,7 +68,21 @@ public class SPUtils {
         setString2SP(key, json);
     }
 
-    public static <T> T getJsonObject(String key, Class<T> t) {
+    public static @Nullable
+    <T> T getJsonObject(String key, Class<T> t) {
+        String json = getStringFromSP(key, "");
+        try {
+            if (!TextUtils.isEmpty(json)) {
+                return Convert.fromJson(json, t);
+            }
+        } catch (JsonSyntaxException e) {
+            return null;
+        }
+        return null;
+    }
+
+    public static @Nullable
+    <T> T getJsonObject(String key, Type t) {
         String json = getStringFromSP(key, "");
         try {
             if (!TextUtils.isEmpty(json)) {

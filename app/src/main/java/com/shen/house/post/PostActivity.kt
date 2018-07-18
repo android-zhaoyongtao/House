@@ -9,16 +9,15 @@ import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.shen.baselibrary.ContextHouse
 import com.shen.baselibrary.base.BaseActivity
+import com.shen.baselibrary.customview.MessageDialog
 import com.shen.baselibrary.customview.spinnerpopupwindow.BaseItem
 import com.shen.baselibrary.customview.spinnerpopupwindow.BaseSpinerAdapter
 import com.shen.baselibrary.customview.spinnerpopupwindow.SpinerPopWindow
 import com.shen.baselibrary.helper.FullyGridLayoutManager
-import com.shen.baselibrary.utiles.AssetsUtils
-import com.shen.baselibrary.utiles.LogUtils
-import com.shen.baselibrary.utiles.StringUtils
-import com.shen.baselibrary.utiles.ToastUtile
+import com.shen.baselibrary.utiles.*
 import com.shen.baselibrary.utiles.resulttutils.selectpic.SelectPicCallback
 import com.shen.baselibrary.utiles.resulttutils.selectpic.SelectPicUtils
+import com.shen.house.Key
 import com.shen.house.R
 import com.zaaach.citypicker.LocationUtils
 import com.zaaach.citypicker.db.CitysManager
@@ -29,7 +28,7 @@ import java.io.File
 
 //发布页面
 class PostActivity : BaseActivity() {
-    val postBean = PostBean()
+    lateinit var postBean: PostBean
     var imageAdapter: GridImageAdapter? = null
     override fun getcontentView(): Int {
         return R.layout.activity_post
@@ -43,11 +42,17 @@ class PostActivity : BaseActivity() {
     }
 
     private fun initData() {
-
+        initSavePostBean()
     }
 
     private fun initListener() {
-        titleBack.setOnClickListener { finish() }
+        titleBack.setOnClickListener { onBackPressed() }
+        titleRight.setText("存草稿")
+        titleRight.visibility = View.VISIBLE
+        titleRight.setOnClickListener {
+            savePostBean()
+            onBackPressed()
+        }
         recycler.layoutManager = FullyGridLayoutManager(this, 4, GridLayoutManager.VERTICAL, false)
         imageAdapter = GridImageAdapter(this, GridImageAdapter.onAddPicClickListener {
             //+点击事件
@@ -181,5 +186,67 @@ class PostActivity : BaseActivity() {
 
     }
 
+    override fun onStop() {
+        super.onStop()
+        savePostBean()
+    }
 
+    fun savePostBean() {
+        postBean.title = tvTitle.text.toString().trim()
+        postBean.content = tvContent.text.toString().trim()
+        postBean.name = tvName.text.toString().trim()
+        postBean.address = tvAddress.text.toString().trim()
+        postBean.mianji = tvMianji.text.toString()
+        postBean.danjia = tvDanjia.text.toString()
+        postBean.zongjia = tvZongjia.text.toString()
+        postBean.shoufu = tvShoufu.text.toString()
+        postBean.daikuan = tvDaikuan.text.toString()
+        postBean.qita = tvQita.text.toString()
+        postBean.fangling = tvFangLing.text.toString()
+        postBean.louceng = tvInLouCeng.text.toString()
+        postBean.alllouceng = tvAllLouCeng.text.toString()
+        postBean.phone = tvPhone.text.toString()
+        postBean.weixin = tvWeiXin.text.toString().trim()
+        postBean.qq = tvQQ.text.toString().trim()
+        if (postBean.isNotEmpty()) {
+            var list = arrayListOf(postBean)
+            SPUtils.setJsonObject(Key.SPKEY.POST_BEANS, list)
+            ToastUtile.showToast("已将此未完成信息存为草稿")//onstop存了
+        } else {
+            SPUtils.setJsonObject(Key.SPKEY.POST_BEANS, null)
+        }
+    }
+
+    private fun initSavePostBean() {
+        val lists: ArrayList<PostBean>? = SPUtils.getJsonObject(Key.SPKEY.POST_BEANS, object : TypeToken<ArrayList<PostBean>>() {}.type)
+        if (lists?.isNotEmpty() ?: false) {
+            MessageDialog(`this`, "发现本地草稿，是否进入编辑？", null, "编辑", object : View.OnClickListener {
+                override fun onClick(v: View?) {
+                    postBean = lists!!.get(0)
+                    tvTitle.setText(postBean.title)
+                    tvContent.setText(postBean.content)
+                    tvName.setText(postBean.name)
+                    tvAddress.setText(postBean.address)
+                    tvMianji.setText(postBean.mianji)
+                    tvDanjia.setText(postBean.danjia)
+                    tvZongjia.setText(postBean.zongjia)
+                    tvShoufu.setText(postBean.shoufu)
+                    tvDaikuan.setText(postBean.daikuan)
+                    tvQita.setText(postBean.qita)
+                    tvFangLing.setText(postBean.fangling)
+                    tvInLouCeng.setText(postBean.louceng)
+                    tvAllLouCeng.setText(postBean.alllouceng)
+                    tvPhone.setText(postBean.phone)
+                    tvWeiXin.setText(postBean.weixin)
+                    tvQQ.setText(postBean.qq)
+                }
+            }, "取消", object : View.OnClickListener {
+                override fun onClick(v: View?) {
+                    postBean = PostBean()
+                }
+            }).show()
+        } else {
+            postBean = PostBean()
+        }
+    }
 }

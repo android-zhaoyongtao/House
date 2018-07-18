@@ -38,6 +38,7 @@
 
                 <!--EditText 设置左侧图片,系统建议drawableStart/drawableLeft一起用,API>17-->
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/tvTitle"
                     style="@style/inputEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -60,6 +61,7 @@
 
                 <!--EditText 设置左侧图片,系统建议drawableStart/drawableLeft一起用,API>17-->
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/tvContent"
                     style="@style/inputEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -93,7 +95,7 @@
                     android:textColorHint="@color/colorAccent">
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/edittextName"
+                        android:id="@+id/tvName"
                         style="@style/inputEditText"
                         android:hint="小区名称："
                         tools:text="tools"/>
@@ -139,6 +141,7 @@
                     >
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/tvAddress"
                         style="@style/inputEditText"
                         android:hint="详细地址："
                         tools:text="tools"
@@ -158,6 +161,7 @@
                     android:textColorHint="@color/colorAccent">
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/tvMianji"
                         style="@style/inputEditText"
                         android:hint="房屋面积(平)："
                         android:inputType="number|numberDecimal"
@@ -220,6 +224,7 @@
                     android:textColorHint="@color/colorAccent">
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/tvDanjia"
                         style="@style/inputEditText"
                         android:hint="单价(元)："
                         android:inputType="number|numberDecimal"
@@ -234,6 +239,7 @@
                     android:textColorHint="@color/colorAccent">
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/tvZongjia"
                         style="@style/inputEditText"
                         android:hint="总价(万)："
                         android:inputType="number|numberDecimal"
@@ -253,6 +259,7 @@
                     >
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/tvShoufu"
                         style="@style/inputEditText"
                         android:hint="首付(万)："
                         android:inputType="number|numberDecimal"
@@ -269,7 +276,7 @@
                     >
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/editDaiKuan"
+                        android:id="@+id/tvDaikuan"
                         style="@style/inputEditText"
                         android:hint="贷款(万)："
                         android:inputType="number|numberDecimal"
@@ -289,6 +296,7 @@
                     android:textColorHint="@color/colorAccent">
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/tvQita"
                         style="@style/inputEditText"
                         android:hint="其他费用(万)："
                         android:inputType="number|numberDecimal"
@@ -407,6 +415,7 @@
                     >
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/tvPhone"
                         style="@style/inputEditText"
                         android:hint="电话："
                         android:inputType="phone"
@@ -422,6 +431,7 @@
                     >
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/tvWeiXin"
                         style="@style/inputEditText"
                         android:hint="微信："
                         tools:text="tools"
@@ -436,6 +446,7 @@
                     >
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/tvQQ"
                         style="@style/inputEditText"
                         android:hint="QQ："
                         android:inputType="number"

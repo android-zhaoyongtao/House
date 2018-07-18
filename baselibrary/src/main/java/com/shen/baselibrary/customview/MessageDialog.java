@@ -22,11 +22,11 @@ public class MessageDialog extends Dialog {
     }
 
     //两个确定取消按钮的
-    public MessageDialog(Activity activity, String title, String message, String negeText, final View.OnClickListener nega, String posiText, final View.OnClickListener posi) {
-        this(activity, title, message, true, negeText, nega, posiText, posi);
+    public MessageDialog(Activity activity, String title, String message, String posiText, final View.OnClickListener posi, String negeText, final View.OnClickListener nega) {
+        this(activity, title, message, true, posiText, posi, negeText, nega);
     }
 
-    private MessageDialog(Activity activity, String title, String message, boolean showNegaButton, String negeText, final View.OnClickListener nega, String posiText, final View.OnClickListener posi) {
+    private MessageDialog(Activity activity, String title, String message, boolean showNegaButton, String posiText, final View.OnClickListener posi, String negeText, final View.OnClickListener nega) {
         super(activity, R.style.Rent_Dialog);
         View view = LayoutInflater.from(activity).inflate(R.layout.dialog_title_message, null);
         TextView tv_title = (TextView) view.findViewById(R.id.tv_title);

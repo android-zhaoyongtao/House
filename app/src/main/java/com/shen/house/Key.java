@@ -89,5 +89,6 @@ public class Key {
 
     public static final class SPKEY {
 
+        public static final String POST_BEANS = "postbeans";//存的是ArrayList<PostBean>
     }
 }
