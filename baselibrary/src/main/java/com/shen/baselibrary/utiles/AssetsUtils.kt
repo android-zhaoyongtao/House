@@ -1,7 +1,6 @@
 package com.shen.baselibrary.utiles
 
 import android.content.Context
-import com.google.gson.stream.JsonReader
 import com.shen.baselibrary.http.Convert
 import java.io.InputStreamReader
 import java.lang.reflect.Type
@@ -11,8 +10,7 @@ object AssetsUtils {
         try {
             val inputStream = context.assets.open(assetsName)
             val reader = InputStreamReader(inputStream, "utf-8")
-            val jsonReader = JsonReader(reader)
-            val t = Convert.fromJson<T>(jsonReader, classOfT)
+            val t = Convert.fromJson<T>(reader, classOfT)
             reader.close()
             inputStream.close()
             return t
@@ -27,8 +25,7 @@ object AssetsUtils {
         try {
             val inputStream = context.assets.open(assetsName)
             val reader = InputStreamReader(inputStream, "utf-8")
-            val jsonReader = JsonReader(reader)
-            val t = Convert.fromJson<T>(jsonReader, typeOfT)
+            val t = Convert.fromJson<T>(reader, typeOfT)
             reader.close()
             inputStream.close()
             return t
