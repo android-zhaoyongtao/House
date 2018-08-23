@@ -5,7 +5,14 @@
               android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:text="fourthFragment"
         android:layout_height="100dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:id="@+id/button"
+        android:text="发送"
+        android:layout_height="wrap_content"/>
 </LinearLayout>
