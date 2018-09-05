@@ -59,10 +59,10 @@
             android:name=".post.PostActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"/>
-        <activity
-            android:name=".CityActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"/>
+        <!--<activity-->
+        <!--android:name=".CityActivity"-->
+        <!--android:screenOrientation="portrait"-->
+        <!--android:windowSoftInputMode="stateHidden"/>-->
     </application>
 
 </manifest>
